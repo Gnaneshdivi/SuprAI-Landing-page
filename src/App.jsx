@@ -6,6 +6,8 @@ import Solutions from './pages/Solutions.jsx'
 import SolutionDetail from './pages/SolutionDetail.jsx'
 import Pricing from './pages/Pricing.jsx'
 import About from './pages/About.jsx'
+import Compare from './pages/Compare.jsx'
+import CompareDetail from './pages/CompareDetail.jsx'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -24,6 +26,8 @@ export default function App() {
           <Route path="/solutions/:slug" element={<SolutionDetail />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/about" element={<About />} />
+          <Route path="/compare" element={<Compare />} />
+          <Route path="/compare/:slug" element={<CompareDetail />} />
         </Route>
       </Routes>
     </>

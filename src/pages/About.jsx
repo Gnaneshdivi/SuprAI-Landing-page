@@ -6,25 +6,23 @@ export default function About() {
       <section className="phero">
         <div className="wrap">
           <div className="eyebrow">About</div>
-          <h1>We're building the layer<br />that makes your tools act together.</h1>
-          <p className="lead">Every company runs on a dozen tools that don't talk. SuprAI unifies them into one intelligence — and acts on it. So people spend their time on judgment, not stitching tabs.</p>
+          <h1>We're building the AI operating<br />system for your company.</h1>
+          <p className="lead">Every team is using AI. No company is running on it. SuprAI brings every team's apps, answers and agents into one place — so the whole company can Ask, Act and Automate as one. The shift from people-driven work to system-driven work.</p>
         </div>
       </section>
 
-      <section className="wrap" style={{ padding: '30px 28px 0' }}>
-        <div className="illus sm">§A6 — warm, human mission illustration in light pastel with orange-gradient accent (people + connected tools motif). Use real team photos when ready — no AI-generated faces.</div>
-      </section>
+      <section className="wrap" style={{ padding: '10px 28px 0' }} />
 
       <section className="section">
         <div className="wrap">
           <div className="grid-2" style={{ gap: 46, alignItems: 'start' }}>
             <div>
               <div className="eyebrow">The problem we solve</div>
-              <h2 className="big">Intelligence lives between tools — and no one owns it.</h2>
+              <h2 className="big">Every team is using AI. No company is running on it.</h2>
             </div>
             <div>
-              <p className="lead maxnone">Each tool got its own AI, but a business runs on many tools, and none of them coordinate. So people become the router — exporting, merging and tab-switching to answer one question, then doing it again to act.</p>
-              <p className="lead maxnone" style={{ marginTop: 14 }}>SuprAI sits on top of the stack you already run, unifies the data and context no one's stitching together, answers with real numbers, and takes the action. It doesn't replace your tools — it makes them act together.</p>
+              <p className="lead maxnone">Each app got its own AI, but a company runs on many apps, and none of them work together. So people do the work between them — exporting, merging and tab-switching to answer one question, then doing it again to act.</p>
+              <p className="lead maxnone" style={{ marginTop: 14 }}>SuprAI is one system the whole company shares. It connects the apps you already run, answers anything with real numbers and sources, does the work in your tools, and lets agents run what your teams repeat. It doesn't replace your apps — it puts every team on one AI, run by one admin.</p>
             </div>
           </div>
         </div>
@@ -33,12 +31,12 @@ export default function About() {
       <section className="section band-warm" id="vision">
         <div className="wrap">
           <div className="eyebrow">Where we're going</div>
-          <h2 className="big">From coordinating tools to coordinating agents</h2>
-          <p className="lead">First, every tool got an AI. Next, every tool gets its own agent — and they'll be just as siloed. SuprAI is the layer that orchestrates across them.</p>
+          <h2 className="big">From people-driven work to system-driven work</h2>
+          <p className="lead">First, every app got an AI. Next, every team gets agents — and they'll be just as siloed. SuprAI is the one system every team shares, so the company moves at the pace of AI, not the pace of people.</p>
           <div className="grid-3 mt">
-            <div className="card"><h3>Unify the tools</h3><p>Connect everything you run — modern, legacy and offline — into one living layer that understands your data.</p></div>
-            <div className="card"><h3>Orchestrate the agents</h3><p>As incumbents ship agents, we don't compete with them — we coordinate them, condensing their responses into one answer and action. The conductor, not another instrument.</p></div>
-            <div className="card"><h3>Compound the intelligence</h3><p>Every decision and outcome makes your layer sharper. The longer it runs, the more it knows your business — and the harder it is to replace.</p></div>
+            <div className="card"><h3>One system, every team</h3><p>Connect every app you run — modern, legacy and offline — so finance, sales, ops, support, growth and engineering all ask, act and automate in one place.</p></div>
+            <div className="card"><h3>Run by one admin</h3><p>Permission-aware access, a full audit trail, compliance-ready. Enterprise-grade from day one, without the enterprise project — set up and controlled by one admin.</p></div>
+            <div className="card"><h3>Moves at the pace of AI</h3><p>Every decision and outcome makes the system sharper, and it powers any AI — GPT, Claude or Gemini. The longer it runs, the more it knows your business.</p></div>
           </div>
         </div>
       </section>
@@ -48,9 +46,9 @@ export default function About() {
           <div className="eyebrow">What we believe</div>
           <h2 className="big">How we build</h2>
           <div className="grid-3 mt">
-            <div className="card peach"><h3>Act, don't just answer</h3><p>An insight that doesn't turn into action is a tab you still have to open. We close the loop.</p></div>
-            <div className="card lilac"><h3>Real data, shown openly</h3><p>Answers come from your actual numbers, with the work shown. Trust is earned, not claimed.</p></div>
-            <div className="card sky"><h3>Sit on top, never lock in</h3><p>Keep your tools and your AI of choice. We're the neutral layer above them — open and portable.</p></div>
+            <div className="card peach"><h3>Act, don't just answer</h3><p>An answer that doesn't turn into action is a tab you still have to open. So SuprAI does the work in your tools — Ask, then Act, then Automate.</p></div>
+            <div className="card lilac"><h3>Real data, shown openly</h3><p>Answers come from your actual numbers, with the sources shown. Trust is earned, not claimed.</p></div>
+            <div className="card sky"><h3>Control, never lock-in</h3><p>Keep your apps and your AI of choice — SuprAI powers any AI, GPT, Claude or Gemini. One system, run by one admin, open and portable.</p></div>
           </div>
         </div>
       </section>
@@ -59,7 +57,7 @@ export default function About() {
         <div className="wrap center">
           <div className="eyebrow">The team</div>
           <h2 className="big">Operators and builders</h2>
-          <p className="lead">A small team that has lived the pain of fragmented tools first-hand.</p>
+          <p className="lead">A small team that has lived the pain of fragmented apps first-hand.</p>
           <div className="illus sm mt">§A7 — team grid placeholder: real team photos (do not use AI-generated faces). Swap in actual headshots when ready.</div>
         </div>
       </section>
@@ -67,11 +65,11 @@ export default function About() {
       <section className="section final">
         <div className="wrap">
           <div className="final-card">
-            <h2>Come build the layer with us.</h2>
-            <p className="lead" style={{ margin: '18px auto 0' }}>Try it on your own stack, or join the team.</p>
+            <h2>Come build the AI operating system with us.</h2>
+            <p className="lead" style={{ margin: '18px auto 0' }}>See it on your own stack, or join the team.</p>
             <div className="hero-cta cc">
-              <Link className="btn btn-primary" to="/pricing">Start free</Link>
-              <a className="btn btn-ghost" href="#">See open roles</a>
+              <a className="btn btn-primary" href="#">Book a demo</a>
+              <Link className="btn btn-ghost" to="/pricing">Start free</Link>
             </div>
           </div>
         </div>
