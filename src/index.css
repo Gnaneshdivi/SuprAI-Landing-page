@@ -187,7 +187,7 @@ nav .btn{font-size:13.5px;padding:9px 15px}
 .agc-toggle{display:inline-flex;border:1px solid var(--line);border-radius:100px;padding:3px;font-family:var(--mono);font-size:10.5px;font-weight:600}
 .agc-toggle span{padding:4px 10px;border-radius:100px;color:var(--mute);cursor:pointer}
 .agc-toggle span.on{background:var(--ink);color:#fff}
-.agc-msgs{flex:1;padding:16px;display:flex;flex-direction:column;gap:13px;background:#FCFAF6;overflow-y:auto}
+.agc-msgs{flex:1;padding:16px;display:flex;flex-direction:column;gap:13px;background:#FFFFFF;overflow-y:auto}
 .agc-msg{display:flex;gap:9px;align-items:flex-start}
 .agc-av{width:24px;height:24px;border-radius:7px;background:var(--warm);border:1px solid var(--line);color:var(--ink);font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Sora',sans-serif}
 .agc-msg.bot .agc-av{background:var(--orange);color:#fff;border-color:var(--orange)}
@@ -461,7 +461,7 @@ details.faq p{color:var(--mute);font-size:14.5px;line-height:1.6;max-width:760px
 @keyframes aifade{from{opacity:0}to{opacity:1}}
 
 /* sheet — slides up from the very bottom */
-.askai-panel{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:200;width:100%;max-width:680px;background:#FFFDF9;border-radius:26px 26px 0 0;box-shadow:0 -12px 60px rgba(0,0,0,.22);animation:sheetup .42s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;height:84vh;max-height:700px;overflow:hidden}
+.askai-panel{position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:200;width:100%;max-width:680px;background:#FFFFFF;border-radius:26px 26px 0 0;box-shadow:0 -12px 60px rgba(0,0,0,.22);animation:sheetup .42s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;height:84vh;max-height:700px;overflow:hidden}
 @keyframes sheetup{from{transform:translateX(-50%) translateY(100%)}to{transform:translateX(-50%) translateY(0)}}
 .askai-drag-handle{width:40px;height:4px;border-radius:2px;background:var(--line);margin:10px auto 0;flex-shrink:0}
 
@@ -475,7 +475,7 @@ details.faq p{color:var(--mute);font-size:14.5px;line-height:1.6;max-width:760px
 .askai-close:hover{background:var(--line);color:var(--ink)}
 
 /* chat messages */
-.askai-chat-area{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:12px;background:#FCFAF6}
+.askai-chat-area{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:12px;background:#FFFFFF}
 .chat-msg{display:flex;gap:8px;animation:msgslide .2s ease}
 @keyframes msgslide{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .chat-msg-bot{align-items:flex-end}
@@ -493,7 +493,7 @@ details.faq p{color:var(--mute);font-size:14.5px;line-height:1.6;max-width:760px
 /* input area */
 .askai-input-area{flex-shrink:0;border-top:1px solid var(--line);background:#fff}
 .askai-text-row{display:flex;gap:8px;padding:12px 14px;align-items:center}
-.askai-text-field{flex:1;border:1.5px solid var(--line);border-radius:10px;padding:10px 13px;font-size:14px;font-family:'Inter',sans-serif;color:var(--ink);background:#FFFDF9;outline:none;transition:border-color .14s}
+.askai-text-field{flex:1;border:1.5px solid var(--line);border-radius:10px;padding:10px 13px;font-size:14px;font-family:'Inter',sans-serif;color:var(--ink);background:#FFFFFF;outline:none;transition:border-color .14s}
 .askai-text-field:focus{border-color:var(--orange)}
 .askai-send-btn{width:38px;height:38px;border-radius:10px;border:none;background:var(--orange);color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .12s}
 .askai-send-btn:hover{background:var(--deep)}
@@ -504,25 +504,25 @@ details.faq p{color:var(--mute);font-size:14.5px;line-height:1.6;max-width:760px
 /* chips / cards / bands — reused in input area */
 .askai-chips{display:flex;flex-wrap:wrap;gap:7px}
 .askai-chips-col{flex-direction:column;gap:7px}
-.askai-chip{border:1.5px solid var(--line);border-radius:100px;padding:7px 14px;font-size:13px;font-weight:500;cursor:pointer;background:#FFFDF9;color:var(--ink);transition:border-color .12s,background .12s;user-select:none;text-align:left}
+.askai-chip{border:1.5px solid var(--line);border-radius:100px;padding:7px 14px;font-size:13px;font-weight:500;cursor:pointer;background:#FFFFFF;color:var(--ink);transition:border-color .12s,background .12s;user-select:none;text-align:left}
 .askai-chip:hover{border-color:var(--soft)}
 .askai-chip.sel{border-color:var(--orange);background:rgba(241,90,34,.09);color:var(--deep);font-weight:600}
 .askai-chip-block{border-radius:10px;width:100%;padding:10px 14px}
 .askai-cat{margin-bottom:10px}
 .askai-cat-h{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-bottom:6px}
 .askai-bands{display:flex;flex-direction:column;gap:7px}
-.askai-band{border:1.5px solid var(--line);border-radius:10px;padding:10px 14px;font-size:13.5px;font-weight:500;cursor:pointer;background:#FFFDF9;text-align:left;color:var(--ink);transition:border-color .12s,background .12s;user-select:none}
+.askai-band{border:1.5px solid var(--line);border-radius:10px;padding:10px 14px;font-size:13.5px;font-weight:500;cursor:pointer;background:#FFFFFF;text-align:left;color:var(--ink);transition:border-color .12s,background .12s;user-select:none}
 .askai-band:hover{border-color:var(--soft)}
 .askai-band.sel{border-color:var(--orange);background:rgba(241,90,34,.07);color:var(--deep);font-weight:600}
 .askai-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.askai-card{border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;cursor:pointer;background:#FFFDF9;text-align:left;transition:border-color .12s,background .12s;user-select:none}
+.askai-card{border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;cursor:pointer;background:#FFFFFF;text-align:left;transition:border-color .12s,background .12s;user-select:none}
 .askai-card:hover{border-color:var(--soft)}
 .askai-card.sel{border-color:var(--orange);background:rgba(241,90,34,.07)}
 .ac-label{font-weight:600;font-size:13px;color:var(--ink);margin-bottom:3px}
 .ac-desc{font-size:11.5px;color:var(--mute);line-height:1.4}
 
 /* loading phase */
-.askai-loading-phase{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:32px 20px;background:#FCFAF6}
+.askai-loading-phase{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:32px 20px;background:#FFFFFF}
 .ai-ring svg{width:72px;height:72px}
 .ai-load-msg{font-family:'Sora',sans-serif;font-weight:600;font-size:15px;color:var(--ink);text-align:center}
 .ai-load-sub{font-size:13px;color:var(--mute);text-align:center}
