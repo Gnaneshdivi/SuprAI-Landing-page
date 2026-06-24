@@ -30,11 +30,7 @@ export default function Solutions() {
         </div>
       </section>
 
-      <section className="wrap" style={{ padding: '30px 28px 0' }}>
-        <div className="illus sm">§A5 — split diagram: left "By team" (growth, sales, support, dev, finance), right "By industry" (commerce, retail, subscriptions), both feeding one SuprAI core. Pastel, light orangish grid bg.</div>
-      </section>
-
-      <section className="section" id="teams">
+      <section className="section" id="teams" style={{ paddingTop: 56 }}>
         <div className="wrap">
           <div className="eyebrow">By team</div>
           <h2 className="big">One AI every team can Ask, Act and Automate with</h2>
@@ -66,10 +62,10 @@ export default function Solutions() {
           <h2 className="big">Connect. Ask. Act. Automate.</h2>
           <p className="lead">Whatever the team or industry, SuprAI does the same four things — only the apps and playbooks change.</p>
           <div className="loop">
-            <div className="loop-step"><div className="n">01</div><h4>Connect</h4><p>Plug in the apps that team already runs — in clicks, not an integration project. Live in days.</p></div>
-            <div className="loop-step"><div className="n">02</div><h4>Ask</h4><p>Ask anything across those apps and get real numbers and facts back, with sources — answered by role and team.</p></div>
-            <div className="loop-step"><div className="n">03</div><h4>Act</h4><p>It does the work in their tools — drafts, updates, creates, sends — on your say-so or on autopilot.</p></div>
-            <div className="loop-step"><div className="n">04</div><h4>Automate</h4><p>Named agents run the workflows that team repeats, on a trigger or a schedule. Permission-aware, fully audited.</p></div>
+            <div className="loop-step"><div className="n">01</div><h4>Connect</h4><p>The Connector Fabric plugs in the apps that team already runs — through each tool’s own secure login, in clicks, not a project. Live in days.</p></div>
+            <div className="loop-step"><div className="n">02</div><h4>Ask</h4><p>Ask anything across those apps; Entity Resolution joins them into one answer — real numbers and facts, with sources, shaped by role.</p></div>
+            <div className="loop-step"><div className="n">03</div><h4>Act</h4><p>The Action Engine does the work in their tools — drafts, updates, creates, sends — on your say-so or on autopilot.</p></div>
+            <div className="loop-step"><div className="n">04</div><h4>Automate</h4><p>The Agent Runtime runs the workflows that team repeats, on a trigger or schedule. Permission-aware, fully audited.</p></div>
           </div>
         </div>
       </section>
@@ -87,7 +83,23 @@ export default function Solutions() {
                 <li>✓ Every action permission-aware, logged and reversible</li>
               </ul>
             </div>
-            <div className="illus">§A8 — "a week of an agent" timeline: Mon report, Tue spend shift, Thu churn alert, Fri win-back — across app logos, light pastel grid.</div>
+            <div className="agent" style={{ maxWidth: 'none' }}>
+              <div className="agent-head">
+                <div className="agent-name"><span className="bdot" />Growth agent · this week</div>
+                <div className="toggle"><span>Copilot</span><span className="on">Autopilot</span></div>
+              </div>
+              {[
+                ['Mon', 'Shipped the weekly report to #growth'],
+                ['Tue', 'Moved $2.1k of wasted ad spend to what’s working'],
+                ['Thu', 'Caught a churn spike and flagged the at-risk accounts'],
+                ['Fri', 'Drafted win-back offers for each one to approve'],
+              ].map(([d, t]) => (
+                <div className="agent-step done" key={d}>
+                  <div className="rail"><div className="node" style={{ fontSize: 9 }}>{d}</div><div className="line" /></div>
+                  <div className="meta"><div className="t" style={{ fontSize: 13.5 }}>{t}</div></div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -97,7 +109,7 @@ export default function Solutions() {
           <div className="eyebrow">FAQ</div>
           <h2 className="big mb20">Common questions</h2>
           <details className="faq"><summary>Do I have to pick a team or industry?</summary><p>No — it's one operating system for the whole company. The framing just gives you the right playbooks and apps out of the box. You can run agents across several teams at once, all under one admin.</p></details>
-          <details className="faq"><summary>What if my apps aren't listed?</summary><p>Apps are unlimited, and SuprAI reaches modern APIs, warehouses and legacy systems. If it holds your data, we can connect it.</p></details>
+          <details className="faq"><summary>What if my apps aren't listed?</summary><p>Connections are unlimited, and the Connector Fabric reaches every kind of system — your apps, your files, your databases, and the older, login-only tools without an easy way in. If it holds your data, we can connect it.</p></details>
           <details className="faq"><summary>Can different teams have different permissions?</summary><p>Yes — access is permission-aware and scoped to each user's role, with a full audit trail. Compliance-ready, run by one admin.</p></details>
         </div>
       </section>

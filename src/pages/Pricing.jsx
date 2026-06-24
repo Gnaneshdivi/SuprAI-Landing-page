@@ -6,8 +6,8 @@ export default function Pricing() {
       <section className="phero">
         <div className="wrap">
           <div className="eyebrow">Pricing</div>
-          <h1>The AI operating system,<br />priced for your size.</h1>
-          <p className="lead">Unlimited apps on every plan. Ask, Act and Automate across your tools — enterprise-grade from day one, priced for your size, not the enterprise. Start free forever; try Starter free for 15 days. No card required.</p>
+          <h1>The whole control plane,<br />priced for your size.</h1>
+          <p className="lead">Every plan is the full system — unlimited connections to every kind of tool, any AI you like, answers and actions shaped by role, and everything on the record. Enterprise-grade from day one, priced for your size, not the enterprise. Start free forever; try Starter free for 15 days. No card required.</p>
         </div>
       </section>
 

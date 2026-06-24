@@ -8,7 +8,7 @@ export default function Compare() {
         <div className="wrap">
           <div className="eyebrow">Comparisons</div>
           <h1>SuprAI vs other alternatives</h1>
-          <p className="lead">Most AI tools give each person an assistant. SuprAI gives the whole company one operating system — role-aware, connected to your apps, and able to act. Here’s how it compares.</p>
+          <p className="lead">Most AI tools give each person an assistant. SuprAI is the system underneath the whole company — connecting every tool, joining your data, working with any AI, and acting only where someone’s allowed. Here’s a fair read of how it compares.</p>
         </div>
       </section>
 

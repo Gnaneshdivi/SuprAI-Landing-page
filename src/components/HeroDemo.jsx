@@ -95,7 +95,7 @@ const WF = [
   { name: 'Monday Numbers',
     nodes: [
       { id: 't', x: C0, y: YM, app: 'clock', title: 'Monday 6:00 AM', sub: 'Schedule' },
-      { id: 'r', x: C1, y: YM, app: 'snowflake', title: 'Read 9 apps', sub: 'Warehouse' },
+      { id: 'r', x: C1, y: YM, app: 'snowflake', title: 'Read 9 apps', sub: 'Company data' },
       { id: 'c', x: C2, y: YM, app: 'bolt', title: 'Compare', sub: 'vs last week' },
       { id: 'p', x: C3, y: YM, app: 'slack', title: 'Post the report', sub: '#leadership' },
     ], edges: [['t', 'r'], ['r', 'c'], ['c', 'p']] },

@@ -1,251 +1,414 @@
 import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
-import AppsActions from '../components/AppsActions.jsx'
-import HeroDemo from '../components/HeroDemo.jsx'
 import BrandImg from '../components/BrandImg.jsx'
+import AppsActions from '../components/AppsActions.jsx'
+import { DEMO_URL } from '../components/Layout.jsx'
+import {
+  SecMark, GridArt, Waterline, ChatSurfaces,
+  WorkforceGrid, ControlDashboard, ManagedVault, ModelGateway,
+} from '../components/v3art.jsx'
 
 const ARR = <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
 const ICON = {
-  lock: <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg>,
-  eye: <svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" /><circle cx="12" cy="12" r="3" /></svg>,
-  shield: <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z" /></svg>,
+  store: <svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3" /><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6" /><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" /></svg>,
+  sync: <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4" /><path d="M21 3v5h-5" /></svg>,
+  entity: <svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5" /><circle cx="18" cy="6" r="2.5" /><circle cx="18" cy="18" r="2.5" /><path d="M8.3 10.8l7.4-3.6M8.3 13.2l7.4 3.6" /></svg>,
 }
 
-const intgA = ['google', 'slack', 'gmail', 'hubspot', 'salesforce', 'stripe', 'notion', 'zendesk', 'shopify', 'github']
-const intgB = ['intercom', 'klaviyo', 'snowflake', 'postgresql', 'airtable', 'googlesheets', 'quickbooks', 'whatsapp', 'anthropic', 'googlegemini']
+/* small reusable bullet list (outcome-led headline above, proof in bullets) */
+function Bullets({ items }) {
+  return (
+    <ul className="lead list-plain mt18">
+      {items.map(([b, rest]) => (
+        <li key={b}><b>{b}</b>{rest ? ` — ${rest}` : ''}</li>
+      ))}
+    </ul>
+  )
+}
 
-const swaps = [
-  ['An AI for each person', 'One operating system for the company'],
-  ['It finds and chats', 'It answers, acts, and automates'],
-  ['The same answer for everyone', 'Answers by role and team structure'],
-  ['A bill that balloons per seat', 'More value per question as you scale'],
-  ['A six-month rollout', 'Live in days'],
+const marqueeA = ['slack', 'google', 'gmail', 'hubspot', 'salesforce', 'stripe', 'notion', 'zendesk', 'shopify', 'github', 'intercom', 'klaviyo']
+const marqueeB = ['snowflake', 'postgresql', 'airtable', 'quickbooks', 'whatsapp', 'anthropic', 'openai', 'googlegemini', 'figma', 'asana', 'dropbox', 'microsoftteams']
+
+const handoffs = [
+  ['Operations', 'Onboard a new hire across every tool, in one message.'],
+  ['Sales', 'Chase the deals that went quiet, and draft the nudge.'],
+  ['Customer success', 'Catch a churning customer before they leave.'],
+  ['Finance', 'Close the month without the copy-paste.'],
+  ['Leadership', 'Get a Monday brief from five tools, on its own.'],
+  ['Support', 'Answer with the full customer story across orders, tickets and billing.'],
+  ['IT / Security', 'Reset access the moment someone leaves.'],
+  ['Anywhere', 'Turn a Slack thread into a tracked task.'],
 ]
 
-const teamCards = [
-  ['OPERATIONS', '“Set up the new hire everywhere and send the welcome.”', 'Done in one message — account created, groups added, email drafted and sent.'],
-  ['SALES', '“Which deals went quiet this week — and nudge them.”', 'It finds the at-risk accounts and drafts the right follow-up for each.'],
-  ['FINANCE', '“What did we spend on tools last month?”', 'Real numbers, pulled live, traceable to the source they came from.'],
-  ['SUPPORT', '“Why is this customer upset?”', 'The full story across orders, tickets and billing — and the fix, ready to send.'],
+const departments = [
+  ['Operations', '“Set up the new hire everywhere and send the welcome.”', ['google', 'slack']],
+  ['Sales', '“Which deals went quiet — and nudge them.”', ['hubspot', 'gmail']],
+  ['Finance', '“What did we spend on tools last month?”', ['stripe', 'quickbooks']],
+  ['Support', '“Why is this customer upset?”', ['zendesk', 'shopify', 'stripe']],
+]
+
+const scale = [
+  ['01', 'Globally distributed', 'multi-region, elastic autoscaling with your workload.'],
+  ['02', 'Bring your own keys', 'BYOK — your own model keys and provider accounts.'],
+  ['03', 'Bring your own cloud', 'BYOC — deploy in your own VPC / cloud account.'],
+  ['04', 'Data residency', 'encryption in transit & at rest; your data stays in your boundary.'],
 ]
 
 const comparisons = [
-  ['ChatGPT Enterprise', 'chatgpt-enterprise', 'A great assistant per person. SuprAI is one system for the whole company — role-aware, and it acts.'],
-  ['Microsoft 365 Copilot', 'microsoft-365-copilot', 'Strong inside Microsoft. SuprAI is model-neutral and connects every app you run, not just one suite.'],
-  ['Claude Enterprise', 'claude-enterprise', 'A powerful model. SuprAI powers Claude — and any model — with your apps, your roles, and the power to act.'],
+  ['ChatGPT Enterprise', 'chatgpt-enterprise', 'An assistant per person. SuprAI is one operating system, with shared context, that acts.'],
+  ['Microsoft 365 Copilot', 'microsoft-365-copilot', 'Strong inside Microsoft. SuprAI is model-agnostic and connects every app you run.'],
+  ['Claude Enterprise', 'claude-enterprise', 'A powerful model. SuprAI powers it — with your apps, your context, your actions.'],
 ]
 
 const faqs = [
-  ['Do we need a data team?', 'No. Connect your apps and it works — most teams are live in days, not a six-month rollout.'],
-  ['Is our data safe?', 'Yes. Permission-aware access, a full audit trail, and your data stays yours. Everyone only ever sees what their role allows.'],
-  ['Does it answer differently per person?', 'Yes — by role and team structure. Finance, sales and ops each get what fits their job, and only what they’re cleared to see.'],
-  ['What if an app isn’t listed?', 'If it holds your data, we can connect it — modern apps, databases, and the awkward no-API sources alike.'],
-  ['Won’t AI for everyone get expensive?', 'The opposite. It reads the right information once and reuses it across the company, so the cost per answer falls as you scale.'],
-  ['Does it replace the AI we already use?', 'No — it powers the AI you already use (GPT, Claude, Gemini) and gives every team one system to ask, act and automate.'],
+  ['How fast to value?', 'Build your first agent in minutes; most teams are live in days.'],
+  ['How is it cheaper?', 'It reuses context instead of re-sending it — about 30% fewer tokens.'],
+  ['Can we use our own models / cloud?', 'Yes — BYOK and BYOC. Your keys, your cloud.'],
+  ['How is it controlled?', 'Org-wide access controls, roles, scoped keys, and full request logs from one console.'],
+  ['Which apps?', '100+ today; any REST / GraphQL / webhook / MCP source, even non-API ones.'],
+  ['Does it replace the AI we use?', 'No — it powers GPT, Claude or any model with your apps, your context, and the power to act.'],
 ]
 
 export default function Home() {
   return (
     <>
-      {/* ═══ HERO — centered, with a live dashboard demo ═══ */}
+      {/* ═══ 02 · HERO (full-width, boxed product panel) ═══ */}
       <header className="hero">
-        <div className="wrap">
-          <div className="hero-center">
-            <h1>The AI operating system<br />for your <span className="gt">company.</span></h1>
-            <p className="sub">One place where every team’s apps, answers, and agents come together — so your company can <b>ask, act, and automate</b> as one.</p>
-            <div className="hero-cta cc">
-              <a className="btn btn-primary" href="#book">Book a demo</a>
-              <a className="btn btn-ghost" href="#demo">See it in action</a>
+        <div className="wrap hero-split">
+          <Reveal className="hero-copy">
+            <div className="kicker">The AI operating system</div>
+            <h1>The AI operating system for your <span className="gt">company.</span></h1>
+            <p className="sub">The connective layer over every tool your company runs: one synced context, one set of controls, and AI that can act across all of it.</p>
+            <div className="herostat">
+              <span><b>30%</b> fewer tokens</span>
+              <span><b>AI workforce</b> in minutes</span>
+              <span>works <b>24/7</b></span>
             </div>
-          </div>
-          <Reveal as="div" className="dash" id="demo">
-            <div className="dash-bar">
-              <span className="d" style={{ background: '#ff5f57' }} />
-              <span className="d" style={{ background: '#febc2e' }} />
-              <span className="d" style={{ background: '#28c840' }} />
-              <span className="dash-url">app.suprai.com</span>
-              <span className="dash-live">● Live demo — click a role to try it</span>
+            <div className="hero-cta">
+              <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer">Book a demo</a>
+              <a className="btn btn-ghost" href="#grid">See it in action →</a>
             </div>
-            <HeroDemo />
+          </Reveal>
+          <Reveal as="div" className="hero-panel" d={1}>
+            <div className="hp-q"><span className="hp-tag">Q</span>What did we spend on tools last month?</div>
+            <div className="hp-a">
+              <span className="hp-tag a">A</span>
+              <div>
+                <div className="hp-num"><em>$48,210</em> across 23 tools <span className="hp-up">+12%</span></div>
+                <div className="hp-src">
+                  <span className="hp-label">sources</span>
+                  <span className="hp-chip"><BrandImg slug="stripe" />Stripe</span>
+                  <span className="hp-chip"><BrandImg slug="quickbooks" />QuickBooks</span>
+                  <span className="hp-chip">+14</span>
+                </div>
+              </div>
+            </div>
           </Reveal>
         </div>
       </header>
 
-      {/* ═══ PROOF BAR ═══ */}
+      {/* ═══ 03 · PROOF BAR (full-width) ═══ */}
       <section className="logos">
         <div className="wrap">
-          <p>Built for teams who want to run like a bigger one — across the apps they already use</p>
-          <div className="logo-row">
-            {['slack', 'google', 'hubspot', 'salesforce', 'stripe', 'notion', 'zendesk', 'shopify', 'github'].map((s) => (
-              <BrandImg key={s} slug={s} />
-            ))}
-            <span className="cat-pill">+ 100 more</span>
+          <p>Built with teams in commerce &amp; ops who want to run like a bigger one</p>
+          <div className="proof-chips">
+            <span className="cat-pill">100+ apps &amp; data sources</span>
+            <span className="cat-pill">Days to go live</span>
+            <span className="cat-pill">shared context</span>
+          </div>
+          <div className="intg" style={{ marginTop: 30 }}>
+            <div className="intg-row a">{[...marqueeA, ...marqueeA].map((s, i) => <div className="intg-tile" key={'a' + i}><BrandImg slug={s} /></div>)}</div>
+            <div className="intg-row b">{[...marqueeB, ...marqueeB].map((s, i) => <div className="intg-tile" key={'b' + i}><BrandImg slug={s} /></div>)}</div>
           </div>
         </div>
       </section>
 
-      {/* ═══ WHY NOW ═══ */}
-      <section className="statement">
+      {/* ═══ 04 · THE APPLICATION GRID (railed — blends in) ═══ */}
+      <section className="section lined" id="grid">
         <div className="wrap">
-          <Reveal>
-            <div className="kicker">Why now</div>
-            <h2>Every team is using AI.<br /><span className="muted2">No company is running on it.</span></h2>
-            <p>Right now AI shows up one person at a time — a private chatbot here, a clever prompt there. The company never moves as one. SuprAI puts every team on the same system, so the business moves at the pace of AI instead of falling behind it.</p>
-          </Reveal>
+          <SecMark label="The application grid" />
+          <div className="grid-2 align">
+            <Reveal>
+              <h2 className="xl">Every tool you run — in one grid.</h2>
+              <p className="lead mt18">One operating system, where your teams and AI work together. <b>Every team, every tool — one interface, one control center.</b></p>
+              <p className="lead mt18">Your company&rsquo;s memory isn&rsquo;t in one place — it lives scattered across every tool. Connect them to the grid, and we sync it into one, so your AI and your team act as one.</p>
+              <Bullets items={[
+                ['All your tools, one grid', 'connect what every team already uses; REST, GraphQL, webhooks, MCP.'],
+                ['Scattered memory, synced into one', 'real-time sync (CDC) into a unified context store; semantic + structured memory.'],
+                ['Team controls on top', 'RBAC: roles, scopes, least-privilege by default.'],
+                ['Typed actions built in', 'every connector exposes typed, role-scoped actions.'],
+              ]} />
+            </Reveal>
+            <Reveal d={1}><GridArt /></Reveal>
+          </div>
         </div>
       </section>
 
-      {/* ═══ PLATFORM — asymmetric bento (illustration in every tile) ═══ */}
-      <section className="section" style={{ paddingTop: 70 }}>
+      {/* ═══ 05 · WHAT IT DOES — bento (full-width, boxed) ═══ */}
+      <section className="section band-warm full">
         <div className="wrap">
-          <Reveal className="sec-head">
-            <div className="kicker">The platform</div>
-            <h2 className="xl">One operating system. Everything your company’s AI needs.</h2>
-            <p className="lead">Connect your apps once, then ask, act, and automate across all of them — from wherever your team already works.</p>
+          <Reveal className="sec-head cc">
+            <div className="kicker" style={{ justifyContent: 'center' }}>What it does</div>
+            <h2 className="xl">Everything your company&rsquo;s AI needs, in one place.</h2>
           </Reveal>
-
-          <div className="bento">
-            {/* ASK — big 2×2 · illustration: bento-ask */}
-            <Reveal as="div" className="bento-card accent ba-ask" id="ask" d={0}>
+          <div className="bento4">
+            <Reveal as="div" className="bento-card accent" d={1}>
               <div className="bc-eyebrow">Ask</div>
-              <h3>Ask anything across your company.</h3>
-              <p>One plain-language question, answered across every connected app at once — real numbers and facts, every time, with the sources behind them.</p>
+              <h3>Ask anything across your apps.</h3>
+              <p>Answers joined across sources with permission-aware retrieval — real numbers and facts, with the sources behind them.</p>
               <div className="bc-visual">
                 <div className="askbar"><span className="ph">What did we spend on tools last month?</span><span className="cur" /><span className="go">↑</span></div>
-                <div className="ask-answer">
-                  <div className="big-num"><em>$48,210</em> across 23 tools</div>
-                  <div className="cap">Up 12% on March — driven by 3 new seats in Sales.</div>
-                  <div className="ask-sources">
-                    <span className="ask-src"><BrandImg slug="stripe" />Stripe</span>
-                    <span className="ask-src"><BrandImg slug="quickbooks" />QuickBooks</span>
-                    <span className="ask-src">+ 14 sources</span>
-                  </div>
-                </div>
               </div>
             </Reveal>
-
-            {/* ACT — wide 2×1 · illustration: bento-act */}
-            <Reveal as="div" className="bento-card accent ba-act" id="act" d={1}>
+            <Reveal as="div" className="bento-card accent" d={2}>
               <div className="bc-eyebrow">Act</div>
-              <h3>It acts in your tools.</h3>
-              <p>Drafts, updates, creates and sends across your tools — on your say-so, or on autopilot.</p>
-              <div className="bc-visual" style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+              <h3>It gets the work done, not just the answer.</h3>
+              <p>Typed, role-scoped, reversible actions across your tools — and never without your say-so.</p>
+              <div className="bc-visual" style={{ display: 'flex', gap: 9, flexWrap: 'wrap', alignItems: 'center' }}>
                 <span className="tm-act" style={{ cursor: 'default' }}><span className="pl">▶</span> Send it</span>
-                <span className="tm-chip"><BrandImg slug="google" />Google</span>
                 <span className="tm-chip"><BrandImg slug="gmail" />Gmail</span>
                 <span className="tm-chip"><BrandImg slug="hubspot" />HubSpot</span>
               </div>
             </Reveal>
-
-            {/* AUTOMATE — tall 1×2 · illustration: bento-automate */}
-            <Reveal as="div" className="bento-card ba-auto" id="automate" d={2}>
+            <Reveal as="div" className="bento-card" d={1}>
               <div className="bc-eyebrow">Automate</div>
               <h3>Automate what repeats.</h3>
-              <p>Build a named agent once; it runs on a trigger or schedule, and reports what it did.</p>
+              <p>Durable, scheduled and event-driven agents that run in the background, retry on failure, and report back.</p>
               <div className="bc-visual">
                 {['Trigger', 'Read', 'Think', 'Act'].map((s) => (
-                  <div className="agent-step done" key={s} style={{ padding: '5px 0' }}>
+                  <div className="agent-step done" key={s} style={{ padding: '4px 0' }}>
                     <div className="rail"><div className="node" style={{ width: 20, height: 20 }}>✓</div><div className="line" /></div>
                     <div className="meta"><div className="t" style={{ fontSize: 13 }}>{s}</div></div>
                   </div>
                 ))}
               </div>
             </Reveal>
-
-            {/* EVERYWHERE — tall 1×2 · illustration: bento-everywhere */}
-            <Reveal as="div" className="bento-card ba-whr" d={3}>
-              <div className="bc-eyebrow">Everywhere</div>
-              <h3>Works where your team works.</h3>
-              <p>Use it from Slack, WhatsApp, the browser, or the AI your team already uses — no new app to learn.</p>
-              <div className="bc-visual">
-                <div className="surf"><BrandImg slug="slack" /><span>Slack</span><span className="nm">· @mention it</span></div>
-                <div className="surf"><BrandImg slug="whatsapp" /><span>WhatsApp</span><span className="nm">· just text it</span></div>
-                <div className="surf"><span className="ic">◷</span><span>Browser</span><span className="nm">· web &amp; extension</span></div>
-                <div className="surf"><BrandImg slug="anthropic" /><BrandImg slug="openai" /><span className="nm">The AI you already use</span></div>
-              </div>
-            </Reveal>
-
-            {/* CONNECT — wide 2×1 · illustration: bento-connect */}
-            <Reveal as="div" className="bento-card ba-conn" d={1}>
-              <div className="bc-eyebrow">Connect</div>
-              <h3>Connect every app.</h3>
-              <p>Modern apps, databases and files — and the awkward no-API sources alike. If it holds your data, we connect it.</p>
-              <div className="bc-visual" style={{ display: 'flex', gap: 13, flexWrap: 'wrap' }}>
-                {['google', 'slack', 'hubspot', 'stripe', 'notion', 'zendesk', 'shopify', 'github'].map((s) => <BrandImg key={s} slug={s} style={{ height: 22, opacity: .8 }} />)}
+            <Reveal as="div" className="bento-card" d={2}>
+              <div className="bc-eyebrow">Context</div>
+              <h3>It just knows your company.</h3>
+              <p>One unified context — cross-source identity resolved, kept current across every app.</p>
+              <div className="bc-visual" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                {['google', 'slack', 'hubspot', 'stripe', 'notion', 'zendesk'].map((s) => (
+                  <span className="ctx-chip" key={s} style={{ padding: 7 }}><BrandImg slug={s} /></span>
+                ))}
               </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ═══ APPS & ACTIONS (signature) ═══ */}
-      <section className="section band-warm" id="apps">
+      {/* ═══ 06 · PRODUCTION-GRADE INFRASTRUCTURE (railed — blends in) ═══ */}
+      <section className="section lined">
         <div className="wrap">
-          <Reveal className="sec-head">
-            <div className="kicker">Apps &amp; actions</div>
-            <h2 className="xl">Connect your apps. Unlock every action.</h2>
-            <p className="lead">Every app you connect brings the actions it can take — create a user, issue a refund, move a deal, send the email. SuprAI knows them all, and only ever runs the ones a person’s role allows.</p>
-          </Reveal>
-          <Reveal><AppsActions /></Reveal>
+          <SecMark label="The pipeline, handled" />
+          <div className="grid-2 align">
+            <Reveal d={1} className="order-art"><Waterline /></Reveal>
+            <Reveal>
+              <h2 className="xl">Production-grade AI infrastructure, out of the box.</h2>
+              <p className="lead mt18">Connecting tools, syncing memory, indexing data, setting up auth, building agents, apps and the interface — that&rsquo;s a hard engineering pipeline most teams can&rsquo;t staff. An operating system hides all of it.</p>
+              <Bullets items={[
+                ['Memory & data indexing', 'ingestion, indexing and retrieval kept in sync; you never wire an ETL or a vector store.'],
+                ['Connectors & managed auth', 'connectors, OAuth brokering and token rotation, built and maintained for you.'],
+                ['Agents, apps & the interface', 'ready to use, not to assemble.'],
+                ['Like GitHub or AWS', 'you use the pipeline; you don’t build your own.'],
+              ]} />
+            </Reveal>
+          </div>
         </div>
       </section>
 
-      {/* ═══ ROLE ANSWERS ═══ */}
-      <section className="section">
+      {/* ═══ 07 · UNIFIED CONTEXT (railed — separators) ═══ */}
+      <section className="section band-warm lined">
+        <div className="wrap">
+          <SecMark label="Unified context" />
+          <Reveal as="div" className="secG">
+            <div className="secG-list">
+              <div className="secG-item">
+                <span className="si">{ICON.store}</span>
+                <div><h4>One unified context store</h4><p>Behind Slack, WhatsApp, or any AI — not a fresh start each time.</p></div>
+              </div>
+              <div className="secG-item">
+                <span className="si">{ICON.sync}</span>
+                <div><h4>Always current</h4><p>Incremental CDC sync with dedup and freshness SLAs; no manual imports, no stale exports.</p></div>
+              </div>
+              <div className="secG-item">
+                <span className="si">{ICON.entity}</span>
+                <div><h4>Entity-resolved &amp; continually learned</h4><p>People, accounts and orders resolved across tools; the context compounds every week.</p></div>
+              </div>
+            </div>
+            <div className="secG-right">
+              <h2>One context for your whole company. <span className="muted2">It just knows.</span></h2>
+              <p className="lead" style={{ marginTop: 16 }}>SuprAI builds one shared understanding of how your business works — from every app you connect — and keeps it current.</p>
+              <a className="btn btn-primary" href="#book">See how context works →</a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══ 08 · RIGHT WHERE YOUR TEAM WORKS (full-width, boxed) ═══ */}
+      <section className="section full">
+        <div className="wrap">
+          <Reveal className="sec-head">
+            <div className="kicker">Where your team works</div>
+            <h2 className="xl">In the tools your team already lives in.</h2>
+            <p className="lead">Connected to your team&rsquo;s tools — Slack, Microsoft Teams, WhatsApp. @mention it or message it, and it answers and acts right there. No new app to open.</p>
+          </Reveal>
+          <Reveal><ChatSurfaces /></Reveal>
+        </div>
+      </section>
+
+      {/* ═══ 09 · AI WORKFORCE (full-width, boxed) ═══ */}
+      <section className="section band-warm full">
+        <div className="wrap">
+          <div className="grid-2 align">
+            <Reveal>
+              <div className="kicker">AI workforce</div>
+              <h2 className="xl">Your AI workforce. Built in minutes. Works 24/7.</h2>
+              <p className="lead mt18">Your people move up to strategy and planning — your AI workforce handles the execution.</p>
+              <Bullets items={[
+                ['People plan, AI executes', 'your team decides; the workforce carries it out.'],
+                ['No new tool, no knowledge transfer', 'it works where your team already does, and already knows the business.'],
+                ['Built in minutes', 'hire an agent for any job, in minutes, not months.'],
+                ['Works 24/7, shared', 'it runs while you sleep, and the whole team can use it.'],
+              ]} />
+            </Reveal>
+            <Reveal d={1}><WorkforceGrid /></Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 10 · WHAT YOUR COMPANY CAN HAND OFF (full-width, boxed) ═══ */}
+      <section className="section full">
+        <div className="wrap">
+          <Reveal className="sec-head">
+            <div className="kicker">Possibilities</div>
+            <h2 className="xl">What your company can hand off.</h2>
+          </Reveal>
+          <div className="handoff mt">
+            {handoffs.map(([k, v], i) => (
+              <Reveal as="div" className="ho-card" key={k} d={(i % 4) + 1}>
+                <div className="ho-k">{k}</div>
+                <p>{v}</p>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal><a className="tlink" href="#book">See all use cases →</a></Reveal>
+        </div>
+      </section>
+
+      {/* ═══ 11 · ORGANIZATION-WIDE CONTROL (railed — blends in) ═══ */}
+      <section className="section band-warm lined" id="control">
+        <div className="wrap">
+          <SecMark label="Enterprise control" />
+          <Reveal className="sec-head">
+            <blockquote className="bigquote">Built for enterprise from day one. AI only works in a company when answers are secure, explainable, and permission-aware.</blockquote>
+            <h2 className="xl" style={{ marginTop: 22 }}>One control center for the whole organization.</h2>
+          </Reveal>
+          <div className="grid-2 align" style={{ marginTop: 38 }}>
+            <Reveal>
+              <Bullets items={[
+                ['Org-wide auth & access', 'SSO / SAML / SCIM and organization-wide access controls (RBAC).'],
+                ['Roles & scoped keys', 'multi-member orgs, granular roles, and scoped API keys.'],
+                ['A control dashboard', 'usage analytics, ingestion monitoring, request logs and execution traces.'],
+                ['One console', 'key management, audit and governance.'],
+              ]} />
+              <a className="tlink" href="#book">Explore SuprAI security →</a>
+            </Reveal>
+            <Reveal d={1}><ControlDashboard /></Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 12 · COST & EFFICIENCY (railed — separator list) ═══ */}
+      <section className="statement lined">
+        <div className="wrap">
+          <SecMark label="Why it matters" />
+          <Reveal>
+            <h2>Turn your company&rsquo;s apps into action —<br /><span className="muted2">without a runaway AI bill.</span></h2>
+            <p>Give everyone their own AI and the bill climbs with every seat. SuprAI reads context once and reuses it across the whole company — so it gets cheaper per answer as you grow, not more expensive.</p>
+            <div className="costlist">
+              {[
+                ['30% fewer tokens', 'context is reused, not re-sent on every request.'],
+                ['Less waste', 'one system, not a dozen per-person subscriptions.'],
+                ['Lower cost per answer', 'more value from every ask, as the whole team comes on.'],
+              ].map(([h, p]) => (
+                <div className="costrow-item" key={h}><b>{h}</b><span>{p}</span></div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══ 13 · MANAGED AUTH (railed — blends in) ═══ */}
+      <section className="section lined">
+        <div className="wrap">
+          <SecMark label="Managed auth" />
+          <div className="grid-2 align">
+            <Reveal d={1} className="order-art"><ManagedVault /></Reveal>
+            <Reveal>
+              <h2 className="xl">Connect once. Nobody ever sees a key.</h2>
+              <p className="lead mt18">Set up a connection once and share it with the right people. They get to work; the keys stay locked down and never leave SuprAI.</p>
+              <Bullets items={[
+                ['Fully managed OAuth 2.0', 'auth flows, token refresh and rotation handled; no auth code to write.'],
+                ['Delegated, least-privilege access', 'granular scopes, encrypted token vault, per role.'],
+                ['Revoke & rotate any time', 'per person, per app, per scope.'],
+              ]} />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 14 · ROLE-AWARE (full-width, boxed) ═══ */}
+      <section className="section band-warm full">
         <div className="wrap">
           <Reveal className="sec-head">
             <div className="kicker">Role-aware</div>
-            <h2 className="xl">It answers like it knows who’s asking.</h2>
-            <p className="lead">This is what makes it an operating system, not a chatbot. SuprAI reads your team structure and each person’s permissions, then shapes every answer to their role — and never shows what they aren’t cleared to see.</p>
+            <h2 className="xl">It answers like it knows your org chart.</h2>
+            <p className="lead">Every person gets answers shaped to their role — and never sees what they aren&rsquo;t cleared to see.</p>
           </Reveal>
           <div className="roles">
             {[
-              ['Finance', '“What did we spend on tools last month?”', 'Gets the <b>real numbers</b>, traceable to source — and the budgets only finance can see.'],
-              ['Sales', '“How’s the Acme deal tracking?”', 'Gets <b>pipeline, calls and usage</b> — but only for the accounts this rep owns.'],
-              ['Ops', '“Set up the new contractor.”', 'It <b>acts</b> across the tools this role is allowed to touch — and logs every step.'],
-            ].map(([role, q, a], i) => (
+              ['Finance', 'budgets & spend, traceable to source'],
+              ['Sales', 'pipeline — only the accounts this rep owns'],
+              ['Ops', 'acts only on tools this role may touch'],
+            ].map(([role, a], i) => (
               <Reveal as="div" className="role" key={role} d={i + 1}>
                 <div className="role-top">
                   <span className="role-chip">{role}</span>
                   <span className="role-lock">🔒 scoped</span>
                 </div>
-                <div className="q">{q}</div>
-                <div className="a" dangerouslySetInnerHTML={{ __html: a }} />
+                <div className="a" style={{ borderTop: 'none', paddingTop: 0 }}>{a}</div>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══ AGENTS DEEP DIVE ═══ */}
-      <section className="section band-warm">
+      {/* ═══ 15 · AUTOMATE (railed — separators) ═══ */}
+      <section className="section lined">
         <div className="wrap">
+          <SecMark label="Automate" />
           <div className="grid-2 align">
             <Reveal>
-              <div className="kicker">Automation</div>
               <h2 className="xl">Hand off the work your team repeats.</h2>
-              <p className="lead mt18">Build a named agent for a job your team does over and over. It runs as copilot — you approve each step — or autopilot, on a schedule, telling you what it did. Shared with the team, so the knowledge stops living in one head.</p>
-              <ul className="lead list-plain mt18">
-                <li>✓ Triggered or scheduled — on an event, or every morning at 6</li>
-                <li>✓ Copilot or autopilot — approve the sensitive steps, let the routine run</li>
-                <li>✓ Shared, not solo — one agent every team uses, with full logs</li>
-              </ul>
+              <p className="lead mt18">Build a named agent once; it reports back what it did, and the whole team can reuse it.</p>
+              <Bullets items={[
+                ['Event-driven or scheduled', 'webhooks, cron schedules, or on-demand.'],
+                ['Copilot or autopilot', 'human-in-the-loop gates on the sensitive steps; let the routine run.'],
+                ['Durable & replayable', 'retries with backoff, idempotency, and full execution traces.'],
+              ]} />
             </Reveal>
             <Reveal d={1}>
-              <div className="agent">
-                <div className="agent-head">
-                  <div className="agent-name"><span className="bdot" />Monday Numbers</div>
-                  <div className="toggle"><span>Copilot</span><span className="on">Autopilot</span></div>
-                </div>
+              <div className="triggers">
                 {[
-                  ['Trigger', 'Every Monday, 6:00 AM'],
-                  ['Read', 'Pulls spend, pipeline & support across 9 apps'],
-                  ['Think', 'Compares to last week, flags what moved'],
-                  ['Act', 'Posts the report to #leadership in Slack'],
-                ].map(([t, d]) => (
-                  <div className="agent-step done" key={t}>
-                    <div className="rail"><div className="node">✓</div><div className="line" /></div>
-                    <div className="meta"><div className="t">{t}</div><div className="d">{d}</div></div>
+                  ['Monday Numbers', 'SCHEDULE', 'every Mon 6:00 AM'],
+                  ['Enrich new lead', 'EVENT', 'new HubSpot contact'],
+                  ['Deploy summary', 'WEBHOOK', '/deploy completes'],
+                ].map(([name, kind, when]) => (
+                  <div className="trig" key={name}>
+                    <span className="trig-name">{name}</span>
+                    <span className={`trig-kind ${kind.toLowerCase()}`}>{kind}</span>
+                    <span className="trig-when">{when}</span>
                   </div>
                 ))}
               </div>
@@ -254,154 +417,88 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ INTEGRATIONS — 2 scrolling rows ═══ */}
-      <section className="section" id="integrations">
-        <div className="wrap sec-head cc">
-          <Reveal>
-            <div className="kicker" style={{ justifyContent: 'center' }}>Connected</div>
-            <h2 className="xl">If it holds your data, we connect it.</h2>
-          </Reveal>
-        </div>
-        <div className="intg">
-          <div className="intg-row a">{[...intgA, ...intgA].map((s, i) => <div className="intg-tile" key={'a' + i}><BrandImg slug={s} /></div>)}</div>
-          <div className="intg-row b">{[...intgB, ...intgB].map((s, i) => <div className="intg-tile" key={'b' + i}><BrandImg slug={s} /></div>)}</div>
-        </div>
+      {/* ═══ 16 · MODEL-AGNOSTIC (railed — blends in) ═══ */}
+      <section className="section band-warm lined">
         <div className="wrap">
-          <div className="grid-3 mt left">
-            <Reveal as="div" className="card" d={1}><h3>Your apps</h3><p>Modern tools, connected over their own login in clicks — CRM, helpdesk, billing, docs, storage.</p></Reveal>
-            <Reveal as="div" className="card" d={2}><h3>Your data</h3><p>Databases, warehouses, spreadsheets and files — the numbers and documents your business runs on.</p></Reveal>
-            <Reveal as="div" className="card" d={3}><h3>Even the awkward ones</h3><p>Email, shared drives, and older systems with no real API. Nothing gets left out.</p></Reveal>
-          </div>
-          <p className="micro center" style={{ marginTop: 22 }}>One setup. Live in minutes — and it works where your team already does: Slack, WhatsApp, the browser, or the AI they already use.</p>
-        </div>
-      </section>
-
-      {/* ═══ SECURITY — Glean two-column ═══ */}
-      <section className="section band-warm" id="security">
-        <div className="wrap">
-          <Reveal className="sec-head">
-            <div className="kicker">Enterprise-grade</div>
-          </Reveal>
-          <Reveal as="div" className="secG">
-            <div className="secG-list">
-              <div className="secG-item">
-                <span className="si">{ICON.lock}</span>
-                <div><h4>Permission-aware access</h4><p>Users only see what they’re allowed to see.</p></div>
-              </div>
-              <div className="secG-item">
-                <span className="si">{ICON.eye}</span>
-                <div><h4>Full observability</h4><p>Track every question, answer, and action.</p></div>
-              </div>
-              <div className="secG-item">
-                <span className="si">{ICON.shield}</span>
-                <div><h4>Best-in-class data control</h4><p>Built for compliance-heavy environments.</p></div>
-              </div>
-            </div>
-            <div className="secG-right">
-              <h2>Built for enterprise from day one. AI only works in a company when answers are secure, explainable, and permission-aware.</h2>
-              <a className="btn btn-primary" href="#book">Explore SuprAI security</a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ═══ MEMORY ═══ */}
-      <section className="statement">
-        <div className="wrap">
-          <Reveal>
-            <div className="kicker">Company memory</div>
-            <h2>It learns your business.<br /><span className="muted2">And never starts from zero.</span></h2>
-            <p>The more your teams use it, the more it knows — names, numbers, how you work. What one person teaches it, the company keeps. Every week builds on the last, not over it.</p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ═══ POWERS ANY AI ═══ */}
-      <section className="section band-warm">
-        <div className="wrap">
+          <SecMark label="Model-agnostic · provider-agnostic" />
           <div className="grid-2 align">
+            <Reveal d={1} className="order-art"><ModelGateway /></Reveal>
             <Reveal>
-              <div className="kicker">Model-neutral</div>
-              <h2 className="xl">Bring any AI. We make it your company’s.</h2>
-              <p className="lead mt18">SuprAI isn’t another chatbot to adopt — it works with the AI your team already uses and gives it your apps, your knowledge, your team structure, and the power to act.</p>
-              <ul className="lead list-plain mt18">
-                <li>✓ Any model — GPT, Claude, Gemini — use what you like, never locked in</li>
-                <li>✓ Compare side by side — see how models answer the same task, then pick the best</li>
-                <li>✓ One subscription — consolidate scattered AI seats into one system, at lower cost</li>
-              </ul>
-            </Reveal>
-            <Reveal d={1}>
-              <div className="triad" style={{ marginTop: 0, gridTemplateColumns: '1fr' }}>
-                {[['openai', 'GPT'], ['anthropic', 'Claude'], ['googlegemini', 'Gemini']].map(([s, n]) => (
-                  <div className="triad-col" key={n} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: 18 }}>
-                    <BrandImg slug={s} style={{ height: 26 }} />
-                    <div><div style={{ fontFamily: 'Sora', fontWeight: 600 }}>{n}</div><div style={{ fontSize: 12.5, color: 'var(--mute)' }}>Powered by SuprAI’s core</div></div>
-                  </div>
-                ))}
-              </div>
+              <h2 className="xl">AI-agnostic by design.</h2>
+              <p className="lead mt18">One gateway sits in front of every frontier LLM — so you route each request to the right model and never get locked in.</p>
+              <Bullets items={[
+                ['Provider-agnostic', 'any frontier LLM (OpenAI, Anthropic, Google, or open-weights), hot-swappable with zero rework.'],
+                ['Intelligent model routing', 'each request routed by task, latency and cost, with automatic fallback / failover.'],
+                ['BYOK', 'bring your own model keys and provider accounts; no lock-in.'],
+                ['No wasted context', 'prompt caching and reuse send only what each request actually needs.'],
+              ]} />
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ═══ THIS NOT THAT ═══ */}
-      <section className="section">
+      {/* ═══ 17 · BUILT FOR SCALE (full-width, boxed) ═══ */}
+      <section className="section full">
         <div className="wrap">
           <Reveal className="sec-head">
-            <div className="kicker">The shift</div>
-            <h2 className="xl">Stop being the glue between your tools.</h2>
-            <p className="lead">Today work is people-driven: someone remembers, someone chases, someone copies the number from one tool to the next. SuprAI makes it system-driven.</p>
+            <div className="kicker">Scale & deployment</div>
+            <h2 className="xl">Runs everywhere. Scales with your team.</h2>
           </Reveal>
-          <Reveal as="div" className="swaps">
-            <div className="swap swap-head">
-              <div className="old">People-driven today</div>
-              <div className="arr" />
-              <div className="new">System-driven with SuprAI</div>
-            </div>
-            {swaps.map(([a, b]) => (
-              <div className="swap" key={b}>
-                <div className="old">{a}</div>
-                <div className="arr">{ARR}</div>
-                <div className="new">{b}</div>
-              </div>
+          <div className="grid-4 mt">
+            {scale.map(([num, h, p], i) => (
+              <Reveal as="div" className="feat" key={h} d={(i % 4) + 1} style={{ minHeight: 188 }}>
+                <div className="fnum"><span>{num}</span><span className="fn-i">/</span><span>{h}</span></div>
+                <p>{p}</p>
+              </Reveal>
             ))}
-          </Reveal>
+          </div>
+          <p className="micro center" style={{ marginTop: 24 }}>globally distributed · elastic · BYOK · BYOC · your cloud, your keys</p>
         </div>
       </section>
 
-      {/* ═══ WHAT YOUR TEAMS CAN DO ═══ */}
-      <section className="section band-warm">
+      {/* ═══ 18 · CONNECTORS & ACTIONS (railed — blends in) ═══ */}
+      <section className="section band-warm lined" id="connectors">
+        <div className="wrap">
+          <SecMark label="Connectors & actions" />
+          <Reveal className="sec-head">
+            <h2 className="xl">Connect your apps. Stay in sync.</h2>
+            <p className="lead">Every connector you add brings the real actions it can take, and stays current automatically — no manual imports, no stale exports. If it has an API — REST, GraphQL, gRPC, webhooks or MCP — we connect it and keep it in sync with real-time CDC. Even non-API sources.</p>
+          </Reveal>
+          <Reveal><AppsActions /></Reveal>
+        </div>
+      </section>
+
+      {/* ═══ 19 · BY DEPARTMENT (full-width, boxed) ═══ */}
+      <section className="section full">
         <div className="wrap">
           <Reveal className="sec-head">
-            <div className="kicker">By team</div>
-            <h2 className="xl">Real questions. Real actions.</h2>
-            <p className="lead">The everyday jobs that used to take a person and five tabs. Ask, and it acts.</p>
+            <div className="kicker">For every team</div>
+            <h2 className="xl">One operating system. Every team&rsquo;s job.</h2>
           </Reveal>
           <div className="grid-2 mt left">
-            {teamCards.map(([k, q, a], i) => (
+            {departments.map(([k, q, apps], i) => (
               <Reveal as="div" className="card" key={k} d={(i % 2) + 1}>
                 <div className="klabel">{k}</div>
                 <h3 style={{ fontSize: 17 }}>{q}</h3>
-                <p style={{ marginTop: 6 }}>{a}</p>
+                <div className="dept-apps">{apps.map((s) => <BrandImg key={s} slug={s} style={{ height: 18, opacity: .8 }} />)}</div>
               </Reveal>
             ))}
           </div>
+          <p className="lead mt18"><b>Marketing / IT / HR</b> — add as we go; same engine, tuned playbooks.</p>
         </div>
       </section>
 
-      {/* ═══ COMPARISONS ═══ */}
-      <section className="section">
+      {/* ═══ 20 · COMPARISON (full-width, boxed) ═══ */}
+      <section className="section band-warm full">
         <div className="wrap">
           <Reveal className="sec-head">
-            <div className="kicker">Comparisons</div>
-            <h2 className="xl">SuprAI vs the alternatives.</h2>
-            <p className="lead">See how one operating system for the whole company compares to a per-person assistant.</p>
+            <div className="kicker">Compare</div>
+            <h2 className="xl">One operating system for the company — not one assistant per person.</h2>
           </Reveal>
           <div className="grid-3 mt">
             {comparisons.map(([name, slug, blurb], i) => (
               <Reveal as={Link} className="sol" to={`/compare/${slug}`} key={slug} d={i + 1}>
-                <div className="k">COMPARE</div>
-                <h3>SuprAI vs {name}</h3>
+                <div className="k">VS {name.toUpperCase()}</div>
                 <p>{blurb}</p>
               </Reveal>
             ))}
@@ -409,19 +506,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ STATS ═══ */}
-      <section className="section band-warm">
+      {/* ═══ 21 · NUMBERS (full-width, boxed) ═══ */}
+      <section className="section full">
         <div className="wrap">
-          <Reveal className="sec-head cc">
-            <div className="kicker" style={{ justifyContent: 'center' }}>Why it matters</div>
-            <h2 className="xl">One system beats a dozen logins.</h2>
-          </Reveal>
-          <div className="statrow">
+          <div className="statrow" style={{ marginTop: 0 }}>
             {[
-              ['100+', 'apps and data sources connected through one setup'],
-              ['Days', 'to go live — not a six-month enterprise rollout'],
-              ['1', 'admin in control of every connection, answer and action'],
-              ['20–100', 'the team size we’re built for — enterprise-grade, right-sized'],
+              ['30%', 'fewer tokens as the team scales'],
+              ['24/7', 'your AI workforce, always on'],
+              ['100+', 'apps connected through one setup'],
+              ['1', 'operating system for the whole company'],
             ].map(([n, l], i) => (
               <Reveal as="div" className="statbox" key={l} d={i + 1}>
                 <div className="n"><em>{n}</em></div>
@@ -432,29 +525,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ TESTIMONIALS ═══ */}
-      <section className="section">
-        <div className="wrap center">
-          <Reveal>
-            <div className="kicker" style={{ justifyContent: 'center' }}>From the field</div>
-            <h2 className="xl">What early teams say</h2>
-          </Reveal>
-          <div className="grid-3 mt left">
-            {[0, 1, 2].map((i) => (
-              <Reveal as="div" className="card" key={i} d={i + 1}>
-                <p className="quote">“[ Design-partner quote — real testimonial added when available. ]”</p>
-                <p className="quote-by">— [ Name, Role, Company ]</p>
-              </Reveal>
-            ))}
-          </div>
-          <p className="micro" style={{ marginTop: 16 }}>Real quotes only — these are placeholders until design-partner results are in.</p>
-        </div>
-      </section>
-
-      {/* ═══ FAQ ═══ */}
-      <section className="section">
+      {/* ═══ 22 · FAQ (railed — separators) ═══ */}
+      <section className="section lined">
         <div className="wrap">
-          <div className="kicker">FAQ</div>
+          <SecMark label="FAQ" />
           <h2 className="xl mb20">Questions, answered.</h2>
           {faqs.map(([q, a]) => (
             <details className="faq" key={q}><summary>{q}</summary><p>{a}</p></details>
@@ -462,21 +536,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ FINAL CTA ═══ */}
+      {/* ═══ 23 · FINAL CTA ═══ */}
       <section className="endcta" id="book">
         <div className="wrap">
+          <SecMark label="Get started" />
           <Reveal className="final-card">
-            <div className="kicker" style={{ justifyContent: 'center' }}>Get started</div>
             <h2>Give your company its AI operating system.</h2>
-            <p className="lead" style={{ margin: '18px auto 0' }}>Connect two apps and watch it run a real task, start to finish — in minutes.</p>
-            <div className="hero-cta cc">
-              <a className="btn btn-primary" href="#book">Book a demo</a>
+            <p className="lead" style={{ margin: '18px auto 0' }}>Connect two apps and put your first agent to work — in minutes.</p>
+            <div className="hero-cta cc" style={{ marginTop: 26 }}>
+              <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer">Book a demo</a>
               <Link className="btn btn-ghost" to="/pricing">Start free</Link>
             </div>
             <div className="pillrow">
+              <span className="tag-pill">One synced context</span>
               <span className="tag-pill">Ask · Act · Automate</span>
-              <span className="tag-pill">Answers by role</span>
-              <span className="tag-pill">Enterprise-grade</span>
+              <span className="tag-pill">Permission-aware</span>
+              <span className="tag-pill">Any model</span>
             </div>
           </Reveal>
         </div>

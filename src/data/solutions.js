@@ -103,7 +103,7 @@ export const solutions = {
     sub: 'Ask any cross-app question with real numbers, act on the answer, and let agents keep the reports running.',
     problem: 'Every new question means another manual join, and the backlog of “quick asks” never clears.',
     jobs: [
-      { t: 'Ask in plain language', b: 'Ask across warehouses and apps; get the result and the assumptions behind it, with sources — no manual join.' },
+      { t: 'Ask in plain language', b: 'Ask across your data vaults and apps; get the result and the thinking behind it, with sources — no manual stitching.' },
       { t: 'Act on what it learns', b: 'It learns what your numbers mean, so the definitions you confirm are reused everywhere and improve with each correction.' },
       { t: 'Automate recurring reports', b: 'A named agent productionizes the recurring asks so the team stops rebuilding the same dashboards.' },
     ],

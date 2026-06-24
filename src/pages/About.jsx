@@ -45,10 +45,11 @@ export default function About() {
         <div className="wrap">
           <div className="eyebrow">What we believe</div>
           <h2 className="big">How we build</h2>
+          <p className="lead">We build the system underneath, not a chat box on top — a set of working parts that connect your tools, join your data, pick the right AI, act on your behalf and keep it all on the record. The beliefs below decide how each one works.</p>
           <div className="grid-3 mt">
-            <div className="card peach"><h3>Act, don't just answer</h3><p>An answer that doesn't turn into action is a tab you still have to open. So SuprAI does the work in your tools — Ask, then Act, then Automate.</p></div>
-            <div className="card lilac"><h3>Real data, shown openly</h3><p>Answers come from your actual numbers, with the sources shown. Trust is earned, not claimed.</p></div>
-            <div className="card sky"><h3>Control, never lock-in</h3><p>Keep your apps and your AI of choice — SuprAI powers any AI, GPT, Claude or Gemini. One system, run by one admin, open and portable.</p></div>
+            <div className="card peach"><h3>Act, don't just answer</h3><p>An answer that doesn't turn into action is a tab you still have to open. The Action Engine does the work in your tools — Ask, then Act, then Automate — scoped to your role and logged.</p></div>
+            <div className="card lilac"><h3>Real data, shown openly</h3><p>Answers come from your actual numbers, joined across tools by Entity Resolution, with the sources shown and a full audit trail. Trust is earned, not claimed.</p></div>
+            <div className="card sky"><h3>Control, never lock-in</h3><p>Keep your apps and your AI of choice — the Model Router runs any model on your own keys. The Permission Mirror means your access rules, not ours. Open and portable.</p></div>
           </div>
         </div>
       </section>
@@ -57,8 +58,7 @@ export default function About() {
         <div className="wrap center">
           <div className="eyebrow">The team</div>
           <h2 className="big">Operators and builders</h2>
-          <p className="lead">A small team that has lived the pain of fragmented apps first-hand.</p>
-          <div className="illus sm mt">§A7 — team grid placeholder: real team photos (do not use AI-generated faces). Swap in actual headshots when ready.</div>
+          <p className="lead" style={{ marginLeft: 'auto', marginRight: 'auto' }}>A small team that has lived the pain of fragmented tools first-hand — and decided to build the system that ends it.</p>
         </div>
       </section>
 
