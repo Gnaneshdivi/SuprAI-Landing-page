@@ -1,295 +1,558 @@
 import { Link } from 'react-router-dom'
-import HeroArt from '../components/HeroArt.jsx'
+import Reveal from '../components/Reveal.jsx'
+import BrandImg from '../components/BrandImg.jsx'
+import AppsActions from '../components/AppsActions.jsx'
+import { DEMO_URL } from '../components/Layout.jsx'
+import {
+  SecMark, GridArt, Waterline, ChatSurfaces,
+  WorkforceGrid, ControlDashboard, ManagedVault, ModelGateway,
+} from '../components/v3art.jsx'
 
 const ICON = {
-  grid: <svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 13h7v7h-7zM13 4h7v7h-7zM4 13h7v7H4z" /></svg>,
-  clock: <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>,
-  arrow: <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg>,
-  globe: <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" /></svg>,
-  bolt: <svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" /></svg>,
-  chart: <svg viewBox="0 0 24 24"><path d="M4 18l5-6 4 4 7-9" /><path d="M4 4v16h16" /></svg>,
+  store: <svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3" /><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6" /><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" /></svg>,
+  sync: <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4" /><path d="M21 3v5h-5" /></svg>,
+  entity: <svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5" /><circle cx="18" cy="6" r="2.5" /><circle cx="18" cy="18" r="2.5" /><path d="M8.3 10.8l7.4-3.6M8.3 13.2l7.4 3.6" /></svg>,
 }
-const si = (slug) => `https://cdn.simpleicons.org/${slug}`
-const rowA = ['shopify', 'meta', 'googleads', 'googleanalytics', 'klaviyo', 'stripe', 'salesforce', 'hubspot', 'amazon', 'woocommerce', 'zendesk', 'intercom']
-const rowB = ['mailchimp', 'slack', 'whatsapp', 'razorpay', 'snowflake', 'googlebigquery', 'postgresql', 'notion', 'airtable', 'googlesheets', 'instagram', 'gmail']
-const Tile = ({ s }) => (<div className="mtile"><img src={si(s)} alt={s} /></div>)
+
+/* small reusable bullet list (outcome-led headline above, proof in bullets) */
+function Bullets({ items }) {
+  return (
+    <ul className="lead list-plain mt18">
+      {items.map(([b, rest]) => (
+        <li key={b}><b>{b}</b>{rest ? ` — ${rest}` : ''}</li>
+      ))}
+    </ul>
+  )
+}
+
+const marqueeA = ['slack', 'google', 'gmail', 'hubspot', 'salesforce', 'stripe', 'notion', 'zendesk', 'shopify', 'github', 'intercom', 'klaviyo']
+const marqueeB = ['snowflake', 'postgresql', 'airtable', 'quickbooks', 'whatsapp', 'anthropic', 'openai', 'googlegemini', 'figma', 'asana', 'dropbox', 'microsoftteams']
+
+const handoffs = [
+  ['Operations', 'Onboard a new hire across every tool, in one message.'],
+  ['Sales', 'Chase the deals that went quiet, and draft the nudge.'],
+  ['Customer success', 'Catch a churning customer before they leave.'],
+  ['Finance', 'Close the month without the copy-paste.'],
+  ['Leadership', 'Get a Monday brief from five tools, on its own.'],
+  ['Support', 'Answer with the full customer story across orders, tickets and billing.'],
+  ['IT / Security', 'Reset access the moment someone leaves.'],
+  ['Anywhere', 'Turn a Slack thread into a tracked task.'],
+]
+
+const departments = [
+  ['Operations', '“Set up the new hire everywhere and send the welcome.”', ['google', 'slack']],
+  ['Sales', '“Which deals went quiet — and nudge them.”', ['hubspot', 'gmail']],
+  ['Finance', '“What did we spend on tools last month?”', ['stripe', 'quickbooks']],
+  ['Support', '“Why is this customer upset?”', ['zendesk', 'shopify', 'stripe']],
+]
+
+const scale = [
+  ['01', 'Globally distributed', 'multi-region, elastic autoscaling with your workload.'],
+  ['02', 'Bring your own keys', 'BYOK — your own model keys and provider accounts.'],
+  ['03', 'Bring your own cloud', 'BYOC — deploy in your own VPC / cloud account.'],
+  ['04', 'Data residency', 'encryption in transit & at rest; your data stays in your boundary.'],
+]
+
+const comparisons = [
+  ['ChatGPT Enterprise', 'chatgpt-enterprise', 'An assistant per person. SuprAI is one operating system, with shared context, that acts.'],
+  ['Microsoft 365 Copilot', 'microsoft-365-copilot', 'Strong inside Microsoft. SuprAI is model-agnostic and connects every app you run.'],
+  ['Claude Enterprise', 'claude-enterprise', 'A powerful model. SuprAI powers it — with your apps, your context, your actions.'],
+]
+
+const faqs = [
+  ['How fast to value?', 'Build your first agent in minutes; most teams are live in days.'],
+  ['How is it cheaper?', 'It reuses context instead of re-sending it — about 30% fewer tokens.'],
+  ['Can we use our own models / cloud?', 'Yes — BYOK and BYOC. Your keys, your cloud.'],
+  ['How is it controlled?', 'Org-wide access controls, roles, scoped keys, and full request logs from one console.'],
+  ['Which apps?', '100+ today; any REST / GraphQL / webhook / MCP source, even non-API ones.'],
+  ['Does it replace the AI we use?', 'No — it powers GPT, Claude or any model with your apps, your context, and the power to act.'],
+]
 
 export default function Home() {
   return (
     <>
-      {/* HERO */}
+      {/* ═══ 02 · HERO (full-width, boxed product panel) ═══ */}
       <header className="hero">
-        <div className="wrap hero-grid">
-          <div>
-            <div className="eyebrow">Cross-tool intelligence</div>
-            <h1>Unify everything.<br />Answer anything.<br /><span className="gt">Act.</span></h1>
-            <p className="sub"><b>Your tools don't talk to each other.</b> SuprAI unifies your tools, data and context into one layer — real answers from real data, and the action to match. Copilot or autopilot.</p>
-            <div className="hero-cta">
-              <Link className="btn btn-primary" to="/pricing">Start free — forever</Link>
-              <a className="btn btn-ghost" href="#how">See how it works</a>
+        <div className="wrap hero-split">
+          <Reveal className="hero-copy">
+            <div className="kicker">The AI operating system</div>
+            <h1>The AI operating system for your <span className="gt">company.</span></h1>
+            <p className="sub">The connective layer over every tool your company runs: one synced context, one set of controls, and AI that can act across all of it.</p>
+            <div className="herostat">
+              <span><b>30%</b> fewer tokens</span>
+              <span><b>AI workforce</b> in minutes</span>
+              <span>works <b>24/7</b></span>
             </div>
-            <p className="micro">No card required · Free forever · Use it from the AI you already have</p>
-          </div>
-          <HeroArt />
+            <div className="hero-cta">
+              <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer">Book a demo</a>
+              <a className="btn btn-ghost" href="#grid">See it in action →</a>
+            </div>
+          </Reveal>
+          <Reveal as="div" className="hero-panel" d={1}>
+            <div className="hp-q"><span className="hp-tag">Q</span>What did we spend on tools last month?</div>
+            <div className="hp-a">
+              <span className="hp-tag a">A</span>
+              <div>
+                <div className="hp-num"><em>$48,210</em> across 23 tools <span className="hp-up">+12%</span></div>
+                <div className="hp-src">
+                  <span className="hp-label">sources</span>
+                  <span className="hp-chip"><BrandImg slug="stripe" />Stripe</span>
+                  <span className="hp-chip"><BrandImg slug="quickbooks" />QuickBooks</span>
+                  <span className="hp-chip">+14</span>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </header>
 
-      {/* LOGOS */}
+      {/* ═══ 03 · PROOF BAR (full-width) ═══ */}
       <section className="logos">
         <div className="wrap">
-          <p>Works across every tool you already run</p>
-          <div className="logo-row">
-            <img src={si('shopify')} alt="Shopify" />
-            <img src={si('meta')} alt="Meta Ads" />
-            <img src={si('googleads')} alt="Google Ads" />
-            <img src={si('googleanalytics')} alt="Google Analytics" />
-            <img src={si('klaviyo')} alt="Klaviyo" />
-            <img src={si('stripe')} alt="Stripe" />
-            <img src={si('salesforce')} alt="Salesforce" />
-            <img src={si('hubspot')} alt="HubSpot" />
-            <img src={si('amazon')} alt="Amazon" />
-            <span className="cat-pill">+ Logistics</span>
-            <span className="cat-pill">+ RevenueCat</span>
-            <span className="cat-pill">+ POS &amp; legacy</span>
+          <p>Built with teams in commerce &amp; ops who want to run like a bigger one</p>
+          <div className="proof-chips">
+            <span className="cat-pill">100+ apps &amp; data sources</span>
+            <span className="cat-pill">Days to go live</span>
+            <span className="cat-pill">shared context</span>
+          </div>
+          <div className="intg" style={{ marginTop: 30 }}>
+            <div className="intg-row a">{[...marqueeA, ...marqueeA].map((s, i) => <div className="intg-tile" key={'a' + i}><BrandImg slug={s} /></div>)}</div>
+            <div className="intg-row b">{[...marqueeB, ...marqueeB].map((s, i) => <div className="intg-tile" key={'b' + i}><BrandImg slug={s} /></div>)}</div>
           </div>
         </div>
       </section>
 
-      {/* PROBLEM */}
-      <section className="section">
+      {/* ═══ 04 · THE APPLICATION GRID (railed — blends in) ═══ */}
+      <section className="section lined" id="grid">
         <div className="wrap">
-          <div className="eyebrow">The problem</div>
-          <h2 className="big">Cross-tool coordination is broken.<br /><span className="muted2">You became the glue between your tools.</span></h2>
-          <div className="grid-3 mt">
-            <div className="card"><div className="ic">{ICON.grid}</div><h3>Scattered everywhere</h3><p>Every answer lives in a different tool — online and offline. Nothing is stitched together.</p></div>
-            <div className="card"><div className="ic">{ICON.clock}</div><h3>Hours lost merging</h3><p>Exporting and stitching spreadsheets to answer one question — then doing it again to act.</p></div>
-            <div className="card"><div className="ic">{ICON.arrow}</div><h3>Answers ≠ action</h3><p>By the time the analysis is done, the moment's gone. Knowing isn't the edge — acting first is.</p></div>
+          <SecMark label="The application grid" />
+          <div className="grid-2 align">
+            <Reveal>
+              <h2 className="xl">Every tool you run — in one grid.</h2>
+              <p className="lead mt18">One operating system, where your teams and AI work together. <b>Every team, every tool — one interface, one control center.</b></p>
+              <p className="lead mt18">Your company&rsquo;s memory isn&rsquo;t in one place — it lives scattered across every tool. Connect them to the grid, and we sync it into one, so your AI and your team act as one.</p>
+              <Bullets items={[
+                ['All your tools, one grid', 'connect what every team already uses; REST, GraphQL, webhooks, MCP.'],
+                ['Scattered memory, synced into one', 'real-time sync (CDC) into a unified context store; semantic + structured memory.'],
+                ['Team controls on top', 'RBAC: roles, scopes, least-privilege by default.'],
+                ['Typed actions built in', 'every connector exposes typed, role-scoped actions.'],
+              ]} />
+            </Reveal>
+            <Reveal d={1}><GridArt /></Reveal>
           </div>
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
-      <section className="section band-warm" id="how">
-        <div className="wrap center">
-          <div className="eyebrow">How it works</div>
-          <h2 className="big">One layer that understands your data — and acts on it.</h2>
-          <p className="lead">SuprAI connects your tools and warehouses, builds a living understanding of what your data means, answers with real numbers, and takes the action. Every cycle makes it sharper.</p>
-          <div className="loop">
-            <div className="loop-step"><div className="n">01</div><h4>Connect</h4><p>Every tool + warehouse, online and in-store — including the legacy systems others can't reach.</p></div>
-            <div className="loop-step"><div className="n">02</div><h4>Understand</h4><p>A unified data + semantic layer learns what your metrics mean and resolves identity across tools.</p></div>
-            <div className="loop-step"><div className="n">03</div><h4>Act</h4><p>Answers from real data turn into action — launch the offer, sync the listing, message the team.</p></div>
-            <div className="loop-step"><div className="n">04</div><h4>Learn</h4><p>Outcomes feed back. The longer it runs, the smarter it gets — and the harder it is to replace.</p></div>
+      {/* ═══ 05 · WHAT IT DOES — bento (full-width, boxed) ═══ */}
+      <section className="section band-warm full">
+        <div className="wrap">
+          <Reveal className="sec-head cc">
+            <div className="kicker" style={{ justifyContent: 'center' }}>What it does</div>
+            <h2 className="xl">Everything your company&rsquo;s AI needs, in one place.</h2>
+          </Reveal>
+          <div className="bento4">
+            <Reveal as="div" className="bento-card accent" d={1}>
+              <div className="bc-eyebrow">Ask</div>
+              <h3>Ask anything across your apps.</h3>
+              <p>Answers joined across sources with permission-aware retrieval — real numbers and facts, with the sources behind them.</p>
+              <div className="bc-visual">
+                <div className="askbar"><span className="ph">What did we spend on tools last month?</span><span className="cur" /><span className="go">↑</span></div>
+              </div>
+            </Reveal>
+            <Reveal as="div" className="bento-card accent" d={2}>
+              <div className="bc-eyebrow">Act</div>
+              <h3>It gets the work done, not just the answer.</h3>
+              <p>Typed, role-scoped, reversible actions across your tools — and never without your say-so.</p>
+              <div className="bc-visual" style={{ display: 'flex', gap: 9, flexWrap: 'wrap', alignItems: 'center' }}>
+                <span className="tm-act" style={{ cursor: 'default' }}><span className="pl">▶</span> Send it</span>
+                <span className="tm-chip"><BrandImg slug="gmail" />Gmail</span>
+                <span className="tm-chip"><BrandImg slug="hubspot" />HubSpot</span>
+              </div>
+            </Reveal>
+            <Reveal as="div" className="bento-card" d={1}>
+              <div className="bc-eyebrow">Automate</div>
+              <h3>Automate what repeats.</h3>
+              <p>Durable, scheduled and event-driven agents that run in the background, retry on failure, and report back.</p>
+              <div className="bc-visual">
+                {['Trigger', 'Read', 'Think', 'Act'].map((s) => (
+                  <div className="agent-step done" key={s} style={{ padding: '4px 0' }}>
+                    <div className="rail"><div className="node" style={{ width: 20, height: 20 }}>✓</div><div className="line" /></div>
+                    <div className="meta"><div className="t" style={{ fontSize: 13 }}>{s}</div></div>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+            <Reveal as="div" className="bento-card" d={2}>
+              <div className="bc-eyebrow">Context</div>
+              <h3>It just knows your company.</h3>
+              <p>One unified context — cross-source identity resolved, kept current across every app.</p>
+              <div className="bc-visual" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                {['google', 'slack', 'hubspot', 'stripe', 'notion', 'zendesk'].map((s) => (
+                  <span className="ctx-chip" key={s} style={{ padding: 7 }}><BrandImg slug={s} /></span>
+                ))}
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* MEET THE WORKERS */}
-      <section className="section">
-        <div className="wrap center">
-          <div className="eyebrow">Your AI workers</div>
-          <h2 className="big">Specialized workers, ready in minutes</h2>
-          <p className="lead">Each worker comes pretrained on real playbooks and the connectors it needs — pick one and it runs, copilot or autopilot.</p>
-          <div className="grid-3 mt left">
-            <div className="card"><div className="klabel">GROWTH</div><h3>Growth Worker</h3><p>Runs and optimizes ads, finds wasted spend, launches win-backs across your store, ads and CRM.</p></div>
-            <div className="card"><div className="klabel">OPERATIONS</div><h3>Ops &amp; Logistics Worker</h3><p>Watches 3PLs, orders and inventory; flags late shipments and stockouts, and acts before they cost you.</p></div>
-            <div className="card"><div className="klabel">REVENUE</div><h3>Revenue Worker</h3><p>Joins RevenueCat, billing and usage to predict churn, protect LTV, and trigger upsells automatically.</p></div>
-            <div className="card"><div className="klabel">SUPPORT</div><h3>Support Worker</h3><p>Ties tickets to orders, shipments and billing — resolves with full context and triggers the fix.</p></div>
-            <div className="card"><div className="klabel">ANALYTICS</div><h3>Analytics Worker</h3><p>Answers any cross-tool question with real numbers, builds reports, and ships them on a schedule.</p></div>
-            <div className="card featured"><div className="klabel">CUSTOM</div><h3>Build your own</h3><p>Compose a worker from skills and connectors for the exact job your team runs every week.</p></div>
+      {/* ═══ 06 · PRODUCTION-GRADE INFRASTRUCTURE (railed — blends in) ═══ */}
+      <section className="section lined">
+        <div className="wrap">
+          <SecMark label="The pipeline, handled" />
+          <div className="grid-2 align">
+            <Reveal d={1} className="order-art"><Waterline /></Reveal>
+            <Reveal>
+              <h2 className="xl">Production-grade AI infrastructure, out of the box.</h2>
+              <p className="lead mt18">Connecting tools, syncing memory, indexing data, setting up auth, building agents, apps and the interface — that&rsquo;s a hard engineering pipeline most teams can&rsquo;t staff. An operating system hides all of it.</p>
+              <Bullets items={[
+                ['Memory & data indexing', 'ingestion, indexing and retrieval kept in sync; you never wire an ETL or a vector store.'],
+                ['Connectors & managed auth', 'connectors, OAuth brokering and token rotation, built and maintained for you.'],
+                ['Agents, apps & the interface', 'ready to use, not to assemble.'],
+                ['Like GitHub or AWS', 'you use the pipeline; you don’t build your own.'],
+              ]} />
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ASK -> ACT */}
-      <section className="section band-warm">
+      {/* ═══ 07 · UNIFIED CONTEXT (railed — separators) ═══ */}
+      <section className="section band-warm lined">
+        <div className="wrap">
+          <SecMark label="Unified context" />
+          <Reveal as="div" className="secG">
+            <div className="secG-list">
+              <div className="secG-item">
+                <span className="si">{ICON.store}</span>
+                <div><h4>One unified context store</h4><p>Behind Slack, WhatsApp, or any AI — not a fresh start each time.</p></div>
+              </div>
+              <div className="secG-item">
+                <span className="si">{ICON.sync}</span>
+                <div><h4>Always current</h4><p>Incremental CDC sync with dedup and freshness SLAs; no manual imports, no stale exports.</p></div>
+              </div>
+              <div className="secG-item">
+                <span className="si">{ICON.entity}</span>
+                <div><h4>Entity-resolved &amp; continually learned</h4><p>People, accounts and orders resolved across tools; the context compounds every week.</p></div>
+              </div>
+            </div>
+            <div className="secG-right">
+              <h2>One context for your whole company. <span className="muted2">It just knows.</span></h2>
+              <p className="lead" style={{ marginTop: 16 }}>SuprAI builds one shared understanding of how your business works — from every app you connect — and keeps it current.</p>
+              <a className="btn btn-primary" href="#book">See how context works →</a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══ 08 · RIGHT WHERE YOUR TEAM WORKS (full-width, boxed) ═══ */}
+      <section className="section full">
+        <div className="wrap">
+          <Reveal className="sec-head">
+            <div className="kicker">Where your team works</div>
+            <h2 className="xl">In the tools your team already lives in.</h2>
+            <p className="lead">Connected to your team&rsquo;s tools — Slack, Microsoft Teams, WhatsApp. @mention it or message it, and it answers and acts right there. No new app to open.</p>
+          </Reveal>
+          <Reveal><ChatSurfaces /></Reveal>
+        </div>
+      </section>
+
+      {/* ═══ 09 · AI WORKFORCE (full-width, boxed) ═══ */}
+      <section className="section band-warm full">
         <div className="wrap">
           <div className="grid-2 align">
-            <div>
-              <div className="eyebrow">Answers from real data — not documents</div>
-              <h2 className="big">Ask once. It answers across every tool — and acts.</h2>
-              <p className="lead mt18">No tab-switching, no exports. SuprAI queries the actual numbers across your stack, shows its work, and does the next step.</p>
-              <ul className="lead list-plain mt18">
-                <li>✓ Real data, not files or vague summaries</li>
-                <li>✓ Patterns surfaced before you ask</li>
-                <li>✓ Every answer turns into an action</li>
-              </ul>
-            </div>
-            <div className="illus">§C1 — CHAT ILLUSTRATION (Higgsfield). A single chat panel on a white #FFFFFF card, 1px #EBE2D6 border, 16px radius, NO shadow, NO gradient, on the off-white #FCFAF6 grid stage. Three small dots (#EFD8C2) top-left. User bubble (fill #FBF6EF, ink #1F1813 text): "Which products are shipping late and hurting repeat orders?". Assistant bubble (white) with a #C2410C uppercase tag "SuprAI · Shopify + 3PL + RevenueCat": "3 SKUs from your Mumbai 3PL average 6-day delivery — and those buyers churn 2.3× faster." Then a solid black pill button (#1F1813, white text) "▶ Pause promo &amp; queue win-back". To the right, three faint connector chips (Shopify, a truck/3PL, RevenueCat) joined to the panel by thin 1px ink lines. Camera: 8° isometric tilt, soft zoom on the black action button. Strict palette: #FCFAF6, #F15A22, #1F1813, white. Flat, premium, minimal.</div>
+            <Reveal>
+              <div className="kicker">AI workforce</div>
+              <h2 className="xl">Your AI workforce. Built in minutes. Works 24/7.</h2>
+              <p className="lead mt18">Your people move up to strategy and planning — your AI workforce handles the execution.</p>
+              <Bullets items={[
+                ['People plan, AI executes', 'your team decides; the workforce carries it out.'],
+                ['No new tool, no knowledge transfer', 'it works where your team already does, and already knows the business.'],
+                ['Built in minutes', 'hire an agent for any job, in minutes, not months.'],
+                ['Works 24/7, shared', 'it runs while you sleep, and the whole team can use it.'],
+              ]} />
+            </Reveal>
+            <Reveal d={1}><WorkforceGrid /></Reveal>
           </div>
         </div>
       </section>
 
-      {/* EVERYTHING YOU NEED (2x2) */}
-      <section className="section band-warm">
-        <div className="wrap center">
-          <div className="eyebrow">The platform</div>
-          <h2 className="big">Everything you need to act across your tools</h2>
+      {/* ═══ 10 · WHAT YOUR COMPANY CAN HAND OFF (full-width, boxed) ═══ */}
+      <section className="section full">
+        <div className="wrap">
+          <Reveal className="sec-head">
+            <div className="kicker">Possibilities</div>
+            <h2 className="xl">What your company can hand off.</h2>
+          </Reveal>
+          <div className="handoff mt">
+            {handoffs.map(([k, v], i) => (
+              <Reveal as="div" className="ho-card" key={k} d={(i % 4) + 1}>
+                <div className="ho-k">{k}</div>
+                <p>{v}</p>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal><a className="tlink" href="#book">See all use cases →</a></Reveal>
+        </div>
+      </section>
+
+      {/* ═══ 11 · ORGANIZATION-WIDE CONTROL (railed — blends in) ═══ */}
+      <section className="section band-warm lined" id="control">
+        <div className="wrap">
+          <SecMark label="Enterprise control" />
+          <Reveal className="sec-head">
+            <blockquote className="bigquote">Built for enterprise from day one. AI only works in a company when answers are secure, explainable, and permission-aware.</blockquote>
+            <h2 className="xl" style={{ marginTop: 22 }}>One control center for the whole organization.</h2>
+          </Reveal>
+          <div className="grid-2 align" style={{ marginTop: 38 }}>
+            <Reveal>
+              <Bullets items={[
+                ['Org-wide auth & access', 'SSO / SAML / SCIM and organization-wide access controls (RBAC).'],
+                ['Roles & scoped keys', 'multi-member orgs, granular roles, and scoped API keys.'],
+                ['A control dashboard', 'usage analytics, ingestion monitoring, request logs and execution traces.'],
+                ['One console', 'key management, audit and governance.'],
+              ]} />
+              <a className="tlink" href="#book">Explore SuprAI security →</a>
+            </Reveal>
+            <Reveal d={1}><ControlDashboard /></Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 12 · COST & EFFICIENCY (railed — separator list) ═══ */}
+      <section className="statement lined">
+        <div className="wrap">
+          <SecMark label="Why it matters" />
+          <Reveal>
+            <h2>Turn your company&rsquo;s apps into action —<br /><span className="muted2">without a runaway AI bill.</span></h2>
+            <p>Give everyone their own AI and the bill climbs with every seat. SuprAI reads context once and reuses it across the whole company — so it gets cheaper per answer as you grow, not more expensive.</p>
+            <div className="costlist">
+              {[
+                ['30% fewer tokens', 'context is reused, not re-sent on every request.'],
+                ['Less waste', 'one system, not a dozen per-person subscriptions.'],
+                ['Lower cost per answer', 'more value from every ask, as the whole team comes on.'],
+              ].map(([h, p]) => (
+                <div className="costrow-item" key={h}><b>{h}</b><span>{p}</span></div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══ 13 · MANAGED AUTH (railed — blends in) ═══ */}
+      <section className="section lined">
+        <div className="wrap">
+          <SecMark label="Managed auth" />
+          <div className="grid-2 align">
+            <Reveal d={1} className="order-art"><ManagedVault /></Reveal>
+            <Reveal>
+              <h2 className="xl">Connect once. Nobody ever sees a key.</h2>
+              <p className="lead mt18">Set up a connection once and share it with the right people. They get to work; the keys stay locked down and never leave SuprAI.</p>
+              <Bullets items={[
+                ['Fully managed OAuth 2.0', 'auth flows, token refresh and rotation handled; no auth code to write.'],
+                ['Delegated, least-privilege access', 'granular scopes, encrypted token vault, per role.'],
+                ['Revoke & rotate any time', 'per person, per app, per scope.'],
+              ]} />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 14 · ROLE-AWARE (full-width, boxed) ═══ */}
+      <section className="section band-warm full">
+        <div className="wrap">
+          <Reveal className="sec-head">
+            <div className="kicker">Role-aware</div>
+            <h2 className="xl">It answers like it knows your org chart.</h2>
+            <p className="lead">Every person gets answers shaped to their role — and never sees what they aren&rsquo;t cleared to see.</p>
+          </Reveal>
+          <div className="roles">
+            {[
+              ['Finance', 'budgets & spend, traceable to source'],
+              ['Sales', 'pipeline — only the accounts this rep owns'],
+              ['Ops', 'acts only on tools this role may touch'],
+            ].map(([role, a], i) => (
+              <Reveal as="div" className="role" key={role} d={i + 1}>
+                <div className="role-top">
+                  <span className="role-chip">{role}</span>
+                  <span className="role-lock">🔒 scoped</span>
+                </div>
+                <div className="a" style={{ borderTop: 'none', paddingTop: 0 }}>{a}</div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 15 · AUTOMATE (railed — separators) ═══ */}
+      <section className="section lined">
+        <div className="wrap">
+          <SecMark label="Automate" />
+          <div className="grid-2 align">
+            <Reveal>
+              <h2 className="xl">Hand off the work your team repeats.</h2>
+              <p className="lead mt18">Build a named agent once; it reports back what it did, and the whole team can reuse it.</p>
+              <Bullets items={[
+                ['Event-driven or scheduled', 'webhooks, cron schedules, or on-demand.'],
+                ['Copilot or autopilot', 'human-in-the-loop gates on the sensitive steps; let the routine run.'],
+                ['Durable & replayable', 'retries with backoff, idempotency, and full execution traces.'],
+              ]} />
+            </Reveal>
+            <Reveal d={1}>
+              <div className="triggers">
+                {[
+                  ['Monday Numbers', 'SCHEDULE', 'every Mon 6:00 AM'],
+                  ['Enrich new lead', 'EVENT', 'new HubSpot contact'],
+                  ['Deploy summary', 'WEBHOOK', '/deploy completes'],
+                ].map(([name, kind, when]) => (
+                  <div className="trig" key={name}>
+                    <span className="trig-name">{name}</span>
+                    <span className={`trig-kind ${kind.toLowerCase()}`}>{kind}</span>
+                    <span className="trig-when">{when}</span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 16 · MODEL-AGNOSTIC (railed — blends in) ═══ */}
+      <section className="section band-warm lined">
+        <div className="wrap">
+          <SecMark label="Model-agnostic · provider-agnostic" />
+          <div className="grid-2 align">
+            <Reveal d={1} className="order-art"><ModelGateway /></Reveal>
+            <Reveal>
+              <h2 className="xl">AI-agnostic by design.</h2>
+              <p className="lead mt18">One gateway sits in front of every frontier LLM — so you route each request to the right model and never get locked in.</p>
+              <Bullets items={[
+                ['Provider-agnostic', 'any frontier LLM (OpenAI, Anthropic, Google, or open-weights), hot-swappable with zero rework.'],
+                ['Intelligent model routing', 'each request routed by task, latency and cost, with automatic fallback / failover.'],
+                ['BYOK', 'bring your own model keys and provider accounts; no lock-in.'],
+                ['No wasted context', 'prompt caching and reuse send only what each request actually needs.'],
+              ]} />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 17 · BUILT FOR SCALE (full-width, boxed) ═══ */}
+      <section className="section full">
+        <div className="wrap">
+          <Reveal className="sec-head">
+            <div className="kicker">Scale & deployment</div>
+            <h2 className="xl">Runs everywhere. Scales with your team.</h2>
+          </Reveal>
+          <div className="grid-4 mt">
+            {scale.map(([num, h, p], i) => (
+              <Reveal as="div" className="feat" key={h} d={(i % 4) + 1} style={{ minHeight: 188 }}>
+                <div className="fnum"><span>{num}</span><span className="fn-i">/</span><span>{h}</span></div>
+                <p>{p}</p>
+              </Reveal>
+            ))}
+          </div>
+          <p className="micro center" style={{ marginTop: 24 }}>globally distributed · elastic · BYOK · BYOC · your cloud, your keys</p>
+        </div>
+      </section>
+
+      {/* ═══ 18 · CONNECTORS & ACTIONS (railed — blends in) ═══ */}
+      <section className="section band-warm lined" id="connectors">
+        <div className="wrap">
+          <SecMark label="Connectors & actions" />
+          <Reveal className="sec-head">
+            <h2 className="xl">Connect your apps. Stay in sync.</h2>
+            <p className="lead">Every connector you add brings the real actions it can take, and stays current automatically — no manual imports, no stale exports. If it has an API — REST, GraphQL, gRPC, webhooks or MCP — we connect it and keep it in sync with real-time CDC. Even non-API sources.</p>
+          </Reveal>
+          <Reveal><AppsActions /></Reveal>
+        </div>
+      </section>
+
+      {/* ═══ 19 · BY DEPARTMENT (full-width, boxed) ═══ */}
+      <section className="section full">
+        <div className="wrap">
+          <Reveal className="sec-head">
+            <div className="kicker">For every team</div>
+            <h2 className="xl">One operating system. Every team&rsquo;s job.</h2>
+          </Reveal>
           <div className="grid-2 mt left">
-            <div className="feat"><h3>Use it from any AI — no lock-in</h3><p>Run SuprAI inside Claude, ChatGPT or any MCP-compatible assistant, or our own app. Your AI of choice, now able to act across every tool.</p><div className="illus sm">§A2 — three model chips (Claude, OpenAI, Gemini) in white circles, thin 1px ink lines converging into the dark SuprAI core tile; off-white bg, orange dot accents, no gradient.</div></div>
-            <div className="feat"><h3>Connect internal &amp; external data</h3><p>Modern APIs, MCP, warehouses, and the legacy + offline systems most tools ignore. If it holds your data, SuprAI sees it.</p>
-              <div className="tile-grid" style={{ marginTop: 'auto', display: 'grid', gridTemplateColumns: 'repeat(6,1fr)', gap: 12 }}>
-                {['shopify', 'googlesheets', 'slack', 'notion', 'hubspot', 'stripe'].map((s) => (<div className="mtile" key={s} style={{ width: 'auto', height: 64 }}><img src={si(s)} alt={s} /></div>))}
-              </div>
-            </div>
-            <div className="feat"><h3>Autopilot the recurring grunt work</h3><p>Hand off boring cross-tool tasks — daily reports, win-back flows, spend reallocation. They run on a schedule or a trigger, in the background.</p><div className="illus sm">§A3 — minimal schedule list on a white card: "Daily report · 8:00 AM", "Win-back · on churn signal", "Spend check · every 6h", each with a small orange #F15A22 status dot; thin dividers, ink text, no gradient.</div></div>
-            <div className="feat"><h3>A canvas to orchestrate workflows</h3><p>Chain steps across tools into one repeatable process — draft → generate asset → publish → report. A one-off prompt becomes a process.</p><div className="illus sm">§A4 — node canvas: four rounded ink-outlined nodes "Connect → Understand → Act → Report" joined by thin 1px ink connectors with a small orange cursor; off-white grid bg, no gradient.</div></div>
+            {departments.map(([k, q, apps], i) => (
+              <Reveal as="div" className="card" key={k} d={(i % 2) + 1}>
+                <div className="klabel">{k}</div>
+                <h3 style={{ fontSize: 17 }}>{q}</h3>
+                <div className="dept-apps">{apps.map((s) => <BrandImg key={s} slug={s} style={{ height: 18, opacity: .8 }} />)}</div>
+              </Reveal>
+            ))}
           </div>
+          <p className="lead mt18"><b>Marketing / IT / HR</b> — add as we go; same engine, tuned playbooks.</p>
         </div>
       </section>
 
-      {/* USE CASES */}
-      <section className="section">
+      {/* ═══ 20 · COMPARISON (full-width, boxed) ═══ */}
+      <section className="section band-warm full">
         <div className="wrap">
-          <div className="eyebrow">What you can do</div>
-          <h2 className="big">Real questions. Real actions.</h2>
-          <p className="lead">Not demos — the everyday cross-tool jobs that used to take a person and five tabs. Ask, and it acts.</p>
+          <Reveal className="sec-head">
+            <div className="kicker">Compare</div>
+            <h2 className="xl">One operating system for the company — not one assistant per person.</h2>
+          </Reveal>
           <div className="grid-3 mt">
-            <div className="card"><div className="klabel">FIND WASTED SPEND</div><h3>“Where am I burning ad budget?”</h3><p>Joins Meta + Google Ads + Shopify to find campaigns that drive clicks but not repeat buyers — and reallocates the spend.</p></div>
-            <div className="card"><div className="klabel">PROTECT REVENUE</div><h3>“Who's about to churn — and why?”</h3><p>Ties RevenueCat + billing + support to spot at-risk cohorts early, then launches a win-back across your channels.</p></div>
-            <div className="card"><div className="klabel">FIX OPERATIONS</div><h3>“Which orders are shipping late?”</h3><p>Watches your 3PL + orders, flags the SKUs hurting repeat rate, and pauses their promo before it costs more.</p></div>
-            <div className="card"><div className="klabel">MOVE FIRST</div><h3>“What changed since yesterday?”</h3><p>Proactively surfaces the shift across every tool — and drafts the response — before you open a dashboard.</p></div>
-            <div className="card"><div className="klabel">SELL MORE</div><h3>“Which cohorts should I upsell?”</h3><p>Segments buyers by behavior across store + CRM, then triggers the offer in your engagement tool.</p></div>
-            <div className="card"><div className="klabel">REPORT ITSELF</div><h3>“Send me the weekly numbers.”</h3><p>Builds the cross-tool report on a schedule and drops it in Slack — autopilot, every Monday, no stitching.</p></div>
+            {comparisons.map(([name, slug, blurb], i) => (
+              <Reveal as={Link} className="sol" to={`/compare/${slug}`} key={slug} d={i + 1}>
+                <div className="k">VS {name.toUpperCase()}</div>
+                <p>{blurb}</p>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* INTEGRATIONS — marquee */}
-      <section className="section band-warm">
-        <div className="wrap center">
-          <div className="eyebrow">Integrations</div>
-          <h2 className="big">Connect your whole stack</h2>
-          <p className="lead">Hundreds of connectors across ads, commerce, payments, support, data and messaging — plus MCP and the legacy systems others can't reach.</p>
-        </div>
-        <div className="marquee">
-          <div className="mrow a">{[...rowA, ...rowA].map((s, i) => <Tile s={s} key={'a' + i} />)}</div>
-          <div className="mrow b">{[...rowB, ...rowB].map((s, i) => <Tile s={s} key={'b' + i} />)}</div>
-        </div>
-      </section>
-
-      {/* WHY US */}
-      <section className="section">
-        <div className="wrap center">
-          <div className="eyebrow">Why SuprAI</div>
-          <h2 className="big">Not another dashboard. Not another bot.</h2>
-          <div className="grid-3 mt left">
-            <div className="card"><div className="ic">{ICON.globe}</div><h3>Connects what others can't</h3><p>Modern APIs, MCP, and the legacy + offline systems most tools ignore.</p></div>
-            <div className="card"><div className="ic">{ICON.bolt}</div><h3>It acts, not just answers</h3><p>Analytics tools stop at the chart. SuprAI closes the loop — decision and action in one place.</p></div>
-            <div className="card"><div className="ic">{ICON.chart}</div><h3>Smarter every day</h3><p>Maps your tools on day one, then learns from every decision and outcome — intelligence no one can hand back.</p></div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECURITY */}
-      <section className="section band-warm">
-        <div className="wrap center">
-          <div className="eyebrow">Enterprise-ready</div>
-          <h2 className="big">With enterprise-grade governance and security</h2>
-          <div className="grid-3 mt left">
-            <div className="card"><h3>Role-based access control</h3><p>Reusable roles, shared credentials and scoped access — agents act only within a user's permissions.</p></div>
-            <div className="card"><h3>Private cloud &amp; on-prem</h3><p>Deploy SuprAI in our cloud, your VPC, or fully on-prem.</p></div>
-            <div className="card"><h3>Bring your own model key</h3><p>Route premium model usage through your own keys and providers — no vendor lock-in.</p></div>
-            <div className="card"><h3>Usage monitoring</h3><p>Track credit, event and tool-call usage in real time; set budgets and quotas to avoid surprises.</p></div>
-            <div className="card"><h3>Full audit logging</h3><p>Every answer and action is traceable — back to the data, the definition, and who approved it.</p></div>
-            <div className="card"><h3>SSO &amp; SCIM</h3><p>Integrate with your identity provider to extend your system of record to your AI workers.</p></div>
-          </div>
-        </div>
-      </section>
-
-      {/* WORK WHERE YOU WORK */}
-      <section className="section">
+      {/* ═══ 21 · NUMBERS (full-width, boxed) ═══ */}
+      <section className="section full">
         <div className="wrap">
-          <div className="grid-2 align">
-            <div>
-              <div className="eyebrow">Meets you where you work</div>
-              <h2 className="big">Tag it in Slack. Ask it in Claude. Let it run in the background.</h2>
-              <p className="lead mt18">SuprAI lives in the tools your team already opens — chat from Claude or ChatGPT, @mention it in Slack, Teams or WhatsApp, or let workers run on autopilot while you sleep.</p>
-              <div className="logo-row left">
-                <img src={si('slack')} alt="Slack" />
-                <img src={si('whatsapp')} alt="WhatsApp" />
-                <img src={si('gmail')} alt="Gmail" />
-                <img src={si('anthropic')} alt="Claude" />
-                <img src={si('openai')} alt="ChatGPT" />
-              </div>
-            </div>
-            <div className="illus">§C2 — SLACK CHAT ILLUSTRATION (Higgsfield). A Slack-style channel "#growth" rendered on a white #FFFFFF card, 1px #EBE2D6 border, 16px radius, NO shadow, NO gradient. A user message: "@SuprAI which channel had the best ROAS this week?". A reply from a small orange #F15A22 SuprAI avatar: "Meta drove 3.1× ROAS vs Google's 1.8× — but Google's repeat-purchase rate is 2× higher." Below it a solid black pill button (#1F1813, white text) "▶ Shift budget &amp; monitor". Real Slack mark visible top-left. Camera: straight-on, soft zoom toward the reply. Strict palette: #FCFAF6 bg, #F15A22 accent, #1F1813 ink, white surfaces. Flat, premium, minimal.</div>
+          <div className="statrow" style={{ marginTop: 0 }}>
+            {[
+              ['30%', 'fewer tokens as the team scales'],
+              ['24/7', 'your AI workforce, always on'],
+              ['100+', 'apps connected through one setup'],
+              ['1', 'operating system for the whole company'],
+            ].map(([n, l], i) => (
+              <Reveal as="div" className="statbox" key={l} d={i + 1}>
+                <div className="n"><em>{n}</em></div>
+                <div className="l">{l}</div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* COMPARE */}
-      <section className="section band-warm">
-        <div className="wrap center">
-          <div className="eyebrow">Why SuprAI, not just…</div>
-          <h2 className="big">The only one that does all three</h2>
-          <div className="grid-3 mt left">
-            <div className="card"><h3>Not just analytics</h3><p>Hex, Lopus and the BI tools answer questions and stop at the chart. SuprAI answers <em>and</em> acts.</p></div>
-            <div className="card"><h3>Not just automation</h3><p>Zapier, n8n and the agent builders move data between apps, but don't understand it. SuprAI understands first, then acts.</p></div>
-            <div className="card"><h3>Not just search</h3><p>Glean and RAG tools return documents. SuprAI returns the actual numbers — and takes the next step.</p></div>
-          </div>
-          <p className="lead center mt18">Intelligence + action across every tool — the combination none of them is built to own.</p>
-        </div>
-      </section>
-
-      {/* OUTCOMES */}
-      <section className="section">
-        <div className="wrap center">
-          <div className="eyebrow">Why it matters</div>
-          <h2 className="big">The cost of disconnected tools is real</h2>
-          <div className="grid-3 mt">
-            <div className="card center"><div className="stat-num">6+</div><p style={{ marginTop: 8 }}>tools the average team runs — none of which talk to each other</p></div>
-            <div className="card center"><div className="stat-num">~15 hrs</div><p style={{ marginTop: 8 }}>lost per person every week to manual, cross-tool data work</p></div>
-            <div className="card center"><div className="stat-num">$52B</div><p style={{ marginTop: 8 }}>AI-agents market by 2030 — value is moving to the layer that coordinates</p></div>
-          </div>
-          <p className="micro" style={{ marginTop: 16 }}>Sources: industry tooling surveys; MarketsandMarkets / Grand View AI-agents forecasts (2025–2030).</p>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="section band-warm">
-        <div className="wrap center">
-          <div className="eyebrow">From the field</div>
-          <h2 className="big">What early teams say</h2>
-          <div className="grid-3 mt left">
-            <div className="card"><p className="quote">“[ Design-partner quote — add real testimonial when available. ]”</p><p className="quote-by">— [ Name, Role, Brand ]</p></div>
-            <div className="card"><p className="quote">“[ Design-partner quote — add real testimonial when available. ]”</p><p className="quote-by">— [ Name, Role, Brand ]</p></div>
-            <div className="card"><p className="quote">“[ Design-partner quote — add real testimonial when available. ]”</p><p className="quote-by">— [ Name, Role, Brand ]</p></div>
-          </div>
-          <p className="micro" style={{ marginTop: 16 }}>Real quotes only — these are placeholders until design-partner results are in.</p>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="section">
+      {/* ═══ 22 · FAQ (railed — separators) ═══ */}
+      <section className="section lined">
         <div className="wrap">
-          <div className="eyebrow">FAQ</div>
-          <h2 className="big mb20">Questions, answered</h2>
-          <details className="faq"><summary>How is this different from an analytics tool like Hex?</summary><p>Analytics tools answer; they stop at the chart. SuprAI answers with real data <em>and</em> acts — it takes the next step across your tools, on copilot or autopilot.</p></details>
-          <details className="faq"><summary>Do I need a data warehouse?</summary><p>No. If you have one, SuprAI queries it in place. If you don't — like most commerce teams — SuprAI unifies your tools directly. Either way, connectors are unlimited.</p></details>
-          <details className="faq"><summary>Can I use it from Claude or ChatGPT?</summary><p>Yes. SuprAI runs inside Claude, ChatGPT or any MCP-compatible assistant, as well as our own app.</p></details>
-          <details className="faq"><summary>Is it safe to let it act?</summary><p>You set the leash. Copilot means you approve every action; autopilot runs the safe, repetitive work on its own. Every action is governed, scoped and audited.</p></details>
-          <details className="faq"><summary>How fast can we start?</summary><p>Connect two tools and watch a worker run a real task in minutes. Free forever to start; Starter is free for 15 days.</p></details>
+          <SecMark label="FAQ" />
+          <h2 className="xl mb20">Questions, answered.</h2>
+          {faqs.map(([q, a]) => (
+            <details className="faq" key={q}><summary>{q}</summary><p>{a}</p></details>
+          ))}
         </div>
       </section>
 
-      {/* BIG BOTTOM CTA ILLUSTRATION BAND */}
-      <section className="endcta">
+      {/* ═══ 23 · FINAL CTA ═══ */}
+      <section className="endcta" id="book">
         <div className="wrap">
-          <div className="illus">§A9 — BIG BOTTOM CTA ILLUSTRATION (Higgsfield), wide 16:6 banner. Centered dark rounded SuprAI core tile (#1F1813, small white mark). Above it, a radial arc of thin ink ticks (like a speedometer) with 5 real tool logos in white circular chips spaced along the arc (Shopify, HubSpot, Salesforce, Google Ads, Klaviyo), each joined to the core by a thin 1px line. Background: off-white #FCFAF6 with the faint orange grid; one soft solid-orange (#F15A22) halo behind the core (flat, NOT a gradient). Foreground bottom: a small answer card emitting from the core with a black "Act" pill. Camera: straight-on hero framing, gentle zoom. Strict palette: #FCFAF6, #F15A22, #1F1813, white. Flat, premium, minimal, crisp, NO gradients, NO shadows.</div>
-          <div className="final-card">
-            <div className="eyebrow">See it act on your data</div>
-            <h2>Stop being the router. Let SuprAI run it.</h2>
-            <p className="lead" style={{ margin: '18px auto 0' }}>Connect two tools and watch a worker run a real task — start to finish, in minutes.</p>
-            <div className="hero-cta cc">
-              <Link className="btn btn-primary" to="/pricing">Start free — forever</Link>
-              <a className="btn btn-ghost" href="#">Book a demo</a>
+          <SecMark label="Get started" />
+          <Reveal className="final-card">
+            <h2>Give your company its AI operating system.</h2>
+            <p className="lead" style={{ margin: '18px auto 0' }}>Connect two apps and put your first agent to work — in minutes.</p>
+            <div className="hero-cta cc" style={{ marginTop: 26 }}>
+              <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer">Book a demo</a>
+              <Link className="btn btn-ghost" to="/pricing">Start free</Link>
             </div>
             <div className="pillrow">
-              <span className="tag-pill">Cross-tool intelligence</span>
-              <span className="tag-pill">Copilot &amp; autopilot</span>
-              <span className="tag-pill">Acts, not just answers</span>
+              <span className="tag-pill">One synced context</span>
+              <span className="tag-pill">Ask · Act · Automate</span>
+              <span className="tag-pill">Permission-aware</span>
+              <span className="tag-pill">Any model</span>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
     </>

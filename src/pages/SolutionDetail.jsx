@@ -1,7 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { solutions, teamOrder, industryOrder } from '../data/solutions.js'
-
-const si = (s) => `https://cdn.simpleicons.org/${s}`
+import BrandImg from '../components/BrandImg.jsx'
 
 export default function SolutionDetail() {
   const { slug } = useParams()
@@ -18,8 +17,8 @@ export default function SolutionDetail() {
           <h1>{s.headline}</h1>
           <p className="lead">{s.sub}</p>
           <div className="hero-cta cc">
-            <Link className="btn btn-primary" to="/pricing">Start free</Link>
-            <a className="btn btn-ghost" href="#">Book a demo</a>
+            <a className="btn btn-primary" href="#">Book a demo</a>
+            <Link className="btn btn-ghost" to="/pricing">Start free</Link>
           </div>
         </div>
       </section>
@@ -33,8 +32,8 @@ export default function SolutionDetail() {
 
       <section className="section">
         <div className="wrap">
-          <div className="eyebrow">What SuprAI does</div>
-          <h2 className="big">The jobs it runs for {s.name.toLowerCase()}</h2>
+          <div className="eyebrow">Ask · Act · Automate</div>
+          <h2 className="big">What it does for {s.name.toLowerCase()}</h2>
           <div className="grid-3 mt">
             {s.jobs.map((j) => (
               <div className="card" key={j.t}><h3>{j.t}</h3><p>{j.b}</p></div>
@@ -45,11 +44,12 @@ export default function SolutionDetail() {
 
       <section className="section band-warm">
         <div className="wrap center">
-          <div className="eyebrow">Connectors</div>
-          <h2 className="big">Plugs into the tools you already run</h2>
+          <div className="eyebrow">Apps it plugs into · Connector Fabric</div>
+          <h2 className="big">Plugs into the apps you already run</h2>
+          <p className="lead" style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 14 }}>Connected through the Connector Fabric, with each tool’s own secure login — your apps, your files, your databases, and even the older systems without an easy way in.</p>
           <div className="logo-row mt">
-            {s.connectors.map((c) => (<img key={c} src={si(c)} alt={c} />))}
-            <span className="cat-pill">+ unlimited connectors</span>
+            {s.connectors.map((c) => (<BrandImg key={c} slug={c} />))}
+            <span className="cat-pill">+ unlimited apps</span>
           </div>
         </div>
       </section>
@@ -71,10 +71,10 @@ export default function SolutionDetail() {
           <div className="final-card">
             <div className="eyebrow">Get started</div>
             <h2>{s.cta || 'See it act on your data.'}</h2>
-            <p className="lead" style={{ margin: '18px auto 0' }}>Connect two tools and watch a worker run a real task — start to finish, in minutes.</p>
+            <p className="lead" style={{ margin: '18px auto 0' }}>Connect two apps and watch SuprAI ask, act and automate a real task — start to finish, in minutes.</p>
             <div className="hero-cta cc">
-              <Link className="btn btn-primary" to="/pricing">Start free</Link>
-              <a className="btn btn-ghost" href="#">Book a demo</a>
+              <a className="btn btn-primary" href="#">Book a demo</a>
+              <Link className="btn btn-ghost" to="/pricing">Start free</Link>
             </div>
           </div>
         </div>
