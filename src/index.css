@@ -2,8 +2,8 @@
 :root{
   --bg:#FFFFFF;
   --paper:#FFFFFF;
-  --warm:#F6F6F7;
-  --off:#F8F8F9;
+  --warm:#FFFFFF;
+  --off:#FFFFFF;
   --ink:#1F1813; --mute:#6B625A; --line:#EAEAEC; --line2:#DEDEE1;
   --orange:#F15A22; --soft:#FF8A4C; --deep:#C2410C;
   --mono:'JetBrains Mono',ui-monospace,monospace;
