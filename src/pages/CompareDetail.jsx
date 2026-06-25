@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { comparisons, comparisonOrder } from '../data/comparisons.js'
+import PageMeta from '../components/PageMeta.jsx'
 
 const MARK = { y: '✓', p: '~', n: '–' }
 
@@ -11,6 +12,7 @@ export default function CompareDetail() {
 
   return (
     <>
+      <PageMeta title={`SuprAI vs ${c.name}`} description={c.sub} />
       <section className="phero">
         <div className="wrap">
           <div className="eyebrow">Comparison</div>

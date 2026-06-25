@@ -2,6 +2,8 @@ import { useParams, Link, Navigate } from 'react-router-dom'
 import { solutions, teamOrder, industryOrder } from '../data/solutions.js'
 import { WORKFLOWS, SOLUTION_WORKFLOWS } from '../data/workflows.js'
 import BrandImg from '../components/BrandImg.jsx'
+import PageMeta from '../components/PageMeta.jsx'
+import { DEMO_URL } from '../components/Layout.jsx'
 
 export default function SolutionDetail() {
   const { slug } = useParams()
@@ -13,13 +15,14 @@ export default function SolutionDetail() {
 
   return (
     <>
+      <PageMeta title={`${s.name} — ${s.kind}`} description={s.sub} />
       <section className="phero">
         <div className="wrap">
           <div className="eyebrow">{s.kind} · {s.name}</div>
           <h1>{s.headline}</h1>
           <p className="lead">{s.sub}</p>
           <div className="hero-cta cc">
-            <a className="btn btn-primary" href="#">Book a demo</a>
+            <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer">Book a demo</a>
             <Link className="btn btn-ghost" to="/pricing">Start free</Link>
           </div>
         </div>

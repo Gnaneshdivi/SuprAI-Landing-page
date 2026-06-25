@@ -3,6 +3,7 @@ import { solutions } from '../data/solutions.js'
 import { WORKFLOWS, SOLUTION_WORKFLOWS } from '../data/workflows.js'
 import { DEMO_URL } from '../components/Layout.jsx'
 import BrandImg from '../components/BrandImg.jsx'
+import PageMeta from '../components/PageMeta.jsx'
 
 export default function UseCase() {
   const { slug, wf } = useParams()
@@ -14,6 +15,7 @@ export default function UseCase() {
 
   return (
     <>
+      <PageMeta title={`${w.title} — ${sol.name}`} description={w.summary} />
       <section className="phero uc-hero">
         <div className="wrap">
           <Link className="uc-back" to={`/solutions/${slug}`}>← {sol.name}</Link>

@@ -3,9 +3,10 @@ import Reveal from '../components/Reveal.jsx'
 import BrandImg from '../components/BrandImg.jsx'
 import { DEMO_URL } from '../components/Layout.jsx'
 import HeroScene from '../components/HeroScene.jsx'
+import PageMeta from '../components/PageMeta.jsx'
 import {
   SecMark, HeroDemoCard, SlackThread, ScenarioSwitcher,
-  RoleAnswers, ControlDashboard, CompareGrid,
+  RoleAnswers, OrgGraph, ControlDashboard, CompareGrid,
 } from '../components/v3art.jsx'
 
 const ICON = {
@@ -59,6 +60,7 @@ const faqs = [
 export default function Home() {
   return (
     <>
+      <PageMeta />
       {/* ═══ HERO — centered copy + animated product scene below ═══ */}
       <header className="hero hero-centered">
         <div className="wrap">
@@ -214,15 +216,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ ROLE-AWARE ═══ */}
+      {/* ═══ ROLE-AWARE · KNOWLEDGE GRAPH ═══ */}
       <section className="section band-warm lined">
         <div className="wrap">
-          <SecMark label="Role-aware" />
+          <SecMark label="Role-aware · knowledge graph" />
           <Reveal className="sec-head">
             <h2 className="xl">It answers like it knows your org chart.</h2>
-            <p className="lead">Same question, different answer — shaped by who’s asking and what they’re allowed to see.</p>
+            <p className="lead">SuprAI builds a living knowledge graph of your company — people, teams, reporting lines, roles and what each can access. It captures the <b>relationships</b>, not just the records: who manages whom, which team owns an account, and who’s cleared to see it. Permissions follow that graph, so every answer is scoped to the person asking.</p>
           </Reveal>
-          <Reveal><RoleAnswers /></Reveal>
+          <div className="grid-2 align" style={{ marginTop: 36 }}>
+            <Reveal>
+              <Bullets items={[
+                ['Entities & relationships', 'people, teams, customers, accounts and orders — and how they connect.'],
+                ['Reporting lines', 'it knows who reports to whom, and which team owns each account.'],
+                ['Roles & access', 'every person has a role; the graph maps exactly what that role may see.'],
+                ['Permission-aware answers', 'the same question returns only what your branch of the graph allows.'],
+              ]} />
+            </Reveal>
+            <Reveal d={1}><OrgGraph /></Reveal>
+          </div>
+          <Reveal as="div" className="mt"><RoleAnswers /></Reveal>
         </div>
       </section>
 
@@ -272,6 +285,23 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ═══ CUSTOM AGENTS CTA ═══ */}
+      <section className="section">
+        <div className="wrap">
+          <Reveal as="div" className="agentcta">
+            <div className="agentcta-l">
+              <div className="kicker">Build your own</div>
+              <h2>Create custom agents to meet your company’s needs.</h2>
+              <p>Describe the workflow your team repeats. We’ll stand up a named agent that runs it end-to-end — in your tools, under your governance.</p>
+            </div>
+            <div className="agentcta-r">
+              <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer">Book a demo</a>
+              <Link className="btn btn-ghost" to="/solutions">See workflows</Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 

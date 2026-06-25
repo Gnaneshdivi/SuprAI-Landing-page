@@ -2,7 +2,7 @@
 // One entry per slug; SolutionDetail.jsx renders it.
 
 export const teamOrder = ['all-teams', 'growth-marketing', 'sales', 'support', 'operations', 'engineering', 'finance', 'analytics']
-export const industryOrder = ['d2c-ecommerce', 'retail-qsr', 'subscriptions-saas', 'marketplaces', 'logistics', 'financial-services']
+export const industryOrder = ['d2c-ecommerce', 'retail-qsr', 'subscriptions-saas', 'marketplaces', 'logistics', 'financial-services', 'real-estate', 'healthcare', 'manufacturing']
 
 export const solutions = {
   // ---------- DEPARTMENTS ----------
@@ -189,5 +189,44 @@ export const solutions = {
     ],
     connectors: ['salesforce', 'snowflake', 'postgresql', 'stripe'],
     cta: 'Move fast, stay in control.',
+  },
+  'real-estate': {
+    kind: 'Industries', name: 'Real estate',
+    headline: 'SuprAI for Real estate',
+    sub: 'Leads, listings, site visits and paperwork — coordinated. Ask across CRM and portals, act on the hot leads first, and automate the follow-up.',
+    problem: 'Leads pour in from portals, calls and walk-ins into different tools, and the fastest follow-up wins — but yours is manual, so good leads go cold.',
+    jobs: [
+      { t: 'Ask which leads are hot', b: 'Join portal enquiries, calls and site-visit history to surface the buyers actually ready to move — with sources.' },
+      { t: 'Act on the follow-up', b: 'Schedule the site visit, send the brochure, and route the lead to the right agent — on your say-so or on autopilot.' },
+      { t: 'Automate the paperwork', b: 'A named agent preps agreements, chases documents and fires rent or renewal reminders on schedule.' },
+    ],
+    connectors: ['hubspot', 'salesforce', 'whatsapp', 'gmail', 'notion'],
+    cta: 'Never let a hot lead go cold.',
+  },
+  'healthcare': {
+    kind: 'Industries', name: 'Healthcare',
+    headline: 'SuprAI for Healthcare',
+    sub: 'Patients, appointments, billing and claims — coordinated, within policy. Ask across systems, act inside compliance, and automate the busywork.',
+    problem: 'Patient data, scheduling, billing and claims live in separate systems, and every action has to stay compliant and fully auditable.',
+    jobs: [
+      { t: 'Ask within permissions', b: 'Pull the patient, appointment or claim context each role is cleared to see — answered from real data, with a full audit trail.' },
+      { t: 'Act inside policy', b: 'Book and remind, follow up on a claim, or flag an eligibility gap — every action traceable and on the record.' },
+      { t: 'Automate intake & claims', b: 'A named agent runs intake verification, eligibility checks and claim follow-ups, escalating only the edge cases.' },
+    ],
+    connectors: ['gmail', 'whatsapp', 'stripe', 'googledrive', 'slack'],
+    cta: 'Move faster, stay compliant.',
+  },
+  'manufacturing': {
+    kind: 'Industries', name: 'Manufacturing',
+    headline: 'SuprAI for Manufacturing',
+    sub: 'Suppliers, inventory, orders and the floor — connected. Ask across ERP, procurement and logistics, act on exceptions, and automate the chase.',
+    problem: 'Procurement, inventory, production and logistics sit in separate systems, so delays and shortages surface on the line instead of before it.',
+    jobs: [
+      { t: 'Ask what’s at risk', b: 'Join supplier status, inventory and open orders to surface the shortages and delays about to hit production — with sources.' },
+      { t: 'Act on exceptions', b: 'Trigger the reorder, expedite the shipment, or alert the plant — on your say-so or on autopilot.' },
+      { t: 'Automate supplier follow-up', b: 'A named agent matches supplier invoices, chases late POs through their portals, and reconciles continuously.' },
+    ],
+    connectors: ['quickbooks', 'stripe', 'googlesheets', 'slack', 'fedex'],
+    cta: 'See shortages before the line stops.',
   },
 }

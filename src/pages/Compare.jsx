@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import { comparisons, comparisonOrder } from '../data/comparisons.js'
+import PageMeta from '../components/PageMeta.jsx'
 
 export default function Compare() {
   return (
     <>
+      <PageMeta title="Compare" description="Most AI tools give each person an assistant. SuprAI is the system underneath the whole company — connecting every tool, working with any AI, and acting only where someone’s allowed. A fair read of how it compares." />
       <section className="phero">
         <div className="wrap">
           <div className="eyebrow">Comparisons</div>

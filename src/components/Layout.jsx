@@ -6,7 +6,7 @@ import Logo from './Logo.jsx'
 export const DEMO_URL = 'https://api.whatsapp.com/send/?phone=918056088288&text=Hey%2C+I+just+checked+your+website+and+would+like+to+know+more+about+SuprEngage.+Can+we+schedule+a+meeting%3F&type=phone_number&app_absent=0'
 
 const departments = [['All teams', 'all-teams'], ['Growth & Marketing', 'growth-marketing'], ['Sales', 'sales'], ['Support', 'support'], ['Operations', 'operations'], ['Engineering', 'engineering'], ['Finance', 'finance'], ['Analytics', 'analytics']]
-const industries = [['D2C & Ecommerce', 'd2c-ecommerce'], ['Retail & QSR', 'retail-qsr'], ['Subscriptions & SaaS', 'subscriptions-saas'], ['Marketplaces', 'marketplaces'], ['Logistics', 'logistics'], ['Financial services', 'financial-services']]
+const industries = [['D2C & Ecommerce', 'd2c-ecommerce'], ['Retail & QSR', 'retail-qsr'], ['Subscriptions & SaaS', 'subscriptions-saas'], ['Marketplaces', 'marketplaces'], ['Logistics', 'logistics'], ['Financial services', 'financial-services'], ['Real estate', 'real-estate'], ['Healthcare', 'healthcare'], ['Manufacturing', 'manufacturing']]
 
 
 function Nav() {
@@ -47,7 +47,7 @@ function Nav() {
             </div>
             <NavLink to="/compare">Compare</NavLink>
             <NavLink to="/pricing">Pricing</NavLink>
-            <NavLink to="/about">Docs</NavLink>
+            <NavLink to="/contact">Contact</NavLink>
           </div>
           <div className="nav-cta">
             <Link className="btn btn-ghost" to="/pricing">Start free</Link>
@@ -67,7 +67,7 @@ function Nav() {
             <Link to="/solutions" onClick={closeMenu}>Solutions</Link>
             <Link to="/compare" onClick={closeMenu}>Compare</Link>
             <Link to="/pricing" onClick={closeMenu}>Pricing</Link>
-            <Link to="/about" onClick={closeMenu}>Docs</Link>
+            <Link to="/contact" onClick={closeMenu}>Contact</Link>
             <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer" onClick={closeMenu}>Book a demo</a>
             <Link className="btn btn-ghost" to="/pricing" onClick={closeMenu}>Start free</Link>
           </div>
@@ -99,12 +99,11 @@ function Footer() {
             <Link to="/solutions">By industry</Link>
             <Link to="/compare">Compare</Link>
             <Link to="/pricing">Pricing</Link>
-            <Link to="/about">Docs</Link>
           </div>
           <div>
             <h5>Company</h5>
             <Link to="/about">Company</Link>
-            <a href="#book">Trust center</a>
+            <Link to="/contact">Contact us</Link>
             <a href={DEMO_URL} target="_blank" rel="noopener noreferrer">Book a demo</a>
             <Link to="/pricing">Start free</Link>
           </div>

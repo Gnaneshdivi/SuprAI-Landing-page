@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
+import PageMeta from '../components/PageMeta.jsx'
 
 export default function About() {
   return (
     <>
+      <PageMeta title="About" description="Every team is using AI. No company is running on it. SuprAI brings every team’s apps, answers and agents into one place — the shift from people-driven work to system-driven work." />
       <section className="phero">
         <div className="wrap">
           <div className="eyebrow">About</div>

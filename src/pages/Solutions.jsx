@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import PageMeta from '../components/PageMeta.jsx'
 
 const teams = [
   ['GROWTH & MARKETING', 'Run the funnel, not the dashboards', 'Ask across ads, store, CRM and analytics. See what’s converting, act on it, and let agents run the win-backs and reports.', 'growth-marketing'],
@@ -13,11 +14,15 @@ const industries = [
   ['RETAIL & QSR', 'Online and in-store, finally in one view', 'Ask across POS, ecommerce, loyalty and footfall. Signals most apps can’t see — turned into offers and actions.', 'retail-qsr'],
   ['SUBSCRIPTIONS & SAAS', 'Billing + usage + lifecycle, joined', 'Ask across subscriptions, payments and product usage. Spot churn, trigger win-backs, and protect LTV automatically.', 'subscriptions-saas'],
   ['MARKETPLACES & MULTI-BRAND', 'Every channel, one operating system', 'Coordinate listings, pricing and promos across marketplaces and your own store — asked, acted on and synced from one place.', 'marketplaces'],
+  ['REAL ESTATE', 'Never let a hot lead go cold', 'Ask across CRM, portals and site-visit history. Surface the buyers ready to move, act on the follow-up, and automate the paperwork.', 'real-estate'],
+  ['HEALTHCARE', 'Coordinated care, within policy', 'Ask across patients, scheduling, billing and claims — permission-aware and fully audited. Act inside compliance and automate intake and claims.', 'healthcare'],
+  ['MANUFACTURING', 'See shortages before the line stops', 'Ask across ERP, procurement, inventory and logistics. Catch delays and shortages early, act on exceptions, and automate the supplier chase.', 'manufacturing'],
 ]
 
 export default function Solutions() {
   return (
     <>
+      <PageMeta title="Solutions & workflows" description="One AI for every team and industry. Browse the workflows SuprAI runs end-to-end — by team or by industry — and open any one to see the use case." />
       <section className="phero">
         <div className="wrap">
           <div className="eyebrow">Solutions</div>

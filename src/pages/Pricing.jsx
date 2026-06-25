@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
+import PageMeta from '../components/PageMeta.jsx'
 
 export default function Pricing() {
   return (
     <>
+      <PageMeta title="Pricing" description="Every plan is the full system — unlimited connections, any AI you like, role-shaped answers and actions, everything on the record. Enterprise-grade, priced for your size. Start free." />
       <section className="phero">
         <div className="wrap">
           <div className="eyebrow">Pricing</div>

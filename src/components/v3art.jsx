@@ -360,6 +360,38 @@ export function RoleAnswers() {
   )
 }
 
+/* ORG GRAPH — people, teams, reporting lines, roles → permissions. */
+export function OrgGraph() {
+  return (
+    <div className="orgx">
+      <div className="orgx-team">Team · Revenue</div>
+      <div className="orgx-node root">
+        <span className="orgx-av">P</span>
+        <div className="orgx-meta"><b>Priya Nair</b><span>VP, Sales</span></div>
+        <span className="orgx-role admin">Admin</span>
+        <div className="orgx-sees">Sees: all deals · revenue · billing</div>
+      </div>
+      <div className="orgx-branch">
+        <div className="orgx-node">
+          <span className="orgx-av">A</span>
+          <div className="orgx-meta"><b>Arjun Rao</b><span>Account Exec</span></div>
+          <span className="orgx-role">Member</span>
+          <div className="orgx-rel">reports to Priya</div>
+          <div className="orgx-sees">Sees: own deals only</div>
+        </div>
+        <div className="orgx-node">
+          <span className="orgx-av">M</span>
+          <div className="orgx-meta"><b>Maya Shah</b><span>SDR</span></div>
+          <span className="orgx-role">Member</span>
+          <div className="orgx-rel">reports to Priya</div>
+          <div className="orgx-sees">Sees: assigned leads</div>
+        </div>
+      </div>
+      <div className="orgx-foot">🔒 Permissions follow the graph — each person sees only their branch.</div>
+    </div>
+  )
+}
+
 /* COMPARE — scannable capability grid. */
 const CMP_ROWS = [
   ['Company-wide context', '✗', 'partial', '✓'],
@@ -452,6 +484,23 @@ const SCN = [
       ],
     },
     bars: { title: 'Q1 Pipeline Coverage', sub: '$2.4M across 38 active deals', items: [['Discovery', 540], ['Solution Fit', 680], ['Security', 430], ['Procurement', 390], ['Verbal', 360]] },
+  },
+  {
+    role: 'Marketing', tab: 'Growth Agent', built: 'Marketing — built by Neha',
+    desc: 'Watches spend and CPA through the day, and pauses what’s overspending.',
+    apps: ['meta', 'googleads', 'shopify', 'slack'], tools: ['meta', 'googleads', 'slack'],
+    q: 'Watch CPA through the day. If any campaign jumps 40% above target, alert #growth and pause it.',
+    intro: 'On it — watching 14 live campaigns against target CPA. One breached at 2:40 PM:',
+    table: {
+      head: ['Campaign', 'Channel', 'CPA', 'vs target'],
+      rows: [
+        ['Retargeting — Cart', 'Meta', '₹890', 'At risk'],
+        ['Prospecting — LAL 2%', 'Meta', '₹430', 'On target'],
+        ['Brand — Search', 'Google Ads', '₹210', '−12%'],
+        ['Shopping — Bestsellers', 'Google Ads', '₹305', '+4%'],
+      ],
+    },
+    checklist: ['Alerted #growth in Slack with the full breakdown', 'Paused “Retargeting — Cart” — CPA +46% over target', 'Held its budget for reallocation, pending your call', 'Logged the change — reversible in one click'],
   },
   {
     role: 'Finance', tab: 'Finance Agent', built: 'Finance — built by Maya',
