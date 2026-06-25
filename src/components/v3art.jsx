@@ -392,6 +392,32 @@ export function OrgGraph() {
   )
 }
 
+/* ALERT WATCH — you specify the metrics + thresholds; it watches and notifies. */
+export function AlertWatch() {
+  const rows = [
+    ['Churn rate', '> 5% MoM', 'breach'],
+    ['CPA', '> 40% over target', 'breach'],
+    ['Failed payments', '> 2% of MRR', 'ok'],
+    ['SLA breaches', 'any past due', 'ok'],
+    ['Stockouts', 'top 50 SKUs', 'ok'],
+  ]
+  return (
+    <div className="alertw">
+      <div className="alertw-head"><span className="alertw-live" />Watching {rows.length} metrics you set · live across your tools</div>
+      <div className="alertw-rows">
+        {rows.map(([m, rule, st]) => (
+          <div className={`alertw-row${st === 'breach' ? ' hit' : ''}`} key={m}>
+            <span className="alertw-m">{m}</span>
+            <span className="alertw-rule">{rule}</span>
+            <span className={`alertw-st ${st}`}>{st === 'breach' ? '⚠ Alert' : 'OK'}</span>
+          </div>
+        ))}
+      </div>
+      <div className="alertw-note"><b>⚠ Churn risk climbing in Enterprise.</b> Up 18% this week — flagged the 4 at-risk accounts and the likely cause. Alerted #cs · 2:41 PM</div>
+    </div>
+  )
+}
+
 /* COMPARE — scannable capability grid. */
 const CMP_ROWS = [
   ['Company-wide context', '✗', 'partial', '✓'],

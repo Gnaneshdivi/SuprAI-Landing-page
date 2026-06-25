@@ -6,7 +6,7 @@ import HeroScene from '../components/HeroScene.jsx'
 import PageMeta from '../components/PageMeta.jsx'
 import {
   SecMark, HeroDemoCard, SlackThread, ScenarioSwitcher,
-  OrgGraph, ControlDashboard, CompareGrid,
+  OrgGraph, AlertWatch, ControlDashboard, CompareGrid,
 } from '../components/v3art.jsx'
 
 const ICON = {
@@ -65,7 +65,6 @@ export default function Home() {
       <header className="hero hero-centered">
         <div className="wrap">
           <Reveal className="hero-copy cc">
-            <div className="kicker" style={{ justifyContent: 'center' }}>The AI layer for your whole company</div>
             <h1>The operating layer for <span className="gt">enterprise AI.</span></h1>
             <p className="sub">Other AI gives each person an assistant. SuprAI gives your company <b>an AI layer</b> that knows your tools, your context, and your org — and executes across all of it, governed centrally, audited at every step.</p>
             <div className="hero-cta cc">
@@ -310,8 +309,9 @@ export default function Home() {
           <SecMark label="Coming soon" />
           <Reveal>
             <h2>It catches churn and anomalies <span className="muted2">before you think to ask.</span></h2>
-            <p>SuprAI watches the metrics that matter — churn signals, CPA spikes, failed payments, stuck orders, SLA breaches — across every tool, and tells you the moment one moves the wrong way, with the why and what to do next. No dashboard to check, no question to ask. <span className="soon">Proactive alerts · coming soon</span></p>
+            <p>Tell SuprAI which metrics to keep a check on — churn, CPA, failed payments, SLA, stockouts — and the thresholds that matter. It watches them across every tool, around the clock, and notifies you the moment one crosses the line, with the why and what to do next. <span className="soon">Proactive alerts · coming soon</span></p>
           </Reveal>
+          <Reveal as="div" className="mt"><AlertWatch /></Reveal>
         </div>
       </section>
 
