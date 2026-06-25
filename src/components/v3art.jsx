@@ -341,11 +341,11 @@ export function RoleAnswers() {
   ]
   return (
     <div className="rolex">
-      <div className="rolex-q">Question asked: <b>“What’s the status on Acme Corp?”</b></div>
+      <div className="rolex-q"><span className="rolex-q-ic">?</span>One question — <b>“What’s the status on Acme Corp?”</b></div>
       <div className="rolex-cols">
         {cols.map(([role, rows, btn]) => (
           <div className="rolex-card" key={role}>
-            <span className="role-chip">{role}</span>
+            <div className="rolex-top"><span className="role-chip">{role}</span><span className="rolex-lock">🔒 scoped</span></div>
             <div className="rolex-rows">
               {rows.map(([k, v]) => (
                 <div className="rolex-row" key={k}><span>{k}</span><b>{v}</b></div>
@@ -355,7 +355,7 @@ export function RoleAnswers() {
           </div>
         ))}
       </div>
-      <div className="rolex-cap">Same question. Each person sees only what their role allows.</div>
+      <div className="rolex-cap">🔒 Same question — each person only ever sees what their role allows.</div>
     </div>
   )
 }
@@ -426,7 +426,7 @@ export function SlackThread() {
         <span className="slk-av u">PA</span>
         <div className="slk-body">
           <div className="slk-who">Priya <span>9:04 AM</span></div>
-          <div className="slk-text">That’s it??</div>
+          <div className="slk-text">That took 40 seconds 🙌</div>
         </div>
       </div>
       <div className="slk-foot"><BrandImg slug="slack" /><BrandImg slug="microsoftteams" /><BrandImg slug="whatsapp" /><span>works across all three</span></div>
