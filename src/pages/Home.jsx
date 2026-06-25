@@ -5,13 +5,22 @@ import { DEMO_URL } from '../components/Layout.jsx'
 import HeroScene from '../components/HeroScene.jsx'
 import {
   SecMark, HeroDemoCard, SlackThread, ScenarioSwitcher,
-  AutomateTimeline, RoleAnswers, ControlDashboard, CompareGrid,
+  RoleAnswers, ControlDashboard, CompareGrid,
 } from '../components/v3art.jsx'
 
 const ICON = {
   store: <svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3" /><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6" /><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" /></svg>,
   sync: <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4" /><path d="M21 3v5h-5" /></svg>,
   entity: <svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.5" /><circle cx="18" cy="6" r="2.5" /><circle cx="18" cy="18" r="2.5" /><path d="M8.3 10.8l7.4-3.6M8.3 13.2l7.4 3.6" /></svg>,
+}
+
+const TICON = {
+  shield: <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z" /><path d="M9 12l2 2 4-4" /></svg>,
+  cloud: <svg viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.5A3.5 3.5 0 0 1 18 18z" /></svg>,
+  key: <svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4" /><path d="M11 12l8-8M16 4l3 3M14 6l2 2" /></svg>,
+  lock: <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg>,
+  eye: <svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" /><circle cx="12" cy="12" r="3" /></svg>,
+  user: <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 4-6 8-6 1.6 0 3.1.3 4.3.9" /><path d="M16 18l2 2 3.5-3.5" /></svg>,
 }
 
 function Bullets({ items }) {
@@ -57,20 +66,14 @@ export default function Home() {
             <div className="kicker" style={{ justifyContent: 'center' }}>One shared AI for your whole company</div>
             <h1>The operating layer for <span className="gt">enterprise AI.</span></h1>
             <p className="sub">Other AI gives each person an assistant. SuprAI gives your company <b>one shared AI</b> that knows your tools, your context, and your org — and executes across all of it, governed centrally, audited at every step.</p>
-            <div className="herostat">
-              <span>saves your team <b>hours, not clicks</b></span>
-              <span><b>AI workforce</b> in minutes</span>
-              <span>always on, <b>always synced</b></span>
-            </div>
             <div className="hero-cta cc">
               <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer">Book a demo</a>
-              <a className="btn btn-ghost" href="#ask">Watch a 2-min demo →</a>
+              <Link className="btn btn-ghost" to="/pricing">Start free</Link>
             </div>
           </Reveal>
         </div>
         <div className="wrap hero-scene-wrap">
           <Reveal as="div" className="hero-scene">
-            <span className="hero-scene-tag">Live · one agent, executing across your stack</span>
             <HeroScene />
           </Reveal>
           <Reveal as="div" className="hero-scene-fallback" d={1}><HeroDemoCard /></Reveal>
@@ -188,14 +191,12 @@ export default function Home() {
             </Reveal>
             <Reveal as="div" className="bento-card" d={1}>
               <div className="bc-eyebrow">Automate</div>
-              <h3>It runs while you’re in meetings.</h3>
-              <p>Set a trigger, define the outcome — SuprAI handles the steps in the background and reports what it did.</p>
+              <h3>Hand off the work your team repeats.</h3>
+              <p>Build a named agent once — it runs on a schedule or a trigger, in the background, and reports what it did.</p>
               <div className="bc-visual">
-                {['Trigger', 'Read', 'Think', 'Act'].map((s) => (
-                  <div className="agent-step done" key={s} style={{ padding: '4px 0' }}>
-                    <div className="rail"><div className="node" style={{ width: 20, height: 20 }}>✓</div><div className="line" /></div>
-                    <div className="meta"><div className="t" style={{ fontSize: 13 }}>{s}</div></div>
-                  </div>
+                <div className="auto-head"><span className="auto-name"><span className="bdot" />Monday Numbers</span><span className="auto-badge">SCHEDULE · Mon 6 AM</span></div>
+                {['Reads spend & pipeline across 9 tools', 'Compares to last week, flags what moved', 'Posts the brief to #leadership'].map((s) => (
+                  <div className="auto-step" key={s}><span className="auto-tick">✓</span>{s}</div>
                 ))}
               </div>
             </Reveal>
@@ -210,18 +211,6 @@ export default function Home() {
               </div>
             </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* ═══ AUTOMATE TIMELINE ═══ */}
-      <section className="section lined">
-        <div className="wrap">
-          <SecMark label="Automate" />
-          <Reveal className="sec-head">
-            <h2 className="xl">Hand off the work your team repeats.</h2>
-            <p className="lead">Build a named agent once. It runs on a schedule or a trigger, in the background — and tells you what it did.</p>
-          </Reveal>
-          <Reveal><AutomateTimeline /></Reveal>
         </div>
       </section>
 
@@ -263,7 +252,6 @@ export default function Home() {
                   <span className="ctxlogo" key={s}><BrandImg slug={s} /><span className="ctxlogo-dot" /></span>
                 ))}
               </div>
-              <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer">See how context works →</a>
             </div>
           </Reveal>
         </div>
@@ -318,15 +306,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ TRUST RIBBON ═══ */}
-      <section className="section full trust-sec">
-        <div className="wrap cc">
-          <Reveal>
-            <div className="trust-ribbon">
-              <span>multi-region</span><span>BYOK</span><span>BYOC</span><span>SOC 2 Type II — in progress</span><span>data stays in your cloud</span>
-            </div>
-            <a className="tlink" href="#control" style={{ margin: '18px auto 0' }}>Explore SuprAI security →</a>
+      {/* ═══ ENTERPRISE TRUST BAND ═══ */}
+      <section className="section full">
+        <div className="wrap">
+          <Reveal className="sec-head cc">
+            <div className="kicker" style={{ justifyContent: 'center' }}>Enterprise-grade</div>
+            <h2 className="xl">Secure, governed, and yours.</h2>
           </Reveal>
+          <div className="trustcards">
+            {[
+              [TICON.shield, 'SOC 2 Type II', 'independent audit — in progress'],
+              [TICON.cloud, 'Data residency', 'your data stays in your cloud'],
+              [TICON.key, 'BYOK · BYOC', 'your keys, your cloud account'],
+              [TICON.lock, 'SSO / SAML / SCIM', 'org-wide access by role'],
+              [TICON.eye, 'Full audit trail', 'every answer & action on record'],
+              [TICON.user, 'Permission-aware', 'people see only what they’re cleared to'],
+            ].map(([ic, t, d]) => (
+              <Reveal as="div" className="trustcard" key={t}>
+                <span className="trustcard-ic">{ic}</span>
+                <div><b>{t}</b><span>{d}</span></div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
