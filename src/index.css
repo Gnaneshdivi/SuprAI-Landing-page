@@ -1743,7 +1743,7 @@ img{height:auto}
 @media(max-width:760px){.contactx{grid-template-columns:1fr}}
 
 /* ═══ ALERT WATCH (proactive alerts) ═══ */
-.alertw{max-width:580px;margin:28px auto 0;border:1px solid var(--line);border-radius:18px;background:var(--paper);padding:16px 16px 14px;text-align:left}
+.alertw{width:100%;margin:0;border:1px solid var(--line);border-radius:18px;background:var(--paper);padding:16px 16px 14px;text-align:left}
 .alertw-head{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.03em;color:var(--mute);margin-bottom:12px}
 .alertw-live{width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 3px rgba(241,90,34,.16)}
 .alertw-rows{display:flex;flex-direction:column;gap:7px}

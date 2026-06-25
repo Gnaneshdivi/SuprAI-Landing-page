@@ -287,14 +287,16 @@ export default function Home() {
       </section>
 
       {/* ═══ PROACTIVE ═══ */}
-      <section className="statement lined">
+      <section className="section lined">
         <div className="wrap">
           <SecMark label="Coming soon" />
-          <Reveal>
-            <h2>Set up alert agents.</h2>
-            <p>Tell an agent which metrics to watch and the thresholds that matter — churn, CPA, failed payments, SLA, stockouts. It checks them across every tool around the clock and notifies you the moment one crosses the line, with the why and the next step. <span className="soon">Proactive alerts · coming soon</span></p>
-          </Reveal>
-          <Reveal as="div" className="mt"><AlertWatch /></Reveal>
+          <div className="grid-2 align" style={{ marginTop: 12 }}>
+            <Reveal>
+              <h2 className="xl">Set up alert agents.</h2>
+              <p className="lead mt18">Tell an agent which metrics to watch and the thresholds that matter — churn, CPA, failed payments, SLA, stockouts. It checks them across every tool around the clock and notifies you the moment one crosses the line, with the why and the next step. <span className="soon">Proactive alerts · coming soon</span></p>
+            </Reveal>
+            <Reveal d={1}><AlertWatch /></Reveal>
+          </div>
         </div>
       </section>
 
