@@ -3,6 +3,7 @@
 // Each uses the monospace "text inside the illustration" copy from the
 // SuprAI Landing Page v3 spec, verbatim. Reuses BrandImg for real logos.
 // ════════════════════════════════════════════════════════════════════
+import { useState } from 'react'
 import BrandImg from './BrandImg.jsx'
 
 /* Blueprint section marker — mono label + ruled line + [NN / 24] counter.
@@ -429,6 +430,134 @@ export function SlackThread() {
         </div>
       </div>
       <div className="slk-foot"><BrandImg slug="slack" /><BrandImg slug="microsoftteams" /><BrandImg slug="whatsapp" /><span>works across all three</span></div>
+    </div>
+  )
+}
+
+/* WHAT YOUR TEAM ASKS — interactive: pick a role on the left, see its
+   question answered in a chat panel (table / bar chart) on the right. */
+const SCN = [
+  {
+    role: 'Sales', tab: 'CRM Agent', built: 'Sales — built by Aron, Priya, Rahul',
+    desc: 'Manages deals, researches prospects, and keeps your CRM up to date.',
+    apps: ['salesforce', 'hubspot', 'gmail'], tools: ['salesforce', 'hubspot'],
+    q: 'How’s our Q1 pipeline looking? Anything at risk?',
+    intro: 'Here’s your Q1 pipeline snapshot as of today (March 11):',
+    table: {
+      head: ['Deal', 'Account', 'Stage', 'Amount'],
+      rows: [
+        ['Enterprise Expansion', 'Meridian Health', 'Negotiation', '$142,000'],
+        ['Platform Rollout', 'Torchlight Systems', 'Proposal Sent', '$98,500'],
+        ['Renewal — Acme', 'Acme Corp', 'At risk', '$60,000'],
+      ],
+    },
+    bars: { title: 'Q1 Pipeline Coverage', sub: '$2.4M across 38 active deals', items: [['Discovery', 540], ['Solution Fit', 680], ['Security', 430], ['Procurement', 390], ['Verbal', 360]] },
+  },
+  {
+    role: 'Finance', tab: 'Finance Agent', built: 'Finance — built by Maya',
+    desc: 'Tracks spend across billing tools and flags anomalies.',
+    apps: ['stripe', 'quickbooks', 'expensify'], tools: ['stripe', 'quickbooks'],
+    q: 'What did we spend on SaaS last month?',
+    intro: 'Here’s your SaaS spend for last month (March):',
+    table: {
+      head: ['Tool', 'Category', 'Amount'],
+      rows: [['Stripe', 'Payments', '$28,410'], ['QuickBooks', 'Finance', '$11,200'], ['Expensify', 'Expenses', '$5,800'], ['+20 more', '—', '$2,800']],
+    },
+    bars: { title: 'Spend by category', sub: '$48,210 across 23 tools', items: [['Payments', 28410], ['Finance', 11200], ['Expenses', 5800], ['Other', 2800]] },
+  },
+  {
+    role: 'Operations', tab: 'Onboarding Agent', built: 'Ops — built by Sam',
+    desc: 'Sets up new hires across every tool from one message.',
+    apps: ['slack', 'notion', 'google', 'zendesk'], tools: ['google', 'slack'],
+    q: 'Onboard Priya — she starts Monday.',
+    intro: 'Done — Priya is set up across 5 tools in 40 seconds:',
+    checklist: ['Slack workspace — invited', 'Notion — team workspace', 'Google Workspace — account created', 'Zendesk — support role assigned', 'HubSpot — added to Sales team'],
+  },
+  {
+    role: 'Leadership', tab: 'Briefing Agent', built: 'Leadership — built by Aria',
+    desc: 'Compiles a cross-tool brief before you ask.',
+    apps: ['hubspot', 'zendesk', 'slack'], tools: ['hubspot', 'zendesk'],
+    q: 'Prep my Monday brief — pipeline, support, team.',
+    intro: 'Your Monday brief, pulled from 8 tools:',
+    list: [['Pipeline', '$2.4M across 38 deals · 3 at risk'], ['Support', '12 open tickets · 2 escalations'], ['Team', '4 OOO this week · 2 new hires Monday']],
+  },
+  {
+    role: 'Support', tab: 'Support Agent', built: 'Support — built by Devs',
+    desc: 'Pulls the full customer story across orders, tickets and billing.',
+    apps: ['zendesk', 'stripe', 'shopify', 'gmail'], tools: ['zendesk', 'shopify', 'stripe'],
+    q: 'Pull the full history on this customer.',
+    intro: 'Here’s everything on Maria Gomez:',
+    list: [['Orders', '3 orders · last on Mar 4'], ['Tickets', '2 open · 1 delayed refund'], ['Billing', '1 open refund — $89.00'], ['Sentiment', 'Frustrated — flagged to follow up']],
+  },
+]
+
+function ScenarioChat({ s }) {
+  const max = s.bars ? Math.max(...s.bars.items.map((i) => i[1])) : 1
+  return (
+    <div className="scchat" key={s.role}>
+      <div className="scchat-user">
+        <div className="scchat-bubble">{s.q}</div>
+        <span className="scchat-uav">YT</span>
+      </div>
+      <div className="scchat-tool">
+        <span className="scchat-mark">S</span>SuprAI
+        <span className="scchat-tools">{s.tools.map((t) => <BrandImg key={t} slug={t} />)} {s.tools.length} tool calls</span>
+      </div>
+      <div className="scchat-intro">{s.intro}</div>
+      {s.table && (
+        <div className="sctable-wrap">
+          <table className="sctable">
+            <thead><tr>{s.table.head.map((h) => <th key={h}>{h}</th>)}</tr></thead>
+            <tbody>{s.table.rows.map((r, i) => <tr key={i}>{r.map((c, j) => <td key={j} className={c === 'At risk' ? 'risk' : ''}>{c}</td>)}</tr>)}</tbody>
+          </table>
+        </div>
+      )}
+      {s.bars && (
+        <div className="scbars">
+          <div className="scbars-h"><b>{s.bars.title}</b><span>{s.bars.sub}</span></div>
+          {s.bars.items.map(([label, v]) => (
+            <div className="scbar-row" key={label}>
+              <span className="scbar-l">{label}</span>
+              <span className="scbar-track"><span className="scbar-fill" style={{ width: `${Math.round((v / max) * 100)}%` }}><span className="scbar-v">{v >= 1000 ? `$${(v / 1000).toFixed(0)}K` : `$${v}K`}</span></span></span>
+            </div>
+          ))}
+        </div>
+      )}
+      {s.checklist && (
+        <div className="sccheck">{s.checklist.map((c) => <div className="sccheck-row" key={c}><span className="sccheck-tick">✓</span>{c}</div>)}</div>
+      )}
+      {s.list && (
+        <div className="sclist">{s.list.map(([k, v]) => <div className="sclist-row" key={k}><span className="sclist-k">{k}</span><span className="sclist-v">{v}</span></div>)}</div>
+      )}
+    </div>
+  )
+}
+
+export function ScenarioSwitcher() {
+  const [active, setActive] = useState(0)
+  const s = SCN[active]
+  return (
+    <div className="scsw">
+      <div className="scsw-tabs">
+        {SCN.map((it, i) => (
+          <button className={`scsw-tab${i === active ? ' on' : ''}`} key={it.role} onClick={() => setActive(i)}>
+            <div className="scsw-tab-top">
+              <span className="scsw-tab-ic" aria-hidden="true">◆</span>
+              <span className="scsw-tab-name">{it.tab}</span>
+            </div>
+            {i === active && (
+              <div className="scsw-tab-meta">
+                <p>{it.desc}</p>
+                <div className="scsw-tab-built">
+                  <span className="scsw-avs">{it.apps.slice(0, 3).map((a) => <BrandImg key={a} slug={a} />)}</span>
+                  <span className="scsw-built">{it.built}</span>
+                </div>
+              </div>
+            )}
+          </button>
+        ))}
+      </div>
+      <div className="scsw-panel"><ScenarioChat s={s} /></div>
     </div>
   )
 }

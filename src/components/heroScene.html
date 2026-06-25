@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SuprAI Hero</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:transparent;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:6px;display:flex;flex-direction:column;align-items:center;}
+
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideR{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideL{from{opacity:0;transform:translateX(6px)}to{opacity:1;transform:translateX(0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+@keyframes dotBounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-4px)}}
+@keyframes travelR{0%{left:-8px;opacity:0}8%{opacity:1}92%{opacity:1}100%{left:calc(100% + 8px);opacity:0}}
+@keyframes glowOr{0%,100%{border-color:#F05A28;background:#FFF8F5}50%{border-color:#F05A28;box-shadow:0 0 0 3px rgba(240,90,40,0.1);background:#FFF3EE}}
+@keyframes matchIn{from{opacity:0;transform:scale(0.8)}to{opacity:1;transform:scale(1)}}
+
+/* === LAYOUT === */
+.scene{width:100%;max-width:1140px;display:flex;flex-direction:column;gap:8px;}
+.top-row{display:flex;gap:8px;height:160px;}
+.bottom-row{display:flex;gap:8px;height:500px;}
+.card{border-radius:11px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.09),0 1px 2px rgba(0,0,0,0.05);border:1px solid #D0D4DE;background:#fff;}
+
+/* === TOP: SEARCH TOOLS === */
+.search-bar{flex:1;display:flex;flex-direction:column;}
+.sb-topbar{background:#F8F9FB;border-bottom:1px solid #E2E6ED;padding:7px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.sb-title{font-size:9px;font-family:monospace;font-weight:700;letter-spacing:0.08em;color:#64748B;}
+.sb-found{font-size:8.5px;font-family:monospace;color:#1E4DB7;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:3px;padding:1px 6px;opacity:0;transition:opacity 0.3s;}
+.sb-chips{flex:1;overflow-x:auto;padding:8px 10px;display:flex;gap:6px;scrollbar-width:none;}
+.sb-chips::-webkit-scrollbar{display:none;}
+.sb-app-group{flex-shrink:0;display:flex;flex-direction:column;border:1px solid #E2E6ED;border-radius:8px;overflow:hidden;min-width:145px;max-width:180px;transition:opacity 0.3s;}
+.sb-app-group.grp-dim{opacity:0.15;}
+.sb-app-group.grp-nc .sbag-hdr{background:#FAFAFA;}
+.sbag-hdr{display:flex;align-items:center;gap:5px;padding:5px 8px;background:#F8F9FB;border-bottom:1px solid #E2E6ED;}
+.sbag-dot{width:6px;height:6px;border-radius:50%;}
+.sbag-nm{font-size:9px;font-family:monospace;font-weight:700;color:#334155;flex:1;}
+.sbag-nm.nc{color:#CBD5E1;}
+.sbag-conn{font-size:7.5px;font-family:monospace;}
+.sbag-conn-on{color:#16A34A;}.sbag-conn-off{color:#CBD5E1;}
+.sbag-actions{display:flex;flex-direction:column;}
+.sbag-action{padding:4px 8px;border-bottom:1px solid #F8F9FB;font-size:8px;font-family:monospace;color:#64748B;display:flex;align-items:center;justify-content:space-between;gap:4px;transition:all 0.25s;cursor:default;}
+.sbag-action:last-child{border-bottom:none;}
+.sbag-action.act-hl{background:#FFF8F5;color:#C0440E;font-weight:700;border-left:2px solid #F05A28;}
+.sbag-action.act-nc{color:#CBD5E1;}
+.sbag-match{font-size:7px;font-family:monospace;font-weight:700;color:#fff;background:#16A34A;border-radius:3px;padding:0 4px;display:none;animation:matchIn 0.3s ease both;}
+.sbag-nc-badge{font-size:7px;font-family:monospace;color:#D97706;background:#FFFBEB;border:1px solid #FDE68A;border-radius:3px;padding:0 4px;}
+
+/* === LEFT: MESSENGERS === */
+.col-msgs{width:210px;flex-shrink:0;display:flex;flex-direction:column;gap:0;}
+.wa-section{flex:1;display:flex;flex-direction:column;min-height:0;}
+.wa-bar{background:#075E54;padding:7px 9px;display:flex;align-items:center;gap:6px;flex-shrink:0;border-radius:11px 11px 0 0;}
+.wa-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;}
+.wa-nm{font-size:10.5px;font-weight:600;color:#fff;}.wa-st{font-size:8px;color:rgba(255,255,255,0.6);}
+.wa-body{flex:1;background:#E5DDD5;padding:6px;overflow-y:auto;display:flex;flex-direction:column;gap:4px;}
+.wa-out{background:#DCF8C6;border-radius:7px 7px 2px 7px;padding:5px 8px 2px;max-width:94%;margin-left:auto;box-shadow:0 1px 1px rgba(0,0,0,0.06);}
+.wa-in{background:#fff;border-radius:7px 7px 7px 2px;padding:5px 8px 2px;max-width:94%;box-shadow:0 1px 1px rgba(0,0,0,0.06);animation:slideR 0.3s ease both;}
+.wa-txt{font-size:10px;color:#111;line-height:1.45;}
+.wa-meta{display:flex;justify-content:flex-end;gap:2px;margin-top:1px;}.wa-time{font-size:8px;color:#7A8C7A;}.wa-tick{font-size:8px;color:#4FC3F7;}
+.wa-typing-row{padding:4px 6px;background:#E5DDD5;display:none;align-items:center;gap:4px;flex-shrink:0;}
+.wa-typing-bub{background:#fff;border-radius:10px;padding:4px 8px;display:flex;gap:3px;}
+.td{width:4px;height:4px;border-radius:50%;background:#94A3B8;animation:dotBounce 1.2s ease-in-out infinite;}
+.td2{animation-delay:.15s!important;}.td3{animation-delay:.3s!important;}
+.msg-divider{height:1px;background:#C8CDD8;flex-shrink:0;}
+.sl-section{flex:1;display:flex;flex-direction:column;min-height:0;}
+.sl-bar{background:#3F0E40;padding:7px 9px;display:flex;align-items:center;gap:5px;flex-shrink:0;}
+.sl-ch-badge{font-size:10.5px;font-weight:700;color:#fff;}
+.sl-body{flex:1;background:#fff;padding:6px 7px;overflow-y:auto;display:flex;flex-direction:column;gap:4px;border-radius:0 0 11px 11px;}
+.sl-row{display:flex;gap:5px;animation:fadeIn 0.3s ease both;}
+.sl-av{width:20px;height:20px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px;}
+.sl-meta{display:flex;gap:4px;align-items:baseline;margin-bottom:1px;}
+.sl-uname{font-size:10px;font-weight:700;color:#1D1C1D;}.sl-time{font-size:8px;color:#94A3B8;}
+.sl-text{font-size:10px;color:#1D1C1D;line-height:1.45;}
+.sl-at{color:#1264A3;background:#E8F5FF;border-radius:2px;padding:0 2px;}
+.sl-appr{margin-top:4px;}
+.sl-appr-btn{display:inline-block;font-size:8px;font-family:monospace;font-weight:700;color:#fff;background:#16A34A;border-radius:11px;padding:2px 9px;cursor:default;}
+.sl-appr-btn.done{background:#F0FDF4;color:#15803D;border:1px solid #BBF7D0;}
+
+/* === CONNECTOR === */
+.conn{width:20px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:transparent;}
+.conn-track{position:relative;height:2px;width:100%;background:linear-gradient(90deg,#C8CDD8,#F05A28 60%,#C8CDD8);}
+.conn-dot{position:absolute;top:-4px;width:10px;height:10px;border-radius:50%;background:#F05A28;box-shadow:0 0 7px rgba(240,90,40,0.6);animation:travelR 2s ease-in-out infinite;}
+
+/* === CENTER: BROWSER === */
+.col-browser{flex:1;min-width:0;display:flex;flex-direction:column;background:#DEE1E8;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.09);border:1px solid #D0D4DE;}
+.chrome{background:#DEE1E8;padding:7px 10px 0;flex-shrink:0;}
+.chrome-r1{display:flex;align-items:center;gap:10px;margin-bottom:5px;}
+.chrome-dots{display:flex;gap:5px;}.cdot{width:11px;height:11px;border-radius:50%;}.cdot-r{background:#FF5F57;}.cdot-y{background:#FEBC2E;}.cdot-g{background:#28C840;}
+.chrome-addr{flex:1;background:#fff;border-radius:5px;padding:3px 8px;display:flex;align-items:center;gap:5px;border:1px solid #C8CDD8;}
+.chrome-url{font-size:10px;color:#334155;font-family:monospace;}
+.chrome-tabs{display:flex;gap:2px;}
+.chrome-tab{background:#fff;border-radius:7px 7px 0 0;padding:4px 12px;font-size:10px;color:#334155;display:flex;align-items:center;gap:5px;border:1px solid #C8CDD8;border-bottom:none;}
+.tab-fav{width:11px;height:11px;background:#F05A28;border-radius:2px;}
+.tab-x{color:#94A3B8;margin-left:3px;}
+.suprai-page{background:#fff;flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden;}
+.page-nav{background:#fff;border-bottom:1px solid #E2E6ED;padding:6px 12px;display:flex;align-items:center;gap:9px;flex-shrink:0;}
+.page-logo{width:18px;height:18px;background:#F05A28;border-radius:4px;display:flex;align-items:center;justify-content:center;}
+.page-logo-i{width:9px;height:9px;border-radius:50%;border:2px solid #fff;}
+.page-brand{font-size:11px;font-weight:700;color:#0F172A;}
+.page-links{display:flex;gap:7px;margin-left:5px;}
+.page-link{font-size:9.5px;color:#64748B;padding:2px 6px;border-radius:4px;}
+.page-link.active{color:#F05A28;background:#FFF3EE;}
+.page-user{margin-left:auto;font-size:9.5px;color:#64748B;border:1px solid #E2E6ED;border-radius:4px;padding:2px 6px;}
+.page-body{display:flex;flex:1;min-height:0;overflow:hidden;}
+.page-sidebar{width:130px;flex-shrink:0;border-right:1px solid #E2E6ED;padding:9px 7px;overflow-y:auto;background:#FAFBFC;}
+.sb-section{margin-bottom:12px;}
+.sb-team-hdr{font-size:8px;font-family:monospace;font-weight:700;letter-spacing:0.08em;padding:3px 5px;border-radius:4px;margin-bottom:5px;}
+.sbth-s{color:#C0440E;background:#FFF3EE;}.sbth-o{color:#1E4DB7;background:#EFF6FF;}
+.sb-agent{font-size:9.5px;color:#64748B;padding:4px 5px;border-radius:4px;display:flex;align-items:center;gap:4px;margin-bottom:2px;transition:all 0.2s;}
+.sb-agent.sa-or{background:#FFF3EE;color:#C0440E;font-weight:600;}
+.sb-agent.sa-bl{background:#EFF6FF;color:#1E4DB7;font-weight:600;}
+.sb-dot{width:5px;height:5px;border-radius:50%;background:#CBD5E1;flex-shrink:0;}
+.sb-dot-or{background:#F05A28;animation:blink 1.3s ease-in-out infinite;}
+.sb-dot-bl{background:#3B82F6;animation:blink 1.3s ease-in-out .4s infinite;}
+.page-center{flex:1;min-width:0;min-height:0;display:flex;flex-direction:column;overflow:hidden;}
+.dc-header{padding:8px 12px;display:flex;align-items:center;justify-content:center;gap:6px;border-bottom:1px solid #E2E6ED;flex-shrink:0;}
+.dc-logo{width:16px;height:16px;background:#F05A28;border-radius:3px;display:flex;align-items:center;justify-content:center;}
+.dc-logo-i{width:8px;height:8px;border-radius:50%;border:2px solid #fff;}
+.dc-title{font-size:11px;font-weight:600;color:#0F172A;}
+.dc-msgs{flex:1;min-height:0;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;background:#fff;scroll-behavior:smooth;}
+.dc-user{background:#F1F5F9;color:#0F172A;border-radius:16px 16px 4px 16px;padding:8px 12px;font-size:11px;line-height:1.5;align-self:flex-end;max-width:88%;animation:slideL 0.3s ease both;}
+.dc-response{font-size:11px;color:#334155;line-height:1.6;animation:slideR 0.3s ease both;background:#FFF8F5;border:1px solid #FCE8DF;border-radius:16px 16px 16px 4px;padding:8px 12px;align-self:flex-start;max-width:90%;}
+.dc-tool-line{font-size:9px;color:#94A3B8;font-family:monospace;display:flex;align-items:center;gap:3px;padding:2px 0;align-self:center;animation:fadeIn 0.3s ease both;}
+.dc-tool-chevron{color:#CBD5E1;}
+.dc-plan{background:#F8F9FB;border:1px solid #E2E6ED;border-radius:10px;padding:10px 12px;animation:fadeIn 0.3s ease both;align-self:flex-start;max-width:90%;}
+.dc-plan-title{font-size:8.5px;color:#94A3B8;font-family:monospace;letter-spacing:0.07em;margin-bottom:7px;}
+.dc-plan-item{display:flex;gap:7px;padding:3px 0;border-bottom:1px solid #E8ECF2;}
+.dc-plan-item:last-child{border-bottom:none;}
+.dc-plan-n{font-size:9px;color:#F05A28;font-family:monospace;font-weight:700;flex-shrink:0;}
+.dc-plan-t{font-size:10.5px;color:#475569;line-height:1.4;}
+.dc-approval{background:#F8F9FB;border:1px solid #E2E6ED;border-radius:10px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;animation:fadeIn 0.3s ease both;align-self:flex-end;max-width:90%;}
+.dc-appr-txt{font-size:10.5px;color:#475569;display:flex;align-items:center;gap:5px;}
+.dc-appr-btns{display:flex;gap:5px;}
+.dc-btn-ok{font-size:8.5px;font-weight:700;color:#fff;background:#16A34A;border:none;border-radius:18px;padding:4px 10px;cursor:default;font-family:monospace;}
+.dc-btn-ed{font-size:8.5px;color:#64748B;background:#fff;border:1px solid #E2E6ED;border-radius:18px;padding:4px 9px;cursor:default;font-family:monospace;}
+.dc-approved{font-size:10px;color:#16A34A;font-family:monospace;}
+.dc-connect{background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;animation:fadeIn 0.3s ease both;}
+.dc-connect-txt{font-size:10.5px;color:#92400E;display:flex;align-items:center;gap:5px;}
+.dc-connect-btn{font-size:8.5px;font-weight:700;color:#fff;background:#F59E0B;border:none;border-radius:18px;padding:4px 10px;cursor:default;font-family:monospace;}
+.dc-connect-done{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:7px 12px;font-size:10px;color:#15803D;font-family:monospace;animation:fadeIn 0.3s ease both;}
+.dc-reply{background:#F8F9FB;border-top:1px solid #E2E6ED;padding:8px 12px;display:flex;align-items:center;gap:7px;flex-shrink:0;}
+.dc-reply-input{flex:1;font-size:10.5px;color:#94A3B8;}
+.dc-model-badge{font-size:8.5px;font-family:monospace;color:#64748B;background:#F1F5F9;border:1px solid #E2E6ED;border-radius:12px;padding:2px 8px;}
+.dc-send{width:24px;height:24px;border-radius:50%;background:#F05A28;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;flex-shrink:0;}
+.col-conn{width:185px;flex-shrink:0;display:flex;flex-direction:column;}
+.rc-topbar{background:#F8F9FB;border-bottom:1px solid #E2E6ED;padding:7px 10px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.rc-title{font-size:9px;font-family:monospace;font-weight:700;letter-spacing:0.08em;color:#64748B;}
+.rc-badge{font-size:8px;font-family:monospace;color:#15803D;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:3px;padding:1px 5px;}
+.rc-body{padding:7px 9px;flex:1;overflow-y:auto;}
+.rc-row{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid #F8F9FB;}
+.rc-row:last-child{border-bottom:none;}
+.rc-left{display:flex;align-items:center;gap:6px;}
+.rc-dot{width:7px;height:7px;border-radius:50%;}
+.rc-nm{font-size:10px;color:#334155;}
+.rc-status{font-size:8px;font-family:monospace;color:#16A34A;transition:color 0.3s;}
+.rc-status.active{color:#F05A28;}.rc-status.off{color:#CBD5E1;}
+.rc-divider{border:none;border-top:1px solid #E2E6ED;margin:7px 0;}
+.rc-cfg-row{display:flex;justify-content:space-between;padding:4px 0;}
+.rc-cfg-k{font-size:8.5px;font-family:monospace;color:#94A3B8;}
+.rc-cfg-v{font-size:8.5px;font-family:monospace;color:#334155;font-weight:600;text-align:right;}
+/* focus dulling: inactive messenger + non-active agents fade back */
+.wa-section,.sl-section{transition:opacity .45s ease,filter .45s ease}
+.wa-section.dull,.sl-section.dull{opacity:.26;filter:grayscale(.55)}
+.sb-agent{transition:opacity .3s ease}
+.sb-agent.dull{opacity:.3}
+@media(max-width:760px){
+  body{padding:4px}
+  .top-row{height:128px}
+  .bottom-row{flex-direction:column;height:auto;gap:8px}
+  .col-msgs,.col-conn,.conn,.page-sidebar{display:none}
+  .col-browser{width:100%;height:460px;min-height:0;flex:none}
+}
+</style>
+</head>
+<body>
+
+<div class="scene">
+
+<div class="top-row">
+  <div class="card search-bar">
+    <div class="sb-topbar">
+      <span class="sb-title">SUPRAI_SEARCH_TOOLS</span>
+      <span class="sb-found" id="sbFound">selecting...</span>
+    </div>
+    <div class="sb-chips" id="sbChips"></div>
+  </div>
+</div>
+
+<div class="bottom-row">
+
+  <div class="card col-msgs">
+    <div class="sl-section" id="secSales">
+      <div class="sl-bar"><span class="sl-ch-badge"># sales-leads</span></div>
+      <div class="sl-body" id="salesBody">
+        <div class="sl-row"><div class="sl-av" style="background:#128C7E">A</div><div><div class="sl-meta"><span class="sl-uname">Aarav</span><span class="sl-time">09:40</span></div><div class="sl-text"><span class="sl-at">@SuprAI</span> qualify Rohit Shah, VP Sales at TechCorp — call at 3pm</div></div></div>
+      </div>
+    </div>
+    <div class="msg-divider"></div>
+    <div class="sl-section" id="secOps">
+      <div class="sl-bar"><span class="sl-ch-badge"># ops-team</span></div>
+      <div class="sl-body" id="slBody">
+        <div class="sl-row"><div class="sl-av" style="background:#7C3AED">P</div><div><div class="sl-meta"><span class="sl-uname">Priya</span><span class="sl-time">09:42</span></div><div class="sl-text"><span class="sl-at">@SuprAI</span> onboard Rahul — Product team Monday</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conn"><div class="conn-track"><div class="conn-dot"></div></div></div>
+
+  <div class="col-browser">
+    <div class="chrome">
+      <div class="chrome-r1">
+        <div class="chrome-dots"><div class="cdot cdot-r"></div><div class="cdot cdot-y"></div><div class="cdot cdot-g"></div></div>
+        <div class="chrome-addr"><span style="font-size:9px;color:#94A3B8">🔒</span><span class="chrome-url">suprai.com/agents</span></div>
+      </div>
+      <div class="chrome-tabs"><div class="chrome-tab"><div class="tab-fav"></div>SuprAI · Agents<span class="tab-x">×</span></div></div>
+    </div>
+    <div class="suprai-page">
+      <div class="page-nav">
+        <div class="page-logo"><div class="page-logo-i"></div></div>
+        <span class="page-brand">SuprAI</span>
+        <div class="page-links"><span class="page-link active">Agents</span><span class="page-link">Memory</span><span class="page-link">Tools</span></div>
+        <div class="page-user">Admin ▾</div>
+      </div>
+      <div class="page-body">
+        <div class="page-sidebar">
+          <div class="sb-section"><div class="sb-team-hdr sbth-s">SALES TEAM</div>
+            <div class="sb-agent sa-or" id="saLQ"><div class="sb-dot sb-dot-or" id="sdLQ"></div>Lead Qual.</div>
+            <div class="sb-agent"><div class="sb-dot"></div>Deal Follow-up</div>
+            <div class="sb-agent"><div class="sb-dot"></div>Pipeline Brief</div>
+            <div class="sb-agent"><div class="sb-dot"></div>Proposal Draft</div>
+          </div>
+          <div class="sb-section"><div class="sb-team-hdr sbth-o">OPS TEAM</div>
+            <div class="sb-agent" id="saUO"><div class="sb-dot" id="sdUO"></div>User Onboard.</div>
+            <div class="sb-agent"><div class="sb-dot"></div>Access Mgr</div>
+          </div>
+        </div>
+        <div class="page-center">
+          <div class="dc-header"><div class="dc-logo"><div class="dc-logo-i"></div></div><span class="dc-title" id="dcTitle">Lead Qualification</span></div>
+          <div class="dc-msgs" id="dcMsgs"></div>
+          <div class="dc-reply"><span class="dc-reply-input">Reply...</span><span class="dc-model-badge" id="dcModel">claude-sonnet-4-6</span><div class="dc-send">↑</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conn"><div class="conn-track"><div class="conn-dot" style="animation-delay:1s"></div></div></div>
+
+  <div class="card col-conn">
+    <div class="rc-topbar"><span class="rc-title">CONNECTIONS</span><span class="rc-badge" id="rcBadge">7 ON</span></div>
+    <div class="rc-body">
+      <div class="rc-row"><div class="rc-left"><div class="rc-dot" style="background:#00A1E0"></div><span class="rc-nm">Salesforce</span></div><span class="rc-status" id="rSF">● On</span></div>
+      <div class="rc-row"><div class="rc-left"><div class="rc-dot" style="background:#EA4335"></div><span class="rc-nm">Gmail</span></div><span class="rc-status" id="rGM">● On</span></div>
+      <div class="rc-row"><div class="rc-left"><div class="rc-dot" style="background:#0077B5"></div><span class="rc-nm">LinkedIn</span></div><span class="rc-status" id="rLI">● On</span></div>
+      <div class="rc-row"><div class="rc-left"><div class="rc-dot" style="background:#FF7A59"></div><span class="rc-nm">HubSpot</span></div><span class="rc-status">● On</span></div>
+      <div class="rc-row"><div class="rc-left"><div class="rc-dot" style="background:#611F69"></div><span class="rc-nm">Slack</span></div><span class="rc-status" id="rSL">● On</span></div>
+      <div class="rc-row"><div class="rc-left"><div class="rc-dot" style="background:#4285F4"></div><span class="rc-nm">Google WS</span></div><span class="rc-status" id="rGW">● On</span></div>
+      <div class="rc-row"><div class="rc-left"><div class="rc-dot" style="background:#25D366"></div><span class="rc-nm">WhatsApp</span></div><span class="rc-status">● On</span></div>
+      <div class="rc-row"><div class="rc-left"><div class="rc-dot" id="rcNTdot" style="background:#CBD5E1"></div><span class="rc-nm" id="rcNTnm" style="color:#CBD5E1">Notion</span></div><span class="rc-status off" id="rNT">○ Off</span></div>
+      <hr class="rc-divider">
+      <div class="rc-cfg-row"><span class="rc-cfg-k">AGENT</span><span class="rc-cfg-v" id="cfgAgent">Lead Qual.</span></div>
+      <div class="rc-cfg-row"><span class="rc-cfg-k">TEAM</span><span class="rc-cfg-v" id="cfgTeam">Sales</span></div>
+      <div class="rc-cfg-row"><span class="rc-cfg-k">RBAC</span><span class="rc-cfg-v" id="cfgRbac">sales</span></div>
+      <div class="rc-cfg-row"><span class="rc-cfg-k">MODEL</span><span class="rc-cfg-v" id="cfgModel">claude-sonnet-4-6</span></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+const APPS=[
+  {id:'sf',nm:'Salesforce',dot:'#00A1E0',on:true,rcId:'rSF',actions:[
+    {id:'a_sf1',nm:'SALESFORCE_SEARCH_CONTACT',desc:'Search contacts'},
+    {id:'a_sf2',nm:'SALESFORCE_GET_OPPORTUNITY',desc:'Get open deals'},
+    {id:'a_sf3',nm:'SALESFORCE_UPDATE_DEAL',desc:'Update deal stage'},
+    {id:'a_sf4',nm:'SALESFORCE_CREATE_TASK',desc:'Log follow-ups'},
+  ]},
+  {id:'gm',nm:'Gmail',dot:'#EA4335',on:true,rcId:'rGM',actions:[
+    {id:'a_gm1',nm:'GMAIL_LIST_THREADS',desc:'List email threads'},
+    {id:'a_gm2',nm:'GMAIL_SEND_EMAIL',desc:'Send email'},
+    {id:'a_gm3',nm:'GMAIL_DRAFT_EMAIL',desc:'Draft for review'},
+  ]},
+  {id:'li',nm:'LinkedIn',dot:'#0077B5',on:true,rcId:'rLI',actions:[
+    {id:'a_li1',nm:'LINKEDIN_GET_PROFILE',desc:'Fetch profile'},
+    {id:'a_li2',nm:'LINKEDIN_SEARCH_PEOPLE',desc:'Search by name'},
+  ]},
+  {id:'hs',nm:'HubSpot',dot:'#FF7A59',on:true,actions:[
+    {id:'a_hs1',nm:'HUBSPOT_CREATE_CONTACT',desc:'Create contact'},
+    {id:'a_hs2',nm:'HUBSPOT_UPDATE_DEAL',desc:'Update pipeline'},
+  ]},
+  {id:'sl',nm:'Slack',dot:'#611F69',on:true,rcId:'rSL',actions:[
+    {id:'a_sl1',nm:'SLACK_INVITE_MEMBER',desc:'Invite to workspace'},
+    {id:'a_sl2',nm:'SLACK_POST_MESSAGE',desc:'Post to channel'},
+  ]},
+  {id:'gw',nm:'Google WS',dot:'#4285F4',on:true,rcId:'rGW',actions:[
+    {id:'a_gw1',nm:'GOOGLE_CREATE_USER',desc:'Provision account'},
+    {id:'a_gw2',nm:'GOOGLE_ASSIGN_LICENSE',desc:'Assign license'},
+  ]},
+  {id:'nt',nm:'Notion',dot:'#333',on:false,rcId:'rNT',actions:[
+    {id:'a_nt1',nm:'NOTION_CREATE_PAGE',desc:'Create from template'},
+    {id:'a_nt2',nm:'NOTION_UPDATE_DB',desc:'Update database'},
+  ]},
+  {id:'wa',nm:'WhatsApp',dot:'#25D366',on:true,actions:[
+    {id:'a_wa1',nm:'WHATSAPP_SEND_MSG',desc:'Send message'},
+  ]},
+];
+
+const SALES_INIT=document.getElementById('salesBody').innerHTML;
+const OPS_INIT=document.getElementById('slBody').innerHTML;
+function resetMsgs(){const a=document.getElementById('salesBody');if(a)a.innerHTML=SALES_INIT;const o=document.getElementById('slBody');if(o)o.innerHTML=OPS_INIT;}
+function slPost(bodyId,name,color,html,time){const m=document.getElementById(bodyId);if(!m)return;const r=document.createElement('div');r.className='sl-row';r.innerHTML=`<div class="sl-av" style="background:${color}">${name.charAt(0)}</div><div><div class="sl-meta"><span class="sl-uname">${name}</span><span class="sl-time">${time||'09:46'}</span></div><div class="sl-text">${html}</div></div>`;m.appendChild(r);m.scrollTop=m.scrollHeight;}
+function addSLApproval(bodyId,label){const m=document.getElementById(bodyId);if(!m)return;const r=document.createElement('div');r.className='sl-row';r.innerHTML=`<div class="sl-av" style="background:#F05A28;font-size:7px;font-weight:700">SR</div><div><div class="sl-meta"><span class="sl-uname">SuprAI</span><span class="sl-time">09:43</span></div><div class="sl-text">⏳ Needs approval — ${label}</div><div class="sl-appr"><span class="sl-appr-btn" id="slApprBtn">Approve ✓</span></div></div>`;m.appendChild(r);m.scrollTop=m.scrollHeight;}
+function addSLApproved(bodyId,name){const b=document.getElementById('slApprBtn');if(b){b.textContent='✓ Approved';b.classList.add('done');b.removeAttribute('id');}slPost(bodyId,name,'#7C3AED','✓ Approved — go ahead','09:43');}
+function renderApps(){
+  const w=document.getElementById('sbChips');w.innerHTML='';
+  document.getElementById('sbFound').style.opacity='0';
+  APPS.forEach(app=>{
+    const grp=document.createElement('div');
+    grp.className='sb-app-group'+(app.on?'':' grp-nc');grp.id='grp_'+app.id;
+    let h=`<div class="sbag-hdr"><div class="sbag-dot" style="background:${app.on?app.dot:'#CBD5E1'}"></div><span class="sbag-nm${app.on?'':' nc'}">${app.nm}</span><span class="sbag-conn ${app.on?'sbag-conn-on':'sbag-conn-off'}">${app.on?'● On':'○ Off'}</span></div>`;
+    let acts='<div class="sbag-actions">';
+    app.actions.forEach(a=>{
+      acts+=`<div class="sbag-action${app.on?'':' act-nc'}" id="${a.id}"><span>${a.nm}</span><span class="sbag-match" id="mb_${a.id}">MATCH</span>${!app.on?'<span class="sbag-nc-badge">connect</span>':''}</div>`;
+    });
+    acts+='</div>';
+    grp.innerHTML=h+acts;w.appendChild(grp);
+  });
+}
+
+function hlAction(id){
+  document.querySelectorAll('.sb-app-group').forEach(g=>g.classList.add('grp-dim'));
+  document.querySelectorAll('.sbag-action').forEach(a=>{a.classList.remove('act-hl');});
+  const el=document.getElementById(id);
+  if(el){el.classList.add('act-hl');const grp=el.closest('.sb-app-group');if(grp){grp.classList.remove('grp-dim');grp.scrollIntoView({block:'nearest',behavior:'smooth',inline:'nearest'});}}
+}
+function resetHL(){document.querySelectorAll('.sb-app-group').forEach(g=>g.classList.remove('grp-dim'));document.querySelectorAll('.sbag-action').forEach(a=>a.classList.remove('act-hl'));}
+
+function connectApp(appId){const app=APPS.find(a=>a.id===appId);if(!app)return;app.on=true;const grp=document.getElementById('grp_'+appId);if(grp){grp.classList.remove('grp-nc');grp.querySelector('.sbag-dot').style.background=app.dot;const nm=grp.querySelector('.sbag-nm');if(nm)nm.classList.remove('nc');const cn=grp.querySelector('.sbag-conn');if(cn){cn.textContent='● On';cn.className='sbag-conn sbag-conn-on';}grp.querySelectorAll('.sbag-action').forEach(a=>{a.classList.remove('act-nc');const b=a.querySelector('.sbag-nc-badge');if(b)b.remove();});}if(app.rcId){const r=document.getElementById(app.rcId);if(r){r.textContent='● On';r.className='rc-status';}const d=document.getElementById('rcNTdot');if(d)d.style.background=app.dot;const n=document.getElementById('rcNTnm');if(n)n.style.color='#334155';}}
+
+function autoScrollAndSelect(matchIds){
+  const w=document.getElementById('sbChips');
+  if(!w)return;
+  const scrollEnd=w.scrollWidth-w.clientWidth;
+  const dur=1200;
+  let t0=null;
+  function scrollStep(ts){
+    if(!t0)t0=ts;
+    const p=Math.min((ts-t0)/dur,1);
+    w.scrollLeft=scrollEnd*(p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2);
+    if(p<1)requestAnimationFrame(scrollStep);
+    else{
+      setTimeout(()=>{
+        document.querySelectorAll('.sb-app-group').forEach(g=>g.classList.add('grp-dim'));
+        matchIds.forEach(id=>{
+          const el=document.getElementById(id);
+          if(el){
+            el.classList.add('act-hl');
+            const grp=el.closest('.sb-app-group');
+            if(grp)grp.classList.remove('grp-dim');
+          }
+          const m=document.getElementById('mb_'+id);
+          if(m)m.style.display='inline-flex';
+        });
+        const f=document.getElementById('sbFound');
+        f.textContent=matchIds.length+' selected';
+        f.style.opacity='1';
+        const firstMatch=document.getElementById(matchIds[0]);
+        if(firstMatch){
+          const grp=firstMatch.closest('.sb-app-group');
+          if(grp)grp.scrollIntoView({block:'nearest',behavior:'smooth',inline:'start'});
+        }
+      },300);
+    }
+  }
+  requestAnimationFrame(scrollStep);
+}
+function flashConn(id){const e=document.getElementById(id);if(!e)return;e.textContent='● Active';e.classList.add('active');setTimeout(()=>{e.textContent='● On';e.classList.remove('active');},2200);}
+function setSB(agId,dotId,cls,dCls){document.querySelectorAll('.sb-agent').forEach(e=>{e.className='sb-agent dull';});document.querySelectorAll('.sb-dot').forEach(e=>{e.className='sb-dot';});const a=document.getElementById(agId),d=document.getElementById(dotId);if(a)a.className='sb-agent '+cls;if(d)d.className='sb-dot '+dCls;}
+function setMsgFocus(active){const a=document.getElementById('secSales'),o=document.getElementById('secOps');if(a)a.classList.toggle('dull',active!=='sales');if(o)o.classList.toggle('dull',active!=='ops');}
+function clearDC(){document.getElementById('dcMsgs').innerHTML='';}
+function dcAdd(html,delay=0){setTimeout(()=>{const m=document.getElementById('dcMsgs');const d=document.createElement('div');d.innerHTML=html;m.appendChild(d.firstElementChild||d);m.scrollTop=m.scrollHeight;},delay);}
+
+function p1(){
+  document.getElementById('dcTitle').textContent='Lead Qualification';
+  document.getElementById('dcModel').textContent='claude-sonnet-4-6';
+  document.getElementById('cfgAgent').textContent='Lead Qual.';
+  document.getElementById('cfgTeam').textContent='Sales';
+  document.getElementById('cfgRbac').textContent='sales';
+  document.getElementById('cfgModel').textContent='claude-sonnet-4-6';
+  const nt=APPS.find(a=>a.id==='nt');if(nt)nt.on=false;
+  clearDC();renderApps();resetMsgs();
+  setSB('saLQ','sdLQ','sa-or','sb-dot sb-dot-or');
+  setMsgFocus('sales');
+  const rNT=document.getElementById('rNT');if(rNT){rNT.textContent='○ Off';rNT.className='rc-status off';}
+  const d=document.getElementById('rcNTdot');if(d)d.style.background='#CBD5E1';
+  const n=document.getElementById('rcNTnm');if(n)n.style.color='#CBD5E1';
+
+  dcAdd(`<div class="dc-user">Qualify Rohit Shah, VP Sales TechCorp. Brief me before 3pm call.</div>`,800);
+  dcAdd(`<div class="dc-plan"><div class="dc-plan-title">PLAN</div><div class="dc-plan-item"><span class="dc-plan-n">1</span><span class="dc-plan-t">Search Salesforce for contact &amp; opportunity</span></div><div class="dc-plan-item"><span class="dc-plan-n">2</span><span class="dc-plan-t">Read Gmail thread history</span></div><div class="dc-plan-item"><span class="dc-plan-n">3</span><span class="dc-plan-t">Enrich via LinkedIn</span></div><div class="dc-plan-item"><span class="dc-plan-n">4</span><span class="dc-plan-t">Score lead &amp; draft brief</span></div></div>`,1600);
+  dcAdd(`<div class="dc-tool-line"><span class="dc-tool-chevron">▸</span>APPROVAL REQUESTED → #sales-leads<span class="dc-tool-chevron">▸</span></div>`,2400);
+  setTimeout(()=>addSLApproval('salesBody','run the lead-qual plan (4 steps)?'),2600);
+  setTimeout(()=>addSLApproved('salesBody','Neha'),3700);
+  dcAdd(`<div class="dc-tool-line" style="color:#16A34A"><span class="dc-tool-chevron" style="color:#16A34A">✓</span>Approved in Slack — running</div>`,3900);
+
+  setTimeout(()=>autoScrollAndSelect(['a_sf1','a_gm1','a_li1']),4000);
+
+  dcAdd(`<div class="dc-tool-line"><span class="dc-tool-chevron">▸</span>SUPRAI SEARCH TOOLS — 3 matched<span class="dc-tool-chevron">▸</span></div>`,4800);
+  setTimeout(()=>hlAction('a_sf1'),4900);
+  dcAdd(`<div class="dc-tool-line"><span class="dc-tool-chevron">▸</span>SUPRAI EXECUTE · SALESFORCE_SEARCH_CONTACT<span class="dc-tool-chevron">▸</span></div>`,5500);
+  setTimeout(()=>flashConn('rSF'),5600);
+  dcAdd(`<div class="dc-response"><strong>Rohit Shah</strong>, VP Sales · TechCorp · $42k opp · Stage: Proposal</div>`,6300);
+
+  setTimeout(()=>hlAction('a_gm1'),7000);
+  dcAdd(`<div class="dc-tool-line"><span class="dc-tool-chevron">▸</span>SUPRAI EXECUTE · GMAIL_LIST_THREADS<span class="dc-tool-chevron">▸</span></div>`,7100);
+  setTimeout(()=>flashConn('rGM'),7200);
+  dcAdd(`<div class="dc-response">3 threads found. Last touch <strong>12 days ago</strong> — no reply.</div>`,7900);
+
+  setTimeout(()=>hlAction('a_li1'),8500);
+  dcAdd(`<div class="dc-tool-line"><span class="dc-tool-chevron">▸</span>SUPRAI EXECUTE · LINKEDIN_GET_PROFILE<span class="dc-tool-chevron">▸</span></div>`,8600);
+  setTimeout(()=>{resetHL();flashConn('rLI');},9100);
+  dcAdd(`<div class="dc-response">Lead scored <strong style="color:#16A34A">8.2 / 10</strong> — high intent. SF updated. Brief ready.</div>`,9400);
+
+  setTimeout(()=>slPost('salesBody','SuprAI','#F05A28','✓ Rohit Shah — 8.2/10, high intent. SF updated, brief sent.'),10200);
+}
+
+function p2(){
+  document.getElementById('dcTitle').textContent='User Onboarding';
+  document.getElementById('dcModel').textContent='gpt-4.1';
+  document.getElementById('cfgAgent').textContent='User Onboard.';
+  document.getElementById('cfgTeam').textContent='Ops';
+  document.getElementById('cfgRbac').textContent='ops';
+  document.getElementById('cfgModel').textContent='gpt-4.1';
+  const nt=APPS.find(a=>a.id==='nt');if(nt)nt.on=false;
+  clearDC();renderApps();resetMsgs();
+  setSB('saUO','sdUO','sa-bl','sb-dot sb-dot-bl');
+  setMsgFocus('ops');
+  const rNT=document.getElementById('rNT');if(rNT){rNT.textContent='○ Off';rNT.className='rc-status off';}
+  const d=document.getElementById('rcNTdot');if(d)d.style.background='#CBD5E1';
+  const n=document.getElementById('rcNTnm');if(n)n.style.color='#CBD5E1';
+
+  dcAdd(`<div class="dc-user">@SuprAI onboard Rahul Kumar — Product team Monday</div>`,800);
+  dcAdd(`<div class="dc-plan"><div class="dc-plan-title">PLAN</div><div class="dc-plan-item"><span class="dc-plan-n">1</span><span class="dc-plan-t">Create Google Workspace account</span></div><div class="dc-plan-item"><span class="dc-plan-n">2</span><span class="dc-plan-t">Invite to Slack channels</span></div><div class="dc-plan-item"><span class="dc-plan-n">3</span><span class="dc-plan-t">Create Notion workspace page</span></div><div class="dc-plan-item"><span class="dc-plan-n">4</span><span class="dc-plan-t">Send welcome email</span></div></div>`,1600);
+  dcAdd(`<div class="dc-tool-line"><span class="dc-tool-chevron">▸</span>APPROVAL REQUESTED → #ops-team<span class="dc-tool-chevron">▸</span></div>`,2400);
+  setTimeout(()=>addSLApproval('slBody','onboard Rahul across 4 tools?'),2600);
+  setTimeout(()=>addSLApproved('slBody','Priya'),3700);
+  dcAdd(`<div class="dc-tool-line" style="color:#16A34A"><span class="dc-tool-chevron" style="color:#16A34A">✓</span>Approved in Slack — running</div>`,3900);
+
+  setTimeout(()=>autoScrollAndSelect(['a_gw1','a_sl1','a_nt1','a_gm2']),4000);
+
+  dcAdd(`<div class="dc-tool-line"><span class="dc-tool-chevron">▸</span>SUPRAI SEARCH TOOLS — 4 matched<span class="dc-tool-chevron">▸</span></div>`,4800);
+  setTimeout(()=>hlAction('a_gw1'),4900);
+  dcAdd(`<div class="dc-tool-line"><span class="dc-tool-chevron">▸</span>SUPRAI EXECUTE · GOOGLE_CREATE_USER<span class="dc-tool-chevron">▸</span></div>`,5500);
+  setTimeout(()=>flashConn('rGW'),5600);
+  dcAdd(`<div class="dc-response"><strong>rahul.kumar@company.com</strong> created · Workspace provisioned</div>`,6300);
+
+  setTimeout(()=>hlAction('a_sl1'),7000);
+  dcAdd(`<div class="dc-tool-line"><span class="dc-tool-chevron">▸</span>SUPRAI EXECUTE · SLACK_INVITE_MEMBER<span class="dc-tool-chevron">▸</span></div>`,7100);
+  setTimeout(()=>flashConn('rSL'),7200);
+  dcAdd(`<div class="dc-response">Added to <strong>6 Slack channels</strong> — #product, #general +4</div>`,7900);
+
+  setTimeout(()=>hlAction('a_nt1'),8500);
+  dcAdd(`<div class="dc-connect" id="ntConn"><div class="dc-connect-txt">⚡ Notion not connected</div><button class="dc-connect-btn">Connect →</button></div>`,8700);
+
+  setTimeout(()=>{connectApp('nt');const e=document.getElementById('ntConn');if(e)e.outerHTML='<div class="dc-connect-done">✓ Notion connected</div>';},10500);
+  dcAdd(`<div class="dc-tool-line"><span class="dc-tool-chevron">▸</span>SUPRAI EXECUTE · NOTION_CREATE_PAGE<span class="dc-tool-chevron">▸</span></div>`,11200);
+  setTimeout(()=>resetHL(),11700);
+  dcAdd(`<div class="dc-response">Rahul Kumar onboarded · <strong style="color:#16A34A">6 tools</strong> configured. Ready for Monday.</div>`,12000);
+
+  setTimeout(()=>slPost('slBody','SuprAI','#F05A28','✓ Rahul onboarded — Google, Slack, Notion, Gmail done'),12800);
+}
+
+function run(){p1();setTimeout(p2,14000);setTimeout(run,28000);}
+run();
+</script>
+</body>
+</html>

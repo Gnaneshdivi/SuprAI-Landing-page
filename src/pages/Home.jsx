@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
 import BrandImg from '../components/BrandImg.jsx'
 import { DEMO_URL } from '../components/Layout.jsx'
+import HeroScene from '../components/HeroScene.jsx'
 import {
-  SecMark, HeroDemoCard, SlackThread, ScenarioTiles,
+  SecMark, HeroDemoCard, SlackThread, ScenarioSwitcher,
   AutomateTimeline, RoleAnswers, ControlDashboard, CompareGrid,
 } from '../components/v3art.jsx'
 
@@ -49,26 +50,30 @@ const faqs = [
 export default function Home() {
   return (
     <>
-      {/* ═══ HERO ═══ */}
-      <header className="hero">
-        <div className="wrap hero-split">
-          <Reveal className="hero-copy">
-            <div className="kicker">One shared AI for your whole company</div>
+      {/* ═══ HERO — centered copy + animated product scene below ═══ */}
+      <header className="hero hero-centered">
+        <div className="wrap">
+          <Reveal className="hero-copy cc">
+            <div className="kicker" style={{ justifyContent: 'center' }}>One shared AI for your whole company</div>
             <h1>The operating layer for <span className="gt">enterprise AI.</span></h1>
             <p className="sub">Other AI gives each person an assistant. SuprAI gives your company <b>one shared AI</b> that knows your tools, your context, and your org — and executes across all of it, governed centrally, audited at every step.</p>
-            <p className="hero-time">Teams reclaim <b>6–10 hours a week</b> they used to spend switching tools and chasing answers.</p>
             <div className="herostat">
               <span>saves your team <b>hours, not clicks</b></span>
               <span><b>AI workforce</b> in minutes</span>
               <span>always on, <b>always synced</b></span>
             </div>
-            <div className="hero-cta">
+            <div className="hero-cta cc">
               <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer">Book a demo</a>
               <a className="btn btn-ghost" href="#ask">Watch a 2-min demo →</a>
             </div>
-            <a className="hero-sec" href="#control">Explore SuprAI security →</a>
           </Reveal>
-          <Reveal as="div" className="hero-demo-wrap" d={1}><HeroDemoCard /></Reveal>
+        </div>
+        <div className="wrap hero-scene-wrap">
+          <Reveal as="div" className="hero-scene">
+            <span className="hero-scene-tag">Live · one agent, executing across your stack</span>
+            <HeroScene />
+          </Reveal>
+          <Reveal as="div" className="hero-scene-fallback" d={1}><HeroDemoCard /></Reveal>
         </div>
       </header>
 
@@ -151,7 +156,7 @@ export default function Home() {
             <h2 className="xl">See what your team would actually ask.</h2>
             <p className="lead">Your team asked. SuprAI already has the answer — pulled from the tools they already use.</p>
           </Reveal>
-          <Reveal><ScenarioTiles /></Reveal>
+          <Reveal><ScenarioSwitcher /></Reveal>
         </div>
       </section>
 
