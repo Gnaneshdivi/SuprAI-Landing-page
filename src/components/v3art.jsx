@@ -23,21 +23,21 @@ export function GridArt() {
   return (
     <div className="gridart">
       <div className="ga-frame">
-        <div className="ga-frame-k">team controls · roles · scoped access</div>
+        <div className="ga-frame-k">your tools · always connected</div>
         <div className="ga-tiles">
           {tools.map((s) => (
             <div className="ga-tile" key={s}>
               <BrandImg slug={s} />
-              <span className="ga-mem">memory</span>
+              <span className="ga-dot" title="connected" />
             </div>
           ))}
           <div className="ga-tile more">+92</div>
         </div>
-        <div className="ga-sync">each holds a piece of your memory<span className="ga-arrow">synced ↓</span></div>
-        <div className="ga-bar">one shared context · all your company&rsquo;s data &amp; memory</div>
+        <div className="ga-sync">connected &amp; kept in sync<span className="ga-arrow">synced ↓</span></div>
+        <div className="ga-bar">one shared context · everything your company knows</div>
         <div className="ga-foot">
-          <span className="ga-badge">actions · 100+</span>
-          <span className="ga-badge ghost">RBAC · least-privilege</span>
+          <span className="ga-badge">100+ actions</span>
+          <span className="ga-badge ghost">access by role</span>
         </div>
       </div>
     </div>
@@ -143,50 +143,42 @@ export function WorkforceGrid() {
    + a monospace request-log table with status dots. */
 export function ControlDashboard() {
   const bars = [38, 52, 44, 67, 59, 78, 71]
+  /* human-readable activity — no API method names, no key management */
   const log = [
-    ['09:24', 'maya', 'answered', 'finance.spend', 'sources:14', 'ok'],
-    ['09:21', 'devops', 'acted', 'google.create_user', 'scoped', 'ok'],
-    ['09:18', 'sam', 'answered', 'sales.pipeline', 'sources:6', 'ok'],
+    ['09:24', 'Maya', 'Finance', 'asked about Q3 tool spend'],
+    ['09:21', 'DevOps', 'IT', 'provisioned new hire access'],
+    ['09:18', 'Sam', 'Sales', 'pulled the pipeline summary'],
   ]
   return (
     <div className="ctrl">
       <div className="ctrl-top">
         <div className="ctrl-stat">
-          <div className="cs-k">usage</div>
+          <div className="cs-k">usage · last 7 days <span className="ctrl-up">▲ 18%</span></div>
           <div className="ctrl-bars">{bars.map((h, i) => <span className="ctrl-bar" key={i} style={{ height: `${h}%` }} />)}</div>
         </div>
         <div className="ctrl-stat">
-          <div className="cs-k">ingestion</div>
-          <div className="ctrl-health"><span className="ctrl-dot ok" />healthy</div>
+          <div className="cs-k">team</div>
+          <div className="ctrl-big">24 <small>members · 6 roles</small></div>
         </div>
         <div className="ctrl-stat">
-          <div className="cs-k">requests</div>
-          <div className="ctrl-big">12,481 <small>today</small></div>
+          <div className="cs-k">requests today</div>
+          <div className="ctrl-big">12,481</div>
+          <div className="ctrl-health"><span className="ctrl-dot ok" />healthy</div>
         </div>
       </div>
-      <div className="ctrl-cols">
-        <div className="ctrl-panel">
-          <div className="cs-k">members · 24 · roles</div>
-          {[['admin', 3], ['editor', 9], ['viewer', 12]].map(([r, n]) => (
-            <div className="ctrl-mrow" key={r}><span>{r}</span><span className="ctrl-n">{n}</span></div>
-          ))}
-        </div>
-        <div className="ctrl-panel">
-          <div className="cs-k">API keys · 6 scoped</div>
-          {['sk·live·finance', 'sk·live·sales', 'sk·live·ops'].map((k) => (
-            <div className="ctrl-mrow key" key={k}><span>{k}</span><span className="ctrl-rev">revoke</span></div>
-          ))}
-        </div>
+      <div className="ctrl-roles">
+        <span className="cs-k">roles</span>
+        {[['Admin', 3], ['Editor', 9], ['Viewer', 12]].map(([r, n]) => (
+          <span className="ctrl-rolechip" key={r}>{r} · {n}</span>
+        ))}
       </div>
       <div className="ctrl-log">
+        <div className="cs-k" style={{ marginBottom: 4 }}>recent activity</div>
         {log.map((row) => (
           <div className="ctrl-logrow" key={row[0]}>
             <span className="cl-t">{row[0]}</span>
-            <span className="cl-who">{row[1]}</span>
-            <span className="cl-act">{row[2]}</span>
-            <span className="cl-res">{row[3]}</span>
-            <span className="cl-src">{row[4]}</span>
-            <span className="cl-ok"><span className="ctrl-dot ok" />{row[5]}</span>
+            <span className="cl-who">{row[1]} <em>({row[2]})</em></span>
+            <span className="cl-act">{row[3]}</span>
           </div>
         ))}
       </div>
@@ -252,6 +244,191 @@ export function ModelGateway() {
         <span className="gw-tag">BYOK ✓</span>
         <span className="gw-badge">−30% tokens</span>
       </div>
+    </div>
+  )
+}
+
+/* HERO — expanded answer card: shows the multi-source pull, then the total. */
+export function HeroDemoCard() {
+  const rows = [
+    ['stripe', 'Stripe', '$28,410'],
+    ['quickbooks', 'QuickBooks', '$11,200'],
+    ['expensify', 'Expensify', '$5,800'],
+    [null, '+20 more', '$2,800'],
+  ]
+  return (
+    <div className="hpx">
+      <div className="hpx-q"><span className="hp-tag">Q</span>What did we spend on tools last month?</div>
+      <div className="hpx-status"><span className="bdot" />Pulling from 23 sources…</div>
+      <div className="hpx-rows">
+        {rows.map(([slug, name, amt]) => (
+          <div className="hpx-row" key={name}>
+            <span className="hpx-src">{slug ? <BrandImg slug={slug} /> : <span className="hpx-more">+</span>}{name}</span>
+            <span className="hpx-line" />
+            <span className="hpx-amt">{amt}</span>
+          </div>
+        ))}
+      </div>
+      <div className="hpx-total">
+        <span className="hp-tag a">A</span>
+        <div className="hpx-tnum"><em>$48,210</em> total <span className="hp-up">▲ +12% vs last month</span></div>
+      </div>
+      <div className="hpx-srcs">
+        <span className="hp-label">sources</span>
+        <span className="hp-chip"><BrandImg slug="stripe" />Stripe</span>
+        <span className="hp-chip"><BrandImg slug="quickbooks" />QuickBooks</span>
+        <span className="hp-chip">+21</span>
+      </div>
+    </div>
+  )
+}
+
+/* WHAT YOUR TEAM ASKS — role scenario tiles (the "wow moment"). */
+const SCENARIOS = [
+  ['Finance', 'What did we spend on SaaS last month?', ['stripe', 'quickbooks', 'expensify'], '$48,210 across 23 tools. ▲ 12% vs prior month.'],
+  ['Sales', 'Which deals haven’t moved in 10+ days? Draft the follow-ups.', ['salesforce', 'gmail'], '3 deals flagged. Drafts ready for your review.'],
+  ['Operations', 'Onboard Priya — she starts Monday.', ['slack', 'notion', 'google', 'zendesk'], 'Done. 5 tools set up in 40 seconds.'],
+  ['Leadership', 'Prep my Monday brief — pipeline, support, team.', ['hubspot', 'zendesk', 'slack'], 'Brief ready. Pulled from 8 tools.'],
+  ['Support', 'Pull the full history on this customer.', ['zendesk', 'stripe', 'shopify', 'gmail'], '3 orders, 2 tickets, 1 open refund.'],
+]
+export function ScenarioTiles() {
+  return (
+    <div className="scen">
+      {SCENARIOS.map(([role, q, apps, a]) => (
+        <div className="scen-tile" key={role}>
+          <span className="scen-role">{role}</span>
+          <div className="scen-q">“{q}”</div>
+          <div className="scen-apps">{apps.map((s) => <BrandImg key={s} slug={s} />)}</div>
+          <div className="scen-a"><span className="scen-arr">→</span>{a}</div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/* AUTOMATE — horizontal timeline of a background run. */
+export function AutomateTimeline() {
+  const steps = [
+    ['8:45 AM', 'Trigger', 'Slack message received'],
+    ['', 'Read', 'pulls from 5 tools, silently'],
+    ['', 'Compose', 'formats the summary'],
+    ['9:02 AM', 'Delivered', 'posted to #leadership'],
+  ]
+  return (
+    <div className="atl">
+      <div className="atl-rail">
+        {steps.map((s, i) => (
+          <div className="atl-node" key={i}>
+            <span className="atl-when">{s[0] || ' '}</span>
+            <span className="atl-dot" />
+            <span className="atl-t">{s[1]}</span>
+            <span className="atl-d">{s[2]}</span>
+          </div>
+        ))}
+      </div>
+      <div className="atl-cap">It ran while you were in the standup.</div>
+    </div>
+  )
+}
+
+/* ROLE-AWARE — one question, three role-shaped answers. */
+export function RoleAnswers() {
+  const cols = [
+    ['Sales', [['Stage', 'Proposal'], ['Last touch', '8 days ago']], 'Draft a nudge'],
+    ['Finance', [['Invoice', '$24k due Nov 15'], ['Risk', 'Medium']], 'Send reminder'],
+    ['Support', [['Open tickets', '2'], ['Last reply', '3 days ago']], 'View tickets'],
+  ]
+  return (
+    <div className="rolex">
+      <div className="rolex-q">Question asked: <b>“What’s the status on Acme Corp?”</b></div>
+      <div className="rolex-cols">
+        {cols.map(([role, rows, btn]) => (
+          <div className="rolex-card" key={role}>
+            <span className="role-chip">{role}</span>
+            <div className="rolex-rows">
+              {rows.map(([k, v]) => (
+                <div className="rolex-row" key={k}><span>{k}</span><b>{v}</b></div>
+              ))}
+            </div>
+            <span className="rolex-btn">{btn}</span>
+          </div>
+        ))}
+      </div>
+      <div className="rolex-cap">Same question. Each person sees only what their role allows.</div>
+    </div>
+  )
+}
+
+/* COMPARE — scannable capability grid. */
+const CMP_ROWS = [
+  ['Shared company context', '✗', 'partial', '✓'],
+  ['Role-aware answers', '✗', 'partial', '✓'],
+  ['Acts across all your apps', 'partial', 'MS only', '✓'],
+  ['Works in Slack / Teams / WhatsApp', '✗', 'Teams', '✓'],
+  ['Background agents', '✗', '✗', '✓'],
+  ['Model-agnostic', 'GPT only', 'partial', '✓'],
+  ['Cost scales sub-linearly', '✗', 'per seat', '✓'],
+]
+const cgCell = (v) => v === '✓' ? 'cg-y' : v === '✗' ? 'cg-n' : 'cg-p'
+export function CompareGrid() {
+  return (
+    <div className="cgrid">
+      <div className="cgrid-row cgrid-head">
+        <div className="cgrid-feat" />
+        <div>ChatGPT Enterprise</div>
+        <div>M365 Copilot</div>
+        <div className="us">SuprAI</div>
+      </div>
+      {CMP_ROWS.map(([f, a, b, c]) => (
+        <div className="cgrid-row" key={f}>
+          <div className="cgrid-feat">{f}</div>
+          <div className={cgCell(a)}>{a}</div>
+          <div className={cgCell(b)}>{b}</div>
+          <div className={`us ${cgCell(c)}`}>{c}</div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/* WHERE IT LIVES — full Slack thread simulation. */
+export function SlackThread() {
+  const steps = [
+    'Slack workspace — invited',
+    'Notion access — team workspace',
+    'Google Workspace — account created',
+    'Zendesk — support role assigned',
+    'HubSpot — added to Sales team',
+  ]
+  return (
+    <div className="slk">
+      <div className="slk-head"><BrandImg slug="slack" /><span>#ops-team</span></div>
+      <div className="slk-msg">
+        <span className="slk-av u">PA</span>
+        <div className="slk-body">
+          <div className="slk-who">Priya <span>9:03 AM</span></div>
+          <div className="slk-text"><b>@SuprAI</b> onboard Rahul — he starts Monday</div>
+        </div>
+      </div>
+      <div className="slk-msg">
+        <span className="slk-av b">S</span>
+        <div className="slk-body">
+          <div className="slk-who">SuprAI <span className="slk-done">✓ done</span></div>
+          <div className="slk-card">
+            <div className="slk-card-t">Onboarding Rahul Kumar</div>
+            {steps.map((s) => <div className="slk-step" key={s}><span className="slk-tick">✓</span>{s}</div>)}
+            <div className="slk-fin">Done. Rahul can start Monday.</div>
+          </div>
+        </div>
+      </div>
+      <div className="slk-msg">
+        <span className="slk-av u">PA</span>
+        <div className="slk-body">
+          <div className="slk-who">Priya <span>9:04 AM</span></div>
+          <div className="slk-text">That’s it??</div>
+        </div>
+      </div>
+      <div className="slk-foot"><BrandImg slug="slack" /><BrandImg slug="microsoftteams" /><BrandImg slug="whatsapp" /><span>works across all three</span></div>
     </div>
   )
 }

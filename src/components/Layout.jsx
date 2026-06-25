@@ -148,7 +148,6 @@ export default function Layout() {
       <Nav />
       <Outlet />
       <Footer />
-      <AskAI />
     </>
   )
 }
