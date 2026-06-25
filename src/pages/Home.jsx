@@ -6,7 +6,7 @@ import HeroScene from '../components/HeroScene.jsx'
 import PageMeta from '../components/PageMeta.jsx'
 import {
   SecMark, HeroDemoCard, SlackThread, ScenarioSwitcher,
-  RoleAnswers, OrgGraph, ControlDashboard, CompareGrid,
+  OrgGraph, ControlDashboard, CompareGrid,
 } from '../components/v3art.jsx'
 
 const ICON = {
@@ -235,7 +235,6 @@ export default function Home() {
             </Reveal>
             <Reveal d={1}><OrgGraph /></Reveal>
           </div>
-          <Reveal as="div" className="mt"><RoleAnswers /></Reveal>
         </div>
       </section>
 
