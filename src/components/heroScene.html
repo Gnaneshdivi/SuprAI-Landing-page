@@ -327,11 +327,14 @@ function renderApps(){
   });
 }
 
+/* scroll ONLY the horizontal chips strip — never call scrollIntoView, which
+   bubbles up and scrolls the parent page back to the iframe. */
+function scrollChipTo(grp){const w=document.getElementById('sbChips');if(!w||!grp)return;const target=grp.offsetLeft-(w.clientWidth-grp.clientWidth)/2;w.scrollTo({left:Math.max(0,target),behavior:'smooth'});}
 function hlAction(id){
   document.querySelectorAll('.sb-app-group').forEach(g=>g.classList.add('grp-dim'));
   document.querySelectorAll('.sbag-action').forEach(a=>{a.classList.remove('act-hl');});
   const el=document.getElementById(id);
-  if(el){el.classList.add('act-hl');const grp=el.closest('.sb-app-group');if(grp){grp.classList.remove('grp-dim');grp.scrollIntoView({block:'nearest',behavior:'smooth',inline:'nearest'});}}
+  if(el){el.classList.add('act-hl');const grp=el.closest('.sb-app-group');if(grp){grp.classList.remove('grp-dim');scrollChipTo(grp);}}
 }
 function resetHL(){document.querySelectorAll('.sb-app-group').forEach(g=>g.classList.remove('grp-dim'));document.querySelectorAll('.sbag-action').forEach(a=>a.classList.remove('act-hl'));}
 
@@ -367,7 +370,7 @@ function autoScrollAndSelect(matchIds){
         const firstMatch=document.getElementById(matchIds[0]);
         if(firstMatch){
           const grp=firstMatch.closest('.sb-app-group');
-          if(grp)grp.scrollIntoView({block:'nearest',behavior:'smooth',inline:'start'});
+          if(grp){const cw=document.getElementById('sbChips');cw.scrollTo({left:Math.max(0,grp.offsetLeft-12),behavior:'smooth'});}
         }
       },300);
     }
