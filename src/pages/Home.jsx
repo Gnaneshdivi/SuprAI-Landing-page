@@ -88,6 +88,44 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ THE OPERATOR (problem + stats bento) ═══ */}
+      <section className="section full">
+        <div className="wrap">
+          <Reveal className="sec-head cc">
+            <h2 className="xl">Your team has tools.<br />What it doesn’t have is an <span className="gt">operator.</span></h2>
+            <p className="lead">Your team runs 8–15 different platforms for operations, sales, finance, and customer work. Every tool has data. None of them talk to each other. SuprAI sits across all of them — planning, executing, and reporting from a single command.</p>
+          </Reveal>
+          <div className="opbento">
+            <Reveal as="div" className="op-quote" style={{ gridArea: 'img' }}>
+              <span className="op-qmark">“</span>
+              <p>Your team stops searching.<br />It starts deciding.</p>
+              <span className="op-qby">— SuprAI</span>
+            </Reveal>
+            <Reveal as="div" className="op-card" style={{ gridArea: 'c70' }} d={1}>
+              <div className="op-stat">70%</div>
+              <div className="op-label">Time Lost to Coordination</div>
+              <p className="op-body">Most teams spend the majority of their day moving information between tools — not doing the actual work. SuprAI handles the movement so your team handles the decisions.</p>
+            </Reveal>
+            <Reveal as="div" className="op-card orange" style={{ gridArea: 'c0' }} d={2}>
+              <div className="op-stat">0</div>
+              <div className="op-label">Manual Logins Required</div>
+              <p className="op-body">Run tasks, pull reports, and act across your entire stack from Slack or Teams — without opening a single dashboard.</p>
+            </Reveal>
+            <Reveal as="div" className="op-card" style={{ gridArea: 'c90' }} d={1}>
+              <div className="op-stat">90%</div>
+              <div className="op-label">Lower Cost Than Per-Seat AI</div>
+              <p className="op-body">Give every employee their own AI subscription and the bill scales with headcount. SuprAI reads context once and reuses it across your whole team — so it gets cheaper as you grow, not more expensive.</p>
+            </Reveal>
+            <Reveal as="div" className="op-card dark" style={{ gridArea: 'c50' }} d={2}>
+              <div className="op-stat">50+</div>
+              <div className="op-label">Platforms. One Agent.</div>
+              <div className="op-logos">{['shopify', 'razorpay', 'whatsapp', 'meta', 'stripe', 'zendesk'].map((s) => <BrandImg key={s} slug={s} />)}</div>
+              <p className="op-body">SuprAI connects your existing stack — Shopify, Razorpay, MoEngage, CleverTap, WhatsApp, and more — and executes across all of them from a single command.</p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* ═══ WHERE IT LIVES ═══ */}
       <section className="section lined" id="where">
         <div className="wrap">
@@ -281,7 +319,7 @@ export default function Home() {
         <div className="wrap cc">
           <Reveal>
             <div className="trust-ribbon">
-              <span>multi-region</span><span>BYOK</span><span>BYOC</span><span>SOC 2 Type II — in progress</span><span>GDPR ready</span><span>data stays in your cloud</span>
+              <span>multi-region</span><span>BYOK</span><span>BYOC</span><span>SOC 2 Type II — in progress</span><span>data stays in your cloud</span>
             </div>
             <a className="tlink" href="#control" style={{ margin: '18px auto 0' }}>Explore SuprAI security →</a>
           </Reveal>
@@ -368,7 +406,7 @@ export default function Home() {
               <Link className="btn btn-ghost" to="/pricing">Start free</Link>
             </div>
             <div className="trust-ribbon mini">
-              <span>SOC 2 — in progress</span><span>GDPR ready</span><span>BYOK · BYOC</span><span>data stays in your cloud</span>
+              <span>SOC 2 — in progress</span><span>BYOK · BYOC</span><span>data stays in your cloud</span>
             </div>
           </Reveal>
         </div>

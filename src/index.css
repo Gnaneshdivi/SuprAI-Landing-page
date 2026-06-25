@@ -1475,3 +1475,31 @@ img{height:auto}
 .step3{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:100px;padding:9px 16px;font-size:13.5px;font-weight:600;color:var(--ink)}
 .step3 em{font-style:normal;font-weight:400;color:var(--mute);font-family:var(--mono);font-size:12px}
 .s3-n{width:20px;height:20px;border-radius:50%;background:var(--orange);color:#fff;font-family:'Sora';font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center}
+
+/* ════ THE OPERATOR — problem + stats bento ════ */
+.opbento{display:grid;grid-template-columns:0.82fr 1.08fr 1fr;grid-template-rows:1fr 1fr;gap:14px;margin-top:46px;
+  grid-template-areas:"img c70 c0" "img c90 c50"}
+@media(max-width:900px){.opbento{grid-template-columns:1fr 1fr;grid-template-areas:"img img" "c70 c0" "c90 c50"}}
+@media(max-width:560px){.opbento{grid-template-columns:1fr;grid-template-areas:"img" "c70" "c0" "c90" "c50"}}
+.op-card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:26px;display:flex;flex-direction:column;min-height:230px;transition:border-color .2s,transform .2s}
+.op-card:hover{transform:translateY(-3px)}
+.op-stat{font-family:'Sora';font-weight:700;font-size:46px;letter-spacing:-0.04em;line-height:1;color:var(--ink)}
+.op-label{font-family:'Sora';font-weight:600;font-size:18px;letter-spacing:-0.02em;margin-top:8px;color:var(--ink)}
+.op-body{font-size:13.5px;color:var(--mute);line-height:1.5;margin-top:auto;padding-top:18px;max-width:340px}
+/* orange card */
+.op-card.orange{background:var(--orange);border-color:var(--orange)}
+.op-card.orange .op-stat,.op-card.orange .op-label{color:#fff}
+.op-card.orange .op-body{color:rgba(255,255,255,.9)}
+/* dark card */
+.op-card.dark{background:var(--ink);border-color:var(--ink)}
+.op-card.dark .op-stat,.op-card.dark .op-label{color:#fff}
+.op-card.dark .op-body{color:#c9bfb4}
+.op-logos{display:flex;flex-wrap:wrap;gap:13px;align-items:center;margin-top:18px}
+.op-logos img{height:20px;width:auto;filter:brightness(0) invert(1);opacity:.55}
+/* left dark pull-quote panel */
+.op-quote{grid-area:img;background:var(--ink);border-radius:18px;padding:30px;display:flex;flex-direction:column;justify-content:center;color:#fff;position:relative;overflow:hidden;min-height:230px}
+.op-quote::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(241,90,34,.16) 1px,transparent 1px);background-size:18px 18px;opacity:.5;pointer-events:none}
+.op-qmark{font-family:'Sora';font-weight:700;font-size:52px;line-height:.6;color:var(--orange)}
+.op-quote p{font-family:'Sora';font-weight:600;font-size:24px;letter-spacing:-0.02em;line-height:1.2;margin:14px 0 16px;position:relative;z-index:1}
+.op-qby{font-family:var(--mono);font-size:12px;color:var(--soft);position:relative;z-index:1}
+@media(max-width:560px){.op-stat{font-size:40px}.op-quote p{font-size:21px}}
