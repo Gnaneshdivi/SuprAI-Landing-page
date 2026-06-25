@@ -308,8 +308,8 @@ export default function Home() {
         <div className="wrap">
           <SecMark label="Coming soon" />
           <Reveal>
-            <h2>It catches churn and anomalies <span className="muted2">before you think to ask.</span></h2>
-            <p>Tell SuprAI which metrics to keep a check on — churn, CPA, failed payments, SLA, stockouts — and the thresholds that matter. It watches them across every tool, around the clock, and notifies you the moment one crosses the line, with the why and what to do next. <span className="soon">Proactive alerts · coming soon</span></p>
+            <h2>Set up alert agents <span className="muted2">that catch churn and anomalies first.</span></h2>
+            <p>Build an alert agent in a sentence — tell it which metrics to keep a check on (churn, CPA, failed payments, SLA, stockouts) and the thresholds that matter. It watches them across every tool, around the clock, and notifies you the moment one crosses the line, with the why and what to do next. <span className="soon">Proactive alerts · coming soon</span></p>
           </Reveal>
           <Reveal as="div" className="mt"><AlertWatch /></Reveal>
         </div>
