@@ -8,14 +8,6 @@ export const DEMO_URL = 'https://api.whatsapp.com/send/?phone=918056088288&text=
 const departments = [['All teams', 'all-teams'], ['Growth & Marketing', 'growth-marketing'], ['Sales', 'sales'], ['Support', 'support'], ['Operations', 'operations'], ['Engineering', 'engineering'], ['Finance', 'finance'], ['Analytics', 'analytics']]
 const industries = [['D2C & Ecommerce', 'd2c-ecommerce'], ['Retail & QSR', 'retail-qsr'], ['Subscriptions & SaaS', 'subscriptions-saas'], ['Marketplaces', 'marketplaces'], ['Logistics', 'logistics'], ['Financial services', 'financial-services']]
 
-const product = [
-  ['/#grid', '⊞', 'The grid', 'Every tool you run — in one grid, one control center.'],
-  ['/#grid', '◎', 'Ask', 'Answers across every app — real numbers, with sources.'],
-  ['/#grid', '↗', 'Act', 'Typed, role-scoped, reversible actions across your tools.'],
-  ['/#control', '⟳', 'Automate', 'Durable, scheduled and event-driven agents that report back.'],
-  ['/#grid', '◈', 'Context', 'One unified context, resolved and kept current across every app.'],
-  ['/#control', '🔒', 'Control', 'Org-wide auth, roles, scoped keys, and full request logs.'],
-]
 
 function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -34,17 +26,6 @@ function Nav() {
         <div className="nav-in">
           <Link className="brand" to="/" onClick={closeMenu}><img className="navlogo" src="/Logo.png" alt="SuprAI" /></Link>
           <div className="nav-links">
-            <div className="has-mega">
-              <Link className="navtrigger" to="/">Product <span className="car">▾</span></Link>
-              <div className="mega wide">
-                {product.map(([href, ic, t, d]) => (
-                  <a className="mega-feature" href={href} key={t}>
-                    <span className="mf-ic">{ic}</span>
-                    <span><span className="mf-t">{t}</span><span className="mf-d" style={{ display: 'block' }}>{d}</span></span>
-                  </a>
-                ))}
-              </div>
-            </div>
             <div className="has-mega">
               <Link className="navtrigger" to="/solutions">Solutions <span className="car">▾</span></Link>
               <div className="mega">
@@ -83,7 +64,6 @@ function Nav() {
         </div>
         {menuOpen && (
           <div className="navmobile">
-            <a href="/#grid" onClick={closeMenu}>Product</a>
             <Link to="/solutions" onClick={closeMenu}>Solutions</Link>
             <Link to="/compare" onClick={closeMenu}>Compare</Link>
             <Link to="/pricing" onClick={closeMenu}>Pricing</Link>
@@ -108,14 +88,10 @@ function Footer() {
           </div>
           <div>
             <h5>Product</h5>
-            <a href="/#grid">The grid</a>
-            <a href="/#grid">Ask</a>
-            <a href="/#grid">Act</a>
-            <a href="/#control">Automate</a>
-            <a href="/#grid">Context</a>
-            <a href="/#connectors">Managed auth</a>
-            <a href="/#connectors">Connectors</a>
-            <a href="/#control">Control</a>
+            <a href="/#ask">What it does</a>
+            <a href="/#where">Where it lives</a>
+            <a href="/#control">Enterprise control</a>
+            <Link to="/solutions">Solutions & workflows</Link>
           </div>
           <div>
             <h5>Solutions</h5>

@@ -561,3 +561,57 @@ export function ScenarioSwitcher() {
     </div>
   )
 }
+
+/* SCENARIOS — the doc's operational walk-throughs: trigger → today (manual)
+   → SuprAI does → outcome. CFO/COO-facing proof that it does the work. */
+const SCN_DATA = [
+  {
+    tags: ['Finance', 'Owner: CFO'], noapi: false, title: 'Collections & dunning',
+    trigger: 'an invoice crosses its due date.',
+    today: 'An analyst pulls the aging report, checks each account’s history across systems, drafts a reminder, sends it, and logs a note. Hundreds a week — some slip.',
+    does: 'Reads the aging position, applies the customer’s terms and history, sends the right reminder in the right tone, schedules the next step, and logs everything — at full volume, on time.',
+    outcome: 'DSO compresses and more overdue is recovered earlier. Analysts handle disputes, not reminders.',
+  },
+  {
+    tags: ['Finance', 'Owner: Controller'], noapi: false, title: 'Invoice matching & reconciliation',
+    trigger: 'a new invoice or statement arrives.',
+    today: 'Someone matches invoice to PO to receipt across the ERP and spreadsheets, eyeballs discrepancies, and chases the ones that don’t tie out — slow at month-end, easy to miss leakage.',
+    does: 'Performs the 2- and 3-way match automatically, clears the clean ones, flags the true exceptions with the reason, and routes them to the right person — continuously, not just at close.',
+    outcome: 'Days-to-close drops, leakage gets caught, and the audit trail is built as the work happens.',
+  },
+  {
+    tags: ['Compliance', 'Owner: CCO'], noapi: true, title: 'KYC & customer onboarding',
+    trigger: 'a new customer or account application.',
+    today: 'An operator collects documents, checks them against registries and watchlists across several portals, records findings, and assembles a file for review. Backlogs build.',
+    does: 'Gathers and verifies documents, runs the checks across systems — including portals with no API — assembles a complete, audit-ready file, and escalates only genuine edge cases.',
+    outcome: 'Onboarding cycle time drops with complete audit trails — faster activation, lower risk.',
+  },
+  {
+    tags: ['Logistics', 'Owner: COO'], noapi: true, title: 'Order-exception in a vendor portal',
+    trigger: 'a shipment status changes or an exception is raised.',
+    today: 'A coordinator logs into each carrier or vendor portal — none with an API — copies the status, reconciles it against the order, updates the system of record, and notifies the customer. All by hand.',
+    does: 'Works the portal browser-native, pulls the status, reconciles against the order, updates the record, raises the exception, and sends the update — the work nothing else can automate.',
+    outcome: 'Exception lead time shrinks and status accuracy rises — without waiting on a vendor to build an API.',
+  },
+]
+export function Scenarios() {
+  return (
+    <div className="scn">
+      {SCN_DATA.map((s) => (
+        <div className="scn-card" key={s.title}>
+          <div className="scn-tags">
+            {s.tags.map((t, i) => <span className={`scn-tag${i === 0 ? ' fn' : ''}`} key={t}>{t}</span>)}
+            {s.noapi && <span className="scn-tag noapi">NO-API</span>}
+          </div>
+          <h3 className="scn-title">{s.title}</h3>
+          <div className="scn-trigger"><b>Trigger:</b> {s.trigger}</div>
+          <div className="scn-cols">
+            <div className="scn-col"><div className="scn-k">Today, manually</div><p>{s.today}</p></div>
+            <div className="scn-col"><div className="scn-k does">SuprAI does</div><p>{s.does}</p></div>
+            <div className="scn-col out"><div className="scn-k">Outcome</div><p>{s.outcome}</p></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}

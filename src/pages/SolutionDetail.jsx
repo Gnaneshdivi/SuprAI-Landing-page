@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { solutions, teamOrder, industryOrder } from '../data/solutions.js'
+import { WORKFLOWS, SOLUTION_WORKFLOWS } from '../data/workflows.js'
 import BrandImg from '../components/BrandImg.jsx'
 
 export default function SolutionDetail() {
@@ -8,6 +9,7 @@ export default function SolutionDetail() {
   if (!s) return <Navigate to="/solutions" replace />
 
   const siblings = (s.kind === 'Industries' ? industryOrder : teamOrder).filter((x) => x !== slug)
+  const workflows = (SOLUTION_WORKFLOWS[slug] || []).filter((x) => WORKFLOWS[x])
 
   return (
     <>
@@ -23,24 +25,29 @@ export default function SolutionDetail() {
         </div>
       </section>
 
-      <section className="section band-warm">
-        <div className="wrap">
-          <div className="eyebrow">The problem</div>
-          <h2 className="big maxnone" style={{ maxWidth: 800 }}>{s.problem}</h2>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="wrap">
-          <div className="eyebrow">Ask · Act · Automate</div>
-          <h2 className="big">What it does for {s.name.toLowerCase()}</h2>
-          <div className="grid-3 mt">
-            {s.jobs.map((j) => (
-              <div className="card" key={j.t}><h3>{j.t}</h3><p>{j.b}</p></div>
-            ))}
+      {workflows.length > 0 && (
+        <section className="section" id="workflows">
+          <div className="wrap">
+            <div className="eyebrow">Workflows · click any to see the use case</div>
+            <h2 className="big">What SuprAI runs for {s.name.toLowerCase()}</h2>
+            <p className="lead" style={{ marginTop: 14 }}>Each is a real workflow it runs end-to-end — including the portals nothing else can reach. Open one to see the problem today and what SuprAI does.</p>
+            <div className="wf-cards mt">
+              {workflows.map((x) => {
+                const w = WORKFLOWS[x]
+                return (
+                  <Link className="wf-card2" to={`/solutions/${slug}/${x}`} key={x}>
+                    <div className="wf-card2-tags"><span className="scn-tag fn">{w.fn}</span></div>
+                    <h3>{w.title}</h3>
+                    <p>{w.summary}</p>
+                    <div className="wf-tools">{w.tools.map((t) => <BrandImg key={t} slug={t} />)}</div>
+                    <div className="wf-card2-foot"><span className="wf-kpi">moves {w.kpi}</span><span className="wf-arrow">See the use case →</span></div>
+                  </Link>
+                )
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="section band-warm">
         <div className="wrap center">
