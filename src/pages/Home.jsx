@@ -102,7 +102,7 @@ export default function Home() {
         <div className="wrap">
           <Reveal className="sec-head cc">
             <h2 className="xl">Your team has tools.<br />What it doesn’t have is an <span className="gt">operator.</span></h2>
-            <p className="lead">Your team runs 8–15 different platforms for operations, sales, finance, and customer work. Every tool has data. None of them talk to each other. SuprAI sits across all of them — planning, executing, and reporting from a single command.</p>
+            <p className="lead">Your team runs 8–15 platforms across ops, sales, finance and support. Every tool has data; none of them talk. SuprAI sits across all of them — planning, executing and reporting from one command.</p>
           </Reveal>
           <div className="opbento">
             <Reveal as="div" className="op-quote" style={{ gridArea: 'img' }}>
@@ -113,22 +113,22 @@ export default function Home() {
             <Reveal as="div" className="op-card" style={{ gridArea: 'c70' }} d={1}>
               <div className="op-stat">70%</div>
               <div className="op-label">Time Lost to Coordination</div>
-              <p className="op-body">Most teams spend the majority of their day moving information between tools — not doing the actual work. SuprAI handles the movement so your team handles the decisions.</p>
+              <p className="op-body">Teams spend most of the day moving information between tools instead of doing the work. SuprAI handles the movement; your team handles the decisions.</p>
             </Reveal>
             <Reveal as="div" className="op-card orange" style={{ gridArea: 'c0' }} d={2}>
               <div className="op-stat">0</div>
               <div className="op-label">Manual Logins Required</div>
-              <p className="op-body">Run tasks, pull reports, and act across your entire stack from Slack or Teams — without opening a single dashboard.</p>
+              <p className="op-body">Run tasks, pull reports and act across your whole stack from Slack or Teams — without opening a single dashboard.</p>
             </Reveal>
             <Reveal as="div" className="op-card op-statement" style={{ gridArea: 'c90' }} d={1}>
               <div className="op-headline">Unified layer.<br /><span className="muted2">Not 20 detached subscriptions.</span></div>
-              <p className="op-body">Every tool your team uses — connected, synced, and operating as one. No more switching tabs, re-explaining context, or paying for AI that only knows half the picture.</p>
+              <p className="op-body">Every tool connected, synced and operating as one — no tab-switching, no re-explaining context, no paying for AI that knows half the picture.</p>
             </Reveal>
             <Reveal as="div" className="op-card dark" style={{ gridArea: 'c50' }} d={2}>
               <div className="op-stat">50+</div>
               <div className="op-label">Platforms. One Agent.</div>
               <div className="op-logos">{['shopify', 'razorpay', 'whatsapp', 'meta', 'stripe', 'zendesk'].map((s) => <BrandImg key={s} slug={s} />)}</div>
-              <p className="op-body">SuprAI connects your existing stack — Shopify, Razorpay, MoEngage, CleverTap, WhatsApp, and more — and executes across all of them from a single command.</p>
+              <p className="op-body">Connects your existing stack — Shopify, Razorpay, MoEngage, CleverTap, WhatsApp and more — and executes across all of them from one command.</p>
             </Reveal>
           </div>
         </div>
@@ -221,7 +221,7 @@ export default function Home() {
           <SecMark label="Role-aware · knowledge graph" />
           <Reveal className="sec-head">
             <h2 className="xl">It answers like it knows your org chart.</h2>
-            <p className="lead">SuprAI builds a living knowledge graph of your company — people, teams, reporting lines, roles and what each can access. It captures the <b>relationships</b>, not just the records: who manages whom, which team owns an account, and who’s cleared to see it. Permissions follow that graph, so every answer is scoped to the person asking.</p>
+            <p className="lead">SuprAI builds a living knowledge graph of your company — people, teams, reporting lines, roles and access. It maps the <b>relationships</b>, not just the records: who manages whom, which team owns an account, who’s cleared to see it. Permissions follow the graph, so every answer is scoped to who’s asking.</p>
           </Reveal>
           <div className="grid-2 align" style={{ marginTop: 36 }}>
             <Reveal>
@@ -308,8 +308,8 @@ export default function Home() {
         <div className="wrap">
           <SecMark label="Coming soon" />
           <Reveal>
-            <h2>Set up alert agents <span className="muted2">that catch churn and anomalies first.</span></h2>
-            <p>Build an alert agent in a sentence — tell it which metrics to keep a check on (churn, CPA, failed payments, SLA, stockouts) and the thresholds that matter. It watches them across every tool, around the clock, and notifies you the moment one crosses the line, with the why and what to do next. <span className="soon">Proactive alerts · coming soon</span></p>
+            <h2>Set up alert agents.</h2>
+            <p>Tell an agent which metrics to watch and the thresholds that matter — churn, CPA, failed payments, SLA, stockouts. It checks them across every tool around the clock and notifies you the moment one crosses the line, with the why and the next step. <span className="soon">Proactive alerts · coming soon</span></p>
           </Reveal>
           <Reveal as="div" className="mt"><AlertWatch /></Reveal>
         </div>
@@ -321,7 +321,7 @@ export default function Home() {
           <SecMark label="Why it matters" />
           <Reveal>
             <h2>Turn your company’s apps into action —<br /><span className="muted2">without a runaway AI bill.</span></h2>
-            <p>Give everyone their own AI and the bill climbs with every seat. SuprAI reads your context once and reuses it across the whole company — so it gets cheaper per answer as you grow, not more expensive.</p>
+            <p>Give everyone their own AI and the bill climbs with every seat. SuprAI reads your context once and reuses it company-wide — so it gets cheaper per answer as you grow, not more expensive.</p>
             <div className="costlist">
               {[
                 ['Hours back every week', 'no more switching tools and chasing answers across tabs.'],

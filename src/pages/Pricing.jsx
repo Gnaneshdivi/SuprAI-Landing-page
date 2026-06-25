@@ -9,7 +9,7 @@ export default function Pricing() {
         <div className="wrap">
           <div className="eyebrow">Pricing</div>
           <h1>The whole control plane,<br />priced for your size.</h1>
-          <p className="lead">Every plan is the full system — unlimited connections to every kind of tool, any AI you like, answers and actions shaped by role, and everything on the record. Enterprise-grade from day one, priced for your size, not the enterprise. Start free forever; try Starter free for 15 days. No card required.</p>
+          <p className="lead">Every plan is the full system — unlimited connections, any AI you like, role-shaped answers and actions, everything on the record. Enterprise-grade from day one, priced for your size — not the enterprise. Start free forever; Starter free for 15 days, no card required.</p>
         </div>
       </section>
 

@@ -39,7 +39,7 @@ export default function Solutions() {
         <div className="wrap">
           <div className="eyebrow">By team</div>
           <h2 className="big">One AI every team can Ask, Act and Automate with</h2>
-          <p className="lead">At a 20–100 person company, every team runs on its own apps and loses hours stitching them together. SuprAI gives each one a place to ask anything, act in their tools, and put their repeat work on agents.</p>
+          <p className="lead">At a 20–100 person company, every team runs on its own apps and loses hours stitching them together. SuprAI gives each one a place to ask anything, act in their tools and put repeat work on agents.</p>
           <div className="grid-3 mt">
             {teams.map(([k, h, p, slug]) => (
               <Link className="sol" to={`/solutions/${slug}`} key={k}><div className="k">{k}</div><h3>{h}</h3><p>{p}</p></Link>
@@ -52,7 +52,7 @@ export default function Solutions() {
         <div className="wrap">
           <div className="eyebrow">By industry</div>
           <h2 className="big">Tuned for how your business actually runs</h2>
-          <p className="lead">Enterprise-grade from day one, without the enterprise project. We start where the apps are most fragmented and the data is densest — multi-channel commerce — then extend across every team.</p>
+          <p className="lead">Enterprise-grade from day one, without the enterprise project. We start where apps are most fragmented and data is densest — multi-channel commerce — then extend across every team.</p>
           <div className="grid-2 mt">
             {industries.map(([k, h, p, slug]) => (
               <Link className="sol" to={`/solutions/${slug}`} key={k}><div className="k">{k}</div><h3>{h}</h3><p>{p}</p></Link>
