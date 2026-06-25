@@ -28,9 +28,9 @@ export default function SolutionDetail() {
       {workflows.length > 0 && (
         <section className="section" id="workflows">
           <div className="wrap">
-            <div className="eyebrow">Workflows · click any to see the use case</div>
+            <div className="eyebrow">Workflows</div>
             <h2 className="big">What SuprAI runs for {s.name.toLowerCase()}</h2>
-            <p className="lead" style={{ marginTop: 14 }}>Each is a real workflow it runs end-to-end — including the portals nothing else can reach. Open one to see the problem today and what SuprAI does.</p>
+            <p className="lead" style={{ marginTop: 14 }}>Real workflows it runs end-to-end — including the portals nothing else can reach.</p>
             <div className="wf-cards mt">
               {workflows.map((x) => {
                 const w = WORKFLOWS[x]
@@ -51,9 +51,9 @@ export default function SolutionDetail() {
 
       <section className="section band-warm">
         <div className="wrap center">
-          <div className="eyebrow">Apps it plugs into · Connector Fabric</div>
+          <div className="eyebrow">Connectors</div>
           <h2 className="big">Plugs into the apps you already run</h2>
-          <p className="lead" style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 14 }}>Connected through the Connector Fabric, with each tool’s own secure login — your apps, your files, your databases, and even the older systems without an easy way in.</p>
+          <p className="lead" style={{ marginLeft: 'auto', marginRight: 'auto', marginTop: 14 }}>Your apps, files and databases — and even the older systems without an easy way in.</p>
           <div className="logo-row mt">
             {s.connectors.map((c) => (<BrandImg key={c} slug={c} />))}
             <span className="cat-pill">+ unlimited apps</span>

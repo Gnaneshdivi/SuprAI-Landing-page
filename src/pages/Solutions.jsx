@@ -22,7 +22,7 @@ export default function Solutions() {
         <div className="wrap">
           <div className="eyebrow">Solutions</div>
           <h1>One operating system. Every team.</h1>
-          <p className="lead">SuprAI is the AI operating system for your company. Every team’s apps, answers and agents in one place — so the whole company can Ask, Act and Automate as one. Pick your team or your industry; the system is the same, the playbooks are tuned.</p>
+          <p className="lead">Every team’s apps, answers and agents in one place. Pick your team or your industry — the system is the same, the playbooks are tuned.</p>
           <div className="hero-cta cc">
             <a className="btn btn-ghost" href="#teams">By team</a>
             <a className="btn btn-ghost" href="#industries">By industry</a>
