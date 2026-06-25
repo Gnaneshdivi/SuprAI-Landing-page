@@ -53,9 +53,9 @@ export default function Home() {
       <header className="hero">
         <div className="wrap hero-split">
           <Reveal className="hero-copy">
-            <div className="kicker">The AI operating system</div>
-            <h1>The AI operating system for your <span className="gt">company.</span></h1>
-            <p className="sub">The connective layer over every tool your company runs: one synced context, one set of controls, and AI that can act across all of it.</p>
+            <div className="kicker">One shared AI for your whole company</div>
+            <h1>The operating layer for <span className="gt">enterprise AI.</span></h1>
+            <p className="sub">Other AI gives each person an assistant. SuprAI gives your company <b>one shared AI</b> that knows your tools, your context, and your org — and executes across all of it, governed centrally, audited at every step.</p>
             <p className="hero-time">Teams reclaim <b>6–10 hours a week</b> they used to spend switching tools and chasing answers.</p>
             <div className="herostat">
               <span>saves your team <b>hours, not clicks</b></span>
