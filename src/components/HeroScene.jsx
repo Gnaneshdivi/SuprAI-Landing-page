@@ -8,7 +8,7 @@ export default function HeroScene() {
     <div className="hsc-wrap">
       <iframe
         className="hsc-frame"
-        title="SuprAI — one AI layer executing across your stack"
+        title="SuprAI — the AI layer executing across your stack"
         srcDoc={sceneHtml}
         loading="lazy"
         scrolling="no"

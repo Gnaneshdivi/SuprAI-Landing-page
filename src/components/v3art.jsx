@@ -35,7 +35,7 @@ export function GridArt() {
           <div className="ga-tile more">+92</div>
         </div>
         <div className="ga-sync">connected &amp; kept in sync<span className="ga-arrow">synced ↓</span></div>
-        <div className="ga-bar">one AI layer · everything your company knows</div>
+        <div className="ga-bar">the AI layer · everything your company knows</div>
         <div className="ga-foot">
           <span className="ga-badge">100+ actions</span>
           <span className="ga-badge ghost">access by role</span>

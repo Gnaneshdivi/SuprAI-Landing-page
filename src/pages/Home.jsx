@@ -63,9 +63,9 @@ export default function Home() {
       <header className="hero hero-centered">
         <div className="wrap">
           <Reveal className="hero-copy cc">
-            <div className="kicker" style={{ justifyContent: 'center' }}>One AI layer for your whole company</div>
+            <div className="kicker" style={{ justifyContent: 'center' }}>The AI layer for your whole company</div>
             <h1>The operating layer for <span className="gt">enterprise AI.</span></h1>
-            <p className="sub">Other AI gives each person an assistant. SuprAI gives your company <b>one AI layer</b> that knows your tools, your context, and your org — and executes across all of it, governed centrally, audited at every step.</p>
+            <p className="sub">Other AI gives each person an assistant. SuprAI gives your company <b>an AI layer</b> that knows your tools, your context, and your org — and executes across all of it, governed centrally, audited at every step.</p>
             <div className="hero-cta cc">
               <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer">Book a demo</a>
               <Link className="btn btn-ghost" to="/pricing">Start free</Link>
@@ -203,7 +203,7 @@ export default function Home() {
             <Reveal as="div" className="bento-card" d={2}>
               <div className="bc-eyebrow">Context</div>
               <h3>It just knows your company.</h3>
-              <p>One memory — the same customer, order or person, resolved across every tool and kept current.</p>
+              <p>The same customer, order or person — resolved across every tool and kept current.</p>
               <div className="bc-visual" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {['google', 'slack', 'hubspot', 'stripe', 'notion', 'zendesk'].map((s) => (
                   <span className="ctx-chip" key={s} style={{ padding: 7 }}><BrandImg slug={s} /></span>
@@ -234,7 +234,7 @@ export default function Home() {
             <div className="secG-list">
               <div className="secG-item">
                 <span className="si">{ICON.store}</span>
-                <div><h4>One memory, always current</h4><p>Everything your teams know, in one place — behind Slack, WhatsApp, or any AI.</p></div>
+                <div><h4>Always-current memory</h4><p>Everything your teams know — behind Slack, WhatsApp, or any AI.</p></div>
               </div>
               <div className="secG-item">
                 <span className="si">{ICON.sync}</span>
@@ -246,7 +246,7 @@ export default function Home() {
               </div>
             </div>
             <div className="secG-right">
-              <h2>One context for your whole company. <span className="muted2">It just knows.</span></h2>
+              <h2>Context for your whole company. <span className="muted2">It just knows.</span></h2>
               <div className="ctxlogos">
                 {['gmail', 'hubspot', 'stripe', 'notion', 'slack', 'zendesk', 'shopify', 'quickbooks'].map((s) => (
                   <span className="ctxlogo" key={s}><BrandImg slug={s} /><span className="ctxlogo-dot" /></span>
