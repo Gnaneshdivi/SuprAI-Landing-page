@@ -310,8 +310,8 @@ export default function Home() {
         <div className="wrap">
           <SecMark label="Coming soon" />
           <Reveal>
-            <h2>It notices things <span className="muted2">before you ask.</span></h2>
-            <p>SuprAI flagged that three customers hadn’t received their orders. Your support lead didn’t ask — it just knew. <span className="soon">Proactive alerts · coming soon</span></p>
+            <h2>It catches churn and anomalies <span className="muted2">before you think to ask.</span></h2>
+            <p>SuprAI watches the metrics that matter — churn signals, CPA spikes, failed payments, stuck orders, SLA breaches — across every tool, and tells you the moment one moves the wrong way, with the why and what to do next. No dashboard to check, no question to ask. <span className="soon">Proactive alerts · coming soon</span></p>
           </Reveal>
         </div>
       </section>
