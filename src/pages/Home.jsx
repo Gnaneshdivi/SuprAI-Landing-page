@@ -111,10 +111,9 @@ export default function Home() {
               <div className="op-label">Manual Logins Required</div>
               <p className="op-body">Run tasks, pull reports, and act across your entire stack from Slack or Teams — without opening a single dashboard.</p>
             </Reveal>
-            <Reveal as="div" className="op-card" style={{ gridArea: 'c90' }} d={1}>
-              <div className="op-stat">90%</div>
-              <div className="op-label">Lower Cost Than Per-Seat AI</div>
-              <p className="op-body">Give every employee their own AI subscription and the bill scales with headcount. SuprAI reads context once and reuses it across your whole team — so it gets cheaper as you grow, not more expensive.</p>
+            <Reveal as="div" className="op-card op-statement" style={{ gridArea: 'c90' }} d={1}>
+              <div className="op-headline">Unified layer.<br /><span className="muted2">Not 20 detached subscriptions.</span></div>
+              <p className="op-body">Every tool your team uses — connected, synced, and operating as one. No more switching tabs, re-explaining context, or paying for AI that only knows half the picture.</p>
             </Reveal>
             <Reveal as="div" className="op-card dark" style={{ gridArea: 'c50' }} d={2}>
               <div className="op-stat">50+</div>

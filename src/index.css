@@ -1503,3 +1503,8 @@ img{height:auto}
 .op-quote p{font-family:'Sora';font-weight:600;font-size:24px;letter-spacing:-0.02em;line-height:1.2;margin:14px 0 16px;position:relative;z-index:1}
 .op-qby{font-family:var(--mono);font-size:12px;color:var(--soft);position:relative;z-index:1}
 @media(max-width:560px){.op-stat{font-size:40px}.op-quote p{font-size:21px}}
+
+/* operator bento — statement card variant (no big stat number) */
+.op-headline{font-family:'Sora';font-weight:600;font-size:27px;letter-spacing:-0.03em;line-height:1.12;color:var(--ink)}
+.op-headline .muted2{color:var(--mute)}
+@media(max-width:560px){.op-headline{font-size:23px}}
