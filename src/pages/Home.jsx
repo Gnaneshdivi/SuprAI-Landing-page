@@ -286,23 +286,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ CUSTOM AGENTS CTA ═══ */}
-      <section className="section">
-        <div className="wrap">
-          <Reveal as="div" className="agentcta">
-            <div className="agentcta-l">
-              <div className="kicker">Build your own</div>
-              <h2>Create custom agents to meet your company’s needs.</h2>
-              <p>Describe the workflow your team repeats. We’ll stand up a named agent that runs it end-to-end — in your tools, under your governance.</p>
-            </div>
-            <div className="agentcta-r">
-              <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer">Book a demo</a>
-              <Link className="btn btn-ghost" to="/solutions">See workflows</Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ═══ PROACTIVE ═══ */}
       <section className="statement lined">
         <div className="wrap">
@@ -420,6 +403,23 @@ export default function Home() {
           {faqs.map(([q, a]) => (
             <details className="faq" key={q}><summary>{q}</summary><p>{a}</p></details>
           ))}
+        </div>
+      </section>
+
+      {/* ═══ CUSTOM AGENTS CTA ═══ */}
+      <section className="section">
+        <div className="wrap">
+          <Reveal as="div" className="agentcta">
+            <div className="agentcta-l">
+              <div className="kicker">Build your own</div>
+              <h2>Create custom agents to meet your company’s needs.</h2>
+              <p>Describe the workflow your team repeats. We’ll stand up a named agent that runs it end-to-end — in your tools, under your governance.</p>
+            </div>
+            <div className="agentcta-r">
+              <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer">Book a demo</a>
+              <Link className="btn btn-ghost" to="/solutions">See workflows</Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
