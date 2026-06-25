@@ -35,7 +35,7 @@ export function GridArt() {
           <div className="ga-tile more">+92</div>
         </div>
         <div className="ga-sync">connected &amp; kept in sync<span className="ga-arrow">synced ↓</span></div>
-        <div className="ga-bar">one shared context · everything your company knows</div>
+        <div className="ga-bar">one AI layer · everything your company knows</div>
         <div className="ga-foot">
           <span className="ga-badge">100+ actions</span>
           <span className="ga-badge ghost">access by role</span>
@@ -362,7 +362,7 @@ export function RoleAnswers() {
 
 /* COMPARE — scannable capability grid. */
 const CMP_ROWS = [
-  ['Shared company context', '✗', 'partial', '✓'],
+  ['Company-wide context', '✗', 'partial', '✓'],
   ['Role-aware answers', '✗', 'partial', '✓'],
   ['Acts across all your apps', 'partial', 'MS only', '✓'],
   ['Works in Slack / Teams / WhatsApp', '✗', 'Teams', '✓'],

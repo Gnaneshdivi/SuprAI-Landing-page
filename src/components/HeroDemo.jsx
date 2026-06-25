@@ -224,7 +224,7 @@ export default function HeroDemo() {
         {/* ── SKILLS ── */}
         {tab === 'skills' && (
           <div className="demo-body">
-            <div className="demo-h"><b>Skills</b><span>Capabilities you add to agents — shared across a team</span></div>
+            <div className="demo-h"><b>Skills</b><span>Capabilities you add to agents — used across the team</span></div>
             <div className="demo-conn">
               {SKILLS.map(([name, desc, used]) => (
                 <div className="skillcard" key={name}>

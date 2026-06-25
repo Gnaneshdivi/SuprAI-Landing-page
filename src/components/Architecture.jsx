@@ -9,7 +9,7 @@ const SYS = [
   ['03', 'Model Router', 'Route', <>Picks <b>the right AI for each job</b> — a fast one for routine work, a powerful one when it counts. Bring your own GPT, Claude or Gemini; never locked in.</>],
   ['04', 'Permission Mirror', 'Scope', <>Keeps <b>each tool&rsquo;s own access rules</b>. No one sees through SuprAI what they couldn&rsquo;t see in the tool itself — shaped by person and team.</>],
   ['05', 'Action Engine', 'Act', <>Does the work in your tools — <b>on your say-so, or on autopilot</b>. Every action is recorded, and undone with one click wherever the tool allows.</>],
-  ['06', 'Agent Runtime', 'Automate', <>Named, shared agents run the work that repeats — on a trigger or a schedule — <b>carrying the full story</b> and reporting back what they did.</>],
+  ['06', 'Agent Runtime', 'Automate', <>Named agents run the work that repeats — on a trigger or a schedule — <b>carrying the full story</b> and reporting back what they did.</>],
   ['07', 'Control Plane', 'Oversee', <>One place for <b>every connection, permission, agent and action</b> — all on the record, all run by a single admin.</>],
   ['08', 'Company Memory', 'Learn', <>What one person teaches it, <b>the whole company keeps</b>. It reads the right information once and reuses it — so every week builds on the last.</>],
 ]

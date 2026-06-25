@@ -63,9 +63,9 @@ export default function Home() {
       <header className="hero hero-centered">
         <div className="wrap">
           <Reveal className="hero-copy cc">
-            <div className="kicker" style={{ justifyContent: 'center' }}>One shared AI for your whole company</div>
+            <div className="kicker" style={{ justifyContent: 'center' }}>One AI layer for your whole company</div>
             <h1>The operating layer for <span className="gt">enterprise AI.</span></h1>
-            <p className="sub">Other AI gives each person an assistant. SuprAI gives your company <b>one shared AI</b> that knows your tools, your context, and your org — and executes across all of it, governed centrally, audited at every step.</p>
+            <p className="sub">Other AI gives each person an assistant. SuprAI gives your company <b>one AI layer</b> that knows your tools, your context, and your org — and executes across all of it, governed centrally, audited at every step.</p>
             <div className="hero-cta cc">
               <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer">Book a demo</a>
               <Link className="btn btn-ghost" to="/pricing">Start free</Link>
@@ -203,7 +203,7 @@ export default function Home() {
             <Reveal as="div" className="bento-card" d={2}>
               <div className="bc-eyebrow">Context</div>
               <h3>It just knows your company.</h3>
-              <p>One shared memory — the same customer, order or person, resolved across every tool and kept current.</p>
+              <p>One memory — the same customer, order or person, resolved across every tool and kept current.</p>
               <div className="bc-visual" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 {['google', 'slack', 'hubspot', 'stripe', 'notion', 'zendesk'].map((s) => (
                   <span className="ctx-chip" key={s} style={{ padding: 7 }}><BrandImg slug={s} /></span>

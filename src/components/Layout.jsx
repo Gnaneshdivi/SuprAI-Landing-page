@@ -21,7 +21,7 @@ function Nav() {
   }, [])
   return (
     <>
-      <div className="announce">New · One shared context for your company across <b>100+ apps</b>, always in sync.</div>
+      <div className="announce">New · One AI layer across your company’s <b>100+ apps</b>, always in sync.</div>
       <nav className={scrolled ? 'scrolled' : ''}>
         <div className="nav-in">
           <Link className="brand" to="/" onClick={closeMenu}><img className="navlogo" src="/Logo.png" alt="SuprAI" /></Link>
