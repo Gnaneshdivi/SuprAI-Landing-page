@@ -67,11 +67,13 @@ export default function Pricing() {
                     const [big, small] = priceParts(p, yearly)
                     return (
                       <th key={p.key} className={p.pop ? 'pt-pop' : ''}>
-                        {p.pop && <span className="pt-badge">Most popular</span>}
-                        <div className="pt-name">{p.name}</div>
-                        <div className="pt-price">{big}{small && <small> {small}</small>}</div>
-                        <div className="pt-blurb">{p.blurb}</div>
-                        <a className={`btn btn-${p.style} pt-cta`} href={DEMO_URL} target="_blank" rel="noopener noreferrer">{p.cta}</a>
+                        <div className="pt-head">
+                          <div className="pt-badge-slot">{p.pop && <span className="pt-badge">Most popular</span>}</div>
+                          <div className="pt-name">{p.name}</div>
+                          <div className="pt-price">{big}{small && <small> {small}</small>}</div>
+                          <div className="pt-blurb">{p.blurb}</div>
+                          <a className={`btn btn-${p.style} pt-cta`} href={DEMO_URL} target="_blank" rel="noopener noreferrer">{p.cta}</a>
+                        </div>
                       </th>
                     )
                   })}

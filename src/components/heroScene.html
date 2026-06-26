@@ -63,8 +63,12 @@ body{background:transparent;font-family:-apple-system,BlinkMacSystemFont,'Segoe 
 .td2{animation-delay:.15s!important;}.td3{animation-delay:.3s!important;}
 .msg-divider{height:1px;background:#C8CDD8;flex-shrink:0;}
 .sl-section{flex:1;display:flex;flex-direction:column;min-height:0;}
-.sl-bar{background:#3F0E40;padding:7px 9px;display:flex;align-items:center;gap:5px;flex-shrink:0;}
+.sl-bar{background:#3F0E40;padding:7px 9px;display:flex;align-items:center;justify-content:space-between;gap:5px;flex-shrink:0;}
 .sl-ch-badge{font-size:10.5px;font-weight:700;color:#fff;}
+.wa-bar{background:#075E54;}
+.wa-badge{font-size:10.5px;font-weight:700;color:#fff;display:flex;align-items:center;gap:5px;}
+.wa-ico{flex-shrink:0;}
+.ch-tag{font-size:8px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:999px;color:#fff;background:rgba(255,255,255,.17);flex-shrink:0;}
 .sl-body{flex:1;background:#fff;padding:6px 7px;overflow-y:auto;display:flex;flex-direction:column;gap:4px;border-radius:0 0 11px 11px;}
 .sl-row{display:flex;gap:5px;animation:fadeIn 0.3s ease both;}
 .sl-av{width:20px;height:20px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px;}
@@ -190,16 +194,16 @@ body{background:transparent;font-family:-apple-system,BlinkMacSystemFont,'Segoe 
 
   <div class="card col-msgs">
     <div class="sl-section" id="secSales">
-      <div class="sl-bar"><span class="sl-ch-badge"># sales-leads</span></div>
+      <div class="sl-bar"><span class="sl-ch-badge"># sales-leads</span><span class="ch-tag slack">Slack</span></div>
       <div class="sl-body" id="salesBody">
         <div class="sl-row"><div class="sl-av" style="background:#128C7E">A</div><div><div class="sl-meta"><span class="sl-uname">Aarav</span><span class="sl-time">09:40</span></div><div class="sl-text"><span class="sl-at">@SuprAI</span> qualify Rohit Shah, VP Sales at TechCorp — call at 3pm</div></div></div>
       </div>
     </div>
     <div class="msg-divider"></div>
     <div class="sl-section" id="secOps">
-      <div class="sl-bar"><span class="sl-ch-badge"># ops-team</span></div>
+      <div class="sl-bar wa-bar"><span class="wa-badge"><svg class="wa-ico" viewBox="0 0 32 32" width="13" height="13" fill="#fff"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.7L.5 31.5l8-2.1c2.2 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5C3.9 20.5 3.2 18.3 3.2 16 3.2 8.9 8.9 3.2 16 3.2S28.8 8.9 28.8 16 23.1 28.5 16 28.5z"/><path d="M23.4 19.3c-.4-.2-2.4-1.2-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.2 0-.6.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.3 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.4-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg>Ops Team</span><span class="ch-tag wa">WhatsApp</span></div>
       <div class="sl-body" id="slBody">
-        <div class="sl-row"><div class="sl-av" style="background:#7C3AED">P</div><div><div class="sl-meta"><span class="sl-uname">Priya</span><span class="sl-time">09:42</span></div><div class="sl-text"><span class="sl-at">@SuprAI</span> onboard Rahul — Product team Monday</div></div></div>
+        <div class="sl-row"><div class="sl-av" style="background:#128C7E">P</div><div><div class="sl-meta"><span class="sl-uname">Priya</span><span class="sl-time">09:42</span></div><div class="sl-text"><span class="sl-at">@SuprAI</span> onboard Rahul — Product team Monday</div></div></div>
       </div>
     </div>
   </div>
@@ -443,10 +447,10 @@ function p2(){
 
   dcAdd(`<div class="dc-user">@SuprAI onboard Rahul Kumar — Product team Monday</div>`,800);
   dcAdd(`<div class="dc-plan"><div class="dc-plan-title">PLAN</div><div class="dc-plan-item"><span class="dc-plan-n">1</span><span class="dc-plan-t">Create Google Workspace account</span></div><div class="dc-plan-item"><span class="dc-plan-n">2</span><span class="dc-plan-t">Invite to Slack channels</span></div><div class="dc-plan-item"><span class="dc-plan-n">3</span><span class="dc-plan-t">Create Notion workspace page</span></div><div class="dc-plan-item"><span class="dc-plan-n">4</span><span class="dc-plan-t">Send welcome email</span></div></div>`,1600);
-  dcAdd(`<div class="dc-tool-line"><span class="dc-tool-chevron">▸</span>APPROVAL REQUESTED → #ops-team<span class="dc-tool-chevron">▸</span></div>`,2400);
+  dcAdd(`<div class="dc-tool-line"><span class="dc-tool-chevron">▸</span>APPROVAL REQUESTED → Ops Team (WhatsApp)<span class="dc-tool-chevron">▸</span></div>`,2400);
   setTimeout(()=>addSLApproval('slBody','onboard Rahul across 4 tools?'),2600);
   setTimeout(()=>addSLApproved('slBody','Priya'),3700);
-  dcAdd(`<div class="dc-tool-line" style="color:#16A34A"><span class="dc-tool-chevron" style="color:#16A34A">✓</span>Approved in Slack — running</div>`,3900);
+  dcAdd(`<div class="dc-tool-line" style="color:#16A34A"><span class="dc-tool-chevron" style="color:#16A34A">✓</span>Approved in WhatsApp — running</div>`,3900);
 
   setTimeout(()=>autoScrollAndSelect(['a_gw1','a_sl1','a_nt1','a_gm2']),4000);
 
