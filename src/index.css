@@ -558,6 +558,7 @@ details.faq p{color:var(--mute);font-size:14.5px;line-height:1.6;max-width:760px
 
 /* footer */
 footer{background:var(--ink);color:#cdbfb2;padding:78px 0 40px}
+.foot-logo{height:30px;width:auto;display:block;filter:brightness(0) invert(1)}
 .foot-grid{display:grid;grid-template-columns:1.9fr 1fr 1fr 1fr;gap:36px 52px}
 @media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;gap:34px 28px}}
 footer h5{color:#fff;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px;font-weight:600}

@@ -47,7 +47,7 @@ body{background:transparent;font-family:-apple-system,BlinkMacSystemFont,'Segoe 
 .sbag-nc-badge{font-size:7px;font-family:monospace;color:#D97706;background:#FFFBEB;border:1px solid #FDE68A;border-radius:3px;padding:0 4px;}
 
 /* === LEFT: MESSENGERS === */
-.col-msgs{width:210px;flex-shrink:0;display:flex;flex-direction:column;gap:0;}
+.col-msgs{width:210px;flex-shrink:0;display:flex;flex-direction:column;gap:8px;}
 .wa-section{flex:1;display:flex;flex-direction:column;min-height:0;}
 .wa-bar{background:#075E54;padding:7px 9px;display:flex;align-items:center;gap:6px;flex-shrink:0;border-radius:11px 11px 0 0;}
 .wa-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;}
@@ -68,7 +68,8 @@ body{background:transparent;font-family:-apple-system,BlinkMacSystemFont,'Segoe 
 .wa-bar{background:#075E54;}
 .wa-badge{font-size:10.5px;font-weight:700;color:#fff;display:flex;align-items:center;gap:5px;}
 .wa-ico{flex-shrink:0;}
-.ch-tag{font-size:8px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:999px;color:#fff;background:rgba(255,255,255,.17);flex-shrink:0;}
+.ch-brand{display:flex;align-items:center;gap:5px;font-size:10.5px;font-weight:700;color:#fff;}
+.ch-ico{flex-shrink:0;border-radius:3px;}
 .sl-body{flex:1;background:#fff;padding:6px 7px;overflow-y:auto;display:flex;flex-direction:column;gap:4px;border-radius:0 0 11px 11px;}
 .sl-row{display:flex;gap:5px;animation:fadeIn 0.3s ease both;}
 .sl-av{width:20px;height:20px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px;}
@@ -192,16 +193,15 @@ body{background:transparent;font-family:-apple-system,BlinkMacSystemFont,'Segoe 
 
 <div class="bottom-row">
 
-  <div class="card col-msgs">
-    <div class="sl-section" id="secSales">
-      <div class="sl-bar"><span class="sl-ch-badge"># sales-leads</span><span class="ch-tag slack">Slack</span></div>
+  <div class="col-msgs">
+    <div class="sl-section card" id="secSales">
+      <div class="sl-bar"><span class="ch-brand"><svg class="ch-ico" viewBox="0 0 122.8 122.8" width="12" height="12"><path d="M25.8 77.6a12.9 12.9 0 1 1-12.9-12.9h12.9zm6.5 0a12.9 12.9 0 0 1 25.8 0v32.3a12.9 12.9 0 0 1-25.8 0z" fill="#E01E5A"/><path d="M45.2 25.8a12.9 12.9 0 1 1 12.9-12.9v12.9zm0 6.5a12.9 12.9 0 0 1 0 25.8H12.9a12.9 12.9 0 0 1 0-25.8z" fill="#36C5F0"/><path d="M97 45.2a12.9 12.9 0 1 1 12.9 12.9H97zm-6.5 0a12.9 12.9 0 0 1-25.8 0V12.9a12.9 12.9 0 0 1 25.8 0z" fill="#2EB67D"/><path d="M77.6 97a12.9 12.9 0 1 1-12.9 12.9V97zm0-6.5a12.9 12.9 0 0 1 0-25.8h32.3a12.9 12.9 0 0 1 0 25.8z" fill="#ECB22E"/></svg>Slack</span><span class="sl-ch-badge"># sales-leads</span></div>
       <div class="sl-body" id="salesBody">
         <div class="sl-row"><div class="sl-av" style="background:#128C7E">A</div><div><div class="sl-meta"><span class="sl-uname">Aarav</span><span class="sl-time">09:40</span></div><div class="sl-text"><span class="sl-at">@SuprAI</span> qualify Rohit Shah, VP Sales at TechCorp — call at 3pm</div></div></div>
       </div>
     </div>
-    <div class="msg-divider"></div>
-    <div class="sl-section" id="secOps">
-      <div class="sl-bar wa-bar"><span class="wa-badge"><svg class="wa-ico" viewBox="0 0 32 32" width="13" height="13" fill="#fff"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.7L.5 31.5l8-2.1c2.2 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5C3.9 20.5 3.2 18.3 3.2 16 3.2 8.9 8.9 3.2 16 3.2S28.8 8.9 28.8 16 23.1 28.5 16 28.5z"/><path d="M23.4 19.3c-.4-.2-2.4-1.2-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.2 0-.6.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.3 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.4-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg>Ops Team</span><span class="ch-tag wa">WhatsApp</span></div>
+    <div class="sl-section card" id="secOps">
+      <div class="sl-bar wa-bar"><span class="ch-brand"><svg class="ch-ico" viewBox="0 0 32 32" width="13" height="13" fill="#fff"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.7L.5 31.5l8-2.1c2.2 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.7 1.2 1.3-4.6-.3-.5C3.9 20.5 3.2 18.3 3.2 16 3.2 8.9 8.9 3.2 16 3.2S28.8 8.9 28.8 16 23.1 28.5 16 28.5z"/><path d="M23.4 19.3c-.4-.2-2.4-1.2-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.2 0-.6.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.3 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.4-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg>WhatsApp</span><span class="sl-ch-badge">Ops Team</span></div>
       <div class="sl-body" id="slBody">
         <div class="sl-row"><div class="sl-av" style="background:#128C7E">P</div><div><div class="sl-meta"><span class="sl-uname">Priya</span><span class="sl-time">09:42</span></div><div class="sl-text"><span class="sl-at">@SuprAI</span> onboard Rahul — Product team Monday</div></div></div>
       </div>
