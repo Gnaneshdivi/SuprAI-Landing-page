@@ -73,6 +73,8 @@ body{background:transparent;font-family:-apple-system,BlinkMacSystemFont,'Segoe 
 .sl-body{flex:1;background:#fff;padding:6px 7px;overflow-y:auto;display:flex;flex-direction:column;gap:4px;border-radius:0 0 11px 11px;}
 .sl-row{display:flex;gap:5px;animation:fadeIn 0.3s ease both;}
 .sl-av{width:20px;height:20px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px;}
+.sl-av-supr{background:#fff;border:1px solid #E2E5EC;padding:2px;}
+.sl-av-supr img{width:100%;height:100%;object-fit:contain;display:block;}
 .sl-meta{display:flex;gap:4px;align-items:baseline;margin-bottom:1px;}
 .sl-uname{font-size:10px;font-weight:700;color:#1D1C1D;}.sl-time{font-size:8px;color:#94A3B8;}
 .sl-text{font-size:10px;color:#1D1C1D;line-height:1.45;}
@@ -95,11 +97,11 @@ body{background:transparent;font-family:-apple-system,BlinkMacSystemFont,'Segoe 
 .chrome-url{font-size:10px;color:#334155;font-family:monospace;}
 .chrome-tabs{display:flex;gap:2px;}
 .chrome-tab{background:#fff;border-radius:7px 7px 0 0;padding:4px 12px;font-size:10px;color:#334155;display:flex;align-items:center;gap:5px;border:1px solid #C8CDD8;border-bottom:none;}
-.tab-fav{width:11px;height:11px;background:#F05A28;border-radius:2px;}
+.tab-fav{width:12px;height:12px;border-radius:2px;object-fit:contain;}
 .tab-x{color:#94A3B8;margin-left:3px;}
 .suprai-page{background:#fff;flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden;}
 .page-nav{background:#fff;border-bottom:1px solid #E2E6ED;padding:6px 12px;display:flex;align-items:center;gap:9px;flex-shrink:0;}
-.page-logo{width:18px;height:18px;background:#F05A28;border-radius:4px;display:flex;align-items:center;justify-content:center;}
+.page-logo{width:20px;height:20px;object-fit:contain;display:block;}
 .page-logo-i{width:9px;height:9px;border-radius:50%;border:2px solid #fff;}
 .page-brand{font-size:11px;font-weight:700;color:#0F172A;}
 .page-links{display:flex;gap:7px;margin-left:5px;}
@@ -216,11 +218,11 @@ body{background:transparent;font-family:-apple-system,BlinkMacSystemFont,'Segoe 
         <div class="chrome-dots"><div class="cdot cdot-r"></div><div class="cdot cdot-y"></div><div class="cdot cdot-g"></div></div>
         <div class="chrome-addr"><span style="font-size:9px;color:#94A3B8">🔒</span><span class="chrome-url">suprai.com/agents</span></div>
       </div>
-      <div class="chrome-tabs"><div class="chrome-tab"><div class="tab-fav"></div>SuprAI · Agents<span class="tab-x">×</span></div></div>
+      <div class="chrome-tabs"><div class="chrome-tab"><img class="tab-fav" src="/favicon.svg" alt="">SuprAI · Agents<span class="tab-x">×</span></div></div>
     </div>
     <div class="suprai-page">
       <div class="page-nav">
-        <div class="page-logo"><div class="page-logo-i"></div></div>
+        <img class="page-logo" src="/favicon.svg" alt="">
         <span class="page-brand">SuprAI</span>
         <div class="page-links"><span class="page-link active">Agents</span><span class="page-link">Memory</span><span class="page-link">Tools</span></div>
         <div class="page-user">Admin ▾</div>
@@ -312,8 +314,8 @@ const APPS=[
 const SALES_INIT=document.getElementById('salesBody').innerHTML;
 const OPS_INIT=document.getElementById('slBody').innerHTML;
 function resetMsgs(){const a=document.getElementById('salesBody');if(a)a.innerHTML=SALES_INIT;const o=document.getElementById('slBody');if(o)o.innerHTML=OPS_INIT;}
-function slPost(bodyId,name,color,html,time){const m=document.getElementById(bodyId);if(!m)return;const r=document.createElement('div');r.className='sl-row';r.innerHTML=`<div class="sl-av" style="background:${color}">${name.charAt(0)}</div><div><div class="sl-meta"><span class="sl-uname">${name}</span><span class="sl-time">${time||'09:46'}</span></div><div class="sl-text">${html}</div></div>`;m.appendChild(r);m.scrollTop=m.scrollHeight;}
-function addSLApproval(bodyId,label){const m=document.getElementById(bodyId);if(!m)return;const r=document.createElement('div');r.className='sl-row';r.innerHTML=`<div class="sl-av" style="background:#F05A28;font-size:7px;font-weight:700">SR</div><div><div class="sl-meta"><span class="sl-uname">SuprAI</span><span class="sl-time">09:43</span></div><div class="sl-text">⏳ Needs approval — ${label}</div><div class="sl-appr"><span class="sl-appr-btn" id="slApprBtn">Approve ✓</span></div></div>`;m.appendChild(r);m.scrollTop=m.scrollHeight;}
+function slPost(bodyId,name,color,html,time){const m=document.getElementById(bodyId);if(!m)return;const r=document.createElement('div');r.className='sl-row';r.innerHTML=`${name==='SuprAI'?'<div class="sl-av sl-av-supr"><img src="/favicon.svg" alt=""></div>':`<div class="sl-av" style="background:${color}">${name.charAt(0)}</div>`}<div><div class="sl-meta"><span class="sl-uname">${name}</span><span class="sl-time">${time||'09:46'}</span></div><div class="sl-text">${html}</div></div>`;m.appendChild(r);m.scrollTop=m.scrollHeight;}
+function addSLApproval(bodyId,label){const m=document.getElementById(bodyId);if(!m)return;const r=document.createElement('div');r.className='sl-row';r.innerHTML=`<div class="sl-av sl-av-supr"><img src="/favicon.svg" alt=""></div><div><div class="sl-meta"><span class="sl-uname">SuprAI</span><span class="sl-time">09:43</span></div><div class="sl-text">⏳ Needs approval — ${label}</div><div class="sl-appr"><span class="sl-appr-btn" id="slApprBtn">Approve ✓</span></div></div>`;m.appendChild(r);m.scrollTop=m.scrollHeight;}
 function addSLApproved(bodyId,name){const b=document.getElementById('slApprBtn');if(b){b.textContent='✓ Approved';b.classList.add('done');b.removeAttribute('id');}slPost(bodyId,name,'#7C3AED','✓ Approved — go ahead','09:43');}
 function renderApps(){
   const w=document.getElementById('sbChips');w.innerHTML='';

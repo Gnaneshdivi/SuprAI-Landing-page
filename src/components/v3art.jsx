@@ -470,7 +470,7 @@ export function SlackThread() {
         </div>
       </div>
       <div className="slk-msg">
-        <span className="slk-av b">S</span>
+        <span className="slk-av supr"><img src="/favicon.svg" alt="" /></span>
         <div className="slk-body">
           <div className="slk-who">SuprAI <span className="slk-done">✓ done</span></div>
           <div className="slk-card">
@@ -575,7 +575,7 @@ function ScenarioChat({ s }) {
         <span className="scchat-uav">YT</span>
       </div>
       <div className="scchat-tool">
-        <span className="scchat-mark">S</span>SuprAI
+        <span className="scchat-mark"><img src="/favicon.svg" alt="" /></span>SuprAI
         <span className="scchat-tools">{s.tools.map((t) => <BrandImg key={t} slug={t} />)} {s.tools.length} tool calls</span>
       </div>
       <div className="scchat-intro">{s.intro}</div>

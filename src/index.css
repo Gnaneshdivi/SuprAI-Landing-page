@@ -1379,6 +1379,8 @@ img{height:auto}
 .slk-av{width:28px;height:28px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Sora';font-weight:700;font-size:11px}
 .slk-av.u{background:var(--warm);border:1px solid var(--line);color:var(--ink)}
 .slk-av.b{background:var(--orange);color:#fff}
+.slk-av.supr{background:#fff;border:1px solid var(--line);padding:4px}
+.slk-av.supr img{width:100%;height:100%;object-fit:contain;display:block}
 .slk-body{min-width:0}
 .slk-who{font-size:12.5px;font-weight:700;color:var(--ink);margin-bottom:3px}
 .slk-who span{font-weight:400;color:var(--mute);font-size:11px;margin-left:7px}
@@ -1539,7 +1541,8 @@ img{height:auto}
 .scchat-bubble{background:var(--off);border:1px solid var(--line);border-radius:13px 13px 4px 13px;padding:11px 14px;font-size:14px;color:var(--ink);max-width:80%;line-height:1.4}
 .scchat-uav{width:28px;height:28px;border-radius:50%;background:var(--warm);border:1px solid var(--line);font-family:'Sora';font-weight:700;font-size:10px;color:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .scchat-tool{display:flex;align-items:center;gap:8px;font-family:'Sora';font-weight:600;font-size:13.5px;color:var(--ink);margin-bottom:6px}
-.scchat-mark{width:22px;height:22px;border-radius:6px;background:var(--orange);color:#fff;font-family:'Sora';font-weight:700;font-size:11px;display:flex;align-items:center;justify-content:center}
+.scchat-mark{width:22px;height:22px;border-radius:6px;background:#fff;border:1px solid var(--line);padding:3px;display:flex;align-items:center;justify-content:center}
+.scchat-mark img{width:100%;height:100%;object-fit:contain;display:block}
 .scchat-tools{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-weight:400;font-size:11px;color:var(--mute);margin-left:6px}
 .scchat-tools img{height:14px;width:14px}
 .scchat-intro{font-size:13.5px;color:#3f372f;line-height:1.5;margin:8px 0 14px}
