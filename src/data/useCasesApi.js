@@ -4,12 +4,8 @@ const BASE =
   import.meta.env.VITE_USECASES_BASE ||
   'https://faster-seed-hispanic-shower.trycloudflare.com/api/v1'
 
-// ngrok's free tier serves an interstitial page unless this header is present;
-// harmless when hitting a same-origin/local host.
-const HEADERS = { 'ngrok-skip-browser-warning': 'true' }
-
 async function get(path) {
-  const res = await fetch(`${BASE}${path}`, { headers: HEADERS })
+  const res = await fetch(`${BASE}${path}`)
   if (!res.ok) throw new Error(`API ${res.status} for ${path}`)
   return res.json()
 }
