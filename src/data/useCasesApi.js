@@ -2,7 +2,7 @@
 // Base URL is overridable via env so the host can be swapped without a code change.
 const BASE =
   import.meta.env.VITE_USECASES_BASE ||
-  'https://a401-2406-7400-94-fbe5-48c5-934d-3d7-890e.ngrok-free.app/api/v1'
+  'https://faster-seed-hispanic-shower.trycloudflare.com/api/v1'
 
 // ngrok's free tier serves an interstitial page unless this header is present;
 // harmless when hitting a same-origin/local host.
