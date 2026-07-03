@@ -2,7 +2,7 @@
 // Base URL is overridable via env so the host can be swapped without a code change.
 const BASE =
   import.meta.env.VITE_USECASES_BASE ||
-  'https://faster-seed-hispanic-shower.trycloudflare.com/api/v1'
+  'https://dev.suprai.one/api/v1'
 
 async function get(path) {
   const res = await fetch(`${BASE}${path}`)
