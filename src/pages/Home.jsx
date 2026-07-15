@@ -65,7 +65,7 @@ export default function Home() {
       <header className="hero hero-centered">
         <div className="wrap">
           <Reveal className="hero-copy cc">
-            <h1>The operating layer for <span className="gt">enterprise AI.</span></h1>
+            <h1>SuprAI is the operating layer for <span className="gt">enterprise AI.</span></h1>
             <p className="sub">Other AI gives each person an assistant. SuprAI gives your company <b>an AI layer</b> that knows your tools, your context, and your org — and executes across all of it, governed centrally, audited at every step.</p>
             <div className="hero-cta cc">
               <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer">Book a demo</a>
@@ -168,7 +168,7 @@ export default function Home() {
       <section className="section band-warm full">
         <div className="wrap">
           <Reveal className="sec-head cc">
-            <div className="kicker" style={{ justifyContent: 'center' }}>What it does</div>
+            <div className="kicker" style={{ justifyContent: 'center' }}>How it works</div>
             <h2 className="xl">Everything your company’s AI needs, in one place.</h2>
           </Reveal>
           <div className="bento4">
@@ -364,6 +364,13 @@ export default function Home() {
             </Reveal>
             <Reveal d={1}><ControlDashboard /></Reveal>
           </div>
+
+          <Reveal className="mt" style={{ maxWidth: 640 }}>
+            <div className="eyebrow">What SuprAI does</div>
+            <p className="lead maxnone">SuprAI is the AI operating system for your company — one place where every team's apps, answers, and agents come together, so your company can ask, act, and automate as one. It connects the tools your teams already use, answers by role from your own data, and lets you build workflows, skills and agents your teams can share — all run by one admin.</p>
+            <div className="eyebrow" style={{ marginTop: 26 }}>Why SuprAI asks for Google permissions</div>
+            <p className="lead maxnone">When you connect Google Workspace, SuprAI accesses only the data you explicitly authorize — the minimum scopes needed for the features you turn on — solely to build your company's searchable context and power your workflows. We never use it to train AI models, and you can disconnect or revoke access anytime from your Google Account permissions page. Read our <Link to="/privacy">Privacy Policy</Link> and <Link to="/terms">Terms of Service</Link>.</p>
+          </Reveal>
         </div>
       </section>
 

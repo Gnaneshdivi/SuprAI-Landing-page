@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import PageMeta from '../components/PageMeta.jsx'
 import LegalLayout from '../components/LegalLayout.jsx'
+import { ROUTE_META } from '../pageMeta.js'
 
 const TOC = [
   ['overview', 'Overview'],
@@ -24,7 +25,7 @@ const TOC = [
 export default function Privacy() {
   return (
     <>
-      <PageMeta title="Privacy Policy" description="How Stopngage Solutions Pvt. Limited (SuprAI) collects, uses, stores, shares, and protects information in connection with the SuprAI platform, dashboard, APIs, connectors, and related services." />
+      <PageMeta {...ROUTE_META['/privacy']} />
       <LegalLayout
         title="Privacy Policy"
         effective="June 15, 2026"

@@ -5,6 +5,7 @@
 
 # Build output
 dist/
+dist-ssr/
 
 # Dependencies
 node_modules/

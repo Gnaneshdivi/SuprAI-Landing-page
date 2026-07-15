@@ -1,6 +1,7 @@
 import { Outlet, NavLink, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import AskAI from './AskAI'
+import Logo from './Logo.jsx'
 
 export const DEMO_URL = 'https://api.whatsapp.com/send/?phone=918056088288&text=Hey%2C+I+just+checked+your+website+and+would+like+to+know+more+about+SuprEngage.+Can+we+schedule+a+meeting%3F&type=phone_number&app_absent=0'
 
@@ -23,7 +24,7 @@ function Nav() {
       <div className="announce">New · The AI layer across your company’s <b>100+ apps</b>, always in sync.</div>
       <nav className={scrolled ? 'scrolled' : ''}>
         <div className="nav-in">
-          <Link className="brand" to="/" onClick={closeMenu}><img className="navlogo" src="/Logo.png" alt="SuprAI" /></Link>
+          <Link className="brand" to="/" onClick={closeMenu}><Logo /></Link>
           <div className="nav-links">
             <div className="has-mega">
               <Link className="navtrigger" to="/solutions">Solutions <span className="car">▾</span></Link>
@@ -82,7 +83,7 @@ function Footer() {
       <div className="wrap">
         <div className="foot-grid">
           <div>
-            <Link className="brand" to="/"><img className="foot-logo" src="/Logo.png" alt="SuprAI" /></Link>
+            <Link className="brand" to="/"><Logo /></Link>
             <p style={{ marginTop: 14, maxWidth: 300, fontSize: 14.5 }}>The AI operating system for your company. One place to ask, act, and automate — for every team.</p>
           </div>
           <div>
