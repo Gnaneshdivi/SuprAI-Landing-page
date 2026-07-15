@@ -208,7 +208,7 @@ export default function Terms() {
             <li><b>Entire agreement.</b> These Terms, the Privacy Policy, the DPA (where applicable), and any order form are the entire agreement and supersede prior discussions on the subject.</li>
             <li><b>Severability.</b> If any provision is unenforceable, it will be modified to the minimum extent necessary, and the rest remains in effect.</li>
             <li><b>No waiver.</b> Failure to enforce a provision is not a waiver of it.</li>
-            <li><b>Notices.</b> Legal notices to us go to <a href="mailto:legal@suprengage.com">legal@suprengage.com</a>; notices to Customer go to the account administrator's email on file.</li>
+            <li><b>Notices.</b> Legal notices to us go to <a href="mailto:legal@suprai.one">legal@suprai.one</a>; notices to Customer go to the account administrator's email on file.</li>
             <li><b>Changes.</b> We may update these Terms; material changes will be notified by email or in-product notice at least 15 days before taking effect, and continued use after the effective date constitutes acceptance. Changes do not apply retroactively to a dispute arising before the change.</li>
           </ul>
         </section>
@@ -219,7 +219,7 @@ export default function Terms() {
           <div className="legal-contact">
             <div className="who">Stopngage Solutions Pvt. Limited</div>
             <p>Bengaluru, Karnataka, India</p>
-            <p><a href="mailto:legal@suprengage.com">legal@suprengage.com</a></p>
+            <p><a href="mailto:legal@suprai.one">legal@suprai.one</a></p>
           </div>
           <p style={{ marginTop: 14 }}>See also our <Link to="/privacy">Privacy Policy</Link>.</p>
         </section>

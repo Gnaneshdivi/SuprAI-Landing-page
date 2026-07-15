@@ -134,7 +134,7 @@ export default function Privacy() {
               </tbody>
             </table>
           </div>
-          <p><b>Marketing opt-out.</b> You may opt out of marketing communications at any time via the unsubscribe link in any such email or by writing to <a href="mailto:privacy@suprengage.com">privacy@suprengage.com</a>. Service and account notices are not marketing and will continue.</p>
+          <p><b>Marketing opt-out.</b> You may opt out of marketing communications at any time via the unsubscribe link in any such email or by writing to <a href="mailto:privacy@suprai.one">privacy@suprai.one</a>. Service and account notices are not marketing and will continue.</p>
           <p><b>Aggregated data.</b> We may generate aggregated, de-identified statistics (e.g., overall feature usage) that cannot reasonably identify any person or Customer, and use them to operate and improve the Service. We do not attempt to re-identify such data.</p>
         </section>
 
@@ -220,7 +220,7 @@ export default function Privacy() {
           <h2>Your Rights &amp; Choices</h2>
           <p>Depending on your location and the applicable law, you may have the right to: access, correct, or delete your personal data; receive a copy in a portable format; object to or restrict certain processing; withdraw consent (without affecting prior processing); and complain to a supervisory authority.</p>
           <ul>
-            <li><b>Authorized Users and Visitors</b> (data for which SuprAI is controller): contact <a href="mailto:privacy@suprengage.com">privacy@suprengage.com</a>. We will verify your identity and respond within the timeline the applicable law requires.</li>
+            <li><b>Authorized Users and Visitors</b> (data for which SuprAI is controller): contact <a href="mailto:privacy@suprai.one">privacy@suprai.one</a>. We will verify your identity and respond within the timeline the applicable law requires.</li>
             <li><b>End Customers</b> (data we process for a Customer): contact the relevant organization directly; we will support their response as their processor.</li>
             <li><b>Customer administrators</b> may disconnect any connector, adjust permissions, or revoke Google access at any time.</li>
           </ul>
@@ -234,7 +234,7 @@ export default function Privacy() {
           <div className="legal-contact">
             <div className="who">Grievance Officer, Stopngage Solutions Pvt. Limited</div>
             <p>Bengaluru, Karnataka, India</p>
-            <p><a href="mailto:privacy@suprengage.com">privacy@suprengage.com</a></p>
+            <p><a href="mailto:privacy@suprai.one">privacy@suprai.one</a></p>
           </div>
           <p style={{ marginTop: 14 }}>We aim to acknowledge grievances within 72 hours and resolve them within the timelines prescribed by applicable law.</p>
         </section>
@@ -263,7 +263,7 @@ export default function Privacy() {
           <div className="legal-contact">
             <div className="who">Stopngage Solutions Pvt. Limited</div>
             <p>Bengaluru, Karnataka, India</p>
-            <p><a href="mailto:privacy@suprengage.com">privacy@suprengage.com</a></p>
+            <p><a href="mailto:privacy@suprai.one">privacy@suprai.one</a></p>
           </div>
           <p style={{ marginTop: 14 }}>See also our <Link to="/terms">Terms of Service</Link>.</p>
         </section>
