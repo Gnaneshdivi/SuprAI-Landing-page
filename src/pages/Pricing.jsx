@@ -4,24 +4,26 @@ import { DEMO_URL } from '../components/Layout.jsx'
 
 const PLANS = [
   { key: 'free', name: 'Free', monthly: 0, yearly: 0, blurb: 'Ask & act from your own AI', cta: 'Start free', style: 'ghost' },
+  { key: 'individual', name: 'Individual', monthly: 30, yearly: 300, blurb: 'For one person running workflows', cta: 'Go Individual', style: 'ghost' },
   { key: 'essential', name: 'Essential', monthly: 300, yearly: 3000, blurb: 'For a team getting going', cta: 'Choose Essential', style: 'primary', pop: true },
   { key: 'scale', name: 'Scale', monthly: 1200, yearly: 12000, blurb: 'For scaling operations', cta: 'Choose Scale', style: 'ghost' },
   { key: 'enterprise', name: 'Enterprise', monthly: null, yearly: null, blurb: 'For 50+ & regulated teams', cta: 'Talk to us', style: 'ghost' },
 ]
 
-// label → [free, essential, scale, enterprise]
+// label → [free, individual, essential, scale, enterprise]
 const ROWS = [
-  ['Users', ['1', 'Unlimited', 'Unlimited', 'Unlimited']],
-  ['Team-wide context', ['Personal', '✓ team-wide', '✓ org-wide', '✓ advanced']],
-  ['Connectors', ['Any 5 (live read)', 'Up to 15', 'Unlimited', 'Unlimited']],
-  ['Data capacity', ['—', '25 GB', '250 GB', 'From 1 TB']],
-  ['AI credits / mo', ['Auto mode only · free', '2,500', '25,000', 'From 250,000']],
-  ['Active agents', ['—', 'Unlimited', 'Unlimited', 'Unlimited']],
-  ['Automations', ['—', 'Basic', 'Advanced', 'Advanced + custom']],
-  ['Live retention', ['—', '90 days', '365 days', 'Custom / legal hold']],
-  ['BYOK / BYOC', ['—', 'Optional', 'Default', 'Required']],
-  ['Controls', ['—', 'SSO, roles', 'SSO/SCIM, audit', 'SAML, scoped keys, SLAs']],
-  ['Support', ['Community', 'Standard', 'Priority', 'Dedicated']],
+  ['Users', ['1', '1', 'Unlimited', 'Unlimited', 'Unlimited']],
+  ['Team-wide context', ['Personal', 'Personal · no shared context', '✓ team-wide', '✓ org-wide', '✓ advanced']],
+  ['Connectors', ['Any 5 (live read)', 'Any 5 (live read)', 'Up to 15', 'Unlimited', 'Unlimited']],
+  ['Data capacity', ['—', '—', '25 GB', '250 GB', 'From 1 TB']],
+  ['AI credits / mo', ['Auto mode only · free', '$20 included', '2,500', '25,000', 'From 250,000']],
+  ['Workflows', ['—', '✓ personal workflows', '✓', '✓', '✓']],
+  ['Active agents', ['—', '—', 'Unlimited', 'Unlimited', 'Unlimited']],
+  ['Automations', ['—', 'Workflows only', 'Basic', 'Advanced', 'Advanced + custom']],
+  ['Live retention', ['—', '30 days', '90 days', '365 days', 'Custom / legal hold']],
+  ['BYOK / BYOC', ['—', '—', 'Optional', 'Default', 'Required']],
+  ['Controls', ['—', '—', 'SSO, roles', 'SSO/SCIM, audit', 'SAML, scoped keys, SLAs']],
+  ['Support', ['Community', 'Standard', 'Standard', 'Priority', 'Dedicated']],
 ]
 
 function priceParts(plan, yearly) {
@@ -116,6 +118,7 @@ export default function Pricing() {
           <div className="eyebrow">FAQ</div>
           <h2 className="big mb20">Common questions</h2>
           <details className="faq"><summary>Is Free really free?</summary><p>Yes — Free is free forever, not a trial. Connect your apps and ask and act from your own Claude, GPT or Gemini for as long as you like. Auto mode is free; agents, team-wide context and AI credits come with the paid plans.</p></details>
+          <details className="faq"><summary>What’s the Individual plan?</summary><p>Individual is for one person: $30/mo with $20 of AI credits included every month. You get your personal context and your own workflows — there’s no shared or team-wide context. When you’re ready to bring the team in, upgrade to Essential.</p></details>
           <details className="faq"><summary>What does “auto mode is free” mean?</summary><p>Routine, rule-based work — auto mode — runs free on every plan. You only spend AI credits when an agent calls a premium model like Claude for a heavier task. So the everyday automation never adds to your bill.</p></details>
           <details className="faq"><summary>How do extra data and Claude usage work?</summary><p>Pay-as-you-go. Each plan includes a data allowance and a monthly pool of AI credits; anything beyond that — extra storage, or premium model usage like Claude — is billed as you use it. You see usage live and can cap it.</p></details>
           <details className="faq"><summary>What about BYOC?</summary><p>Bring-your-own-cloud is available on Scale (default) and Enterprise (required). BYOC is priced separately from the standard plans — talk to us and we’ll quote it for your setup.</p></details>
