@@ -105,6 +105,8 @@ function Footer() {
             <Link to="/contact">Contact us</Link>
             <a href={DEMO_URL} target="_blank" rel="noopener noreferrer">Book a demo</a>
             <Link to="/pricing">Start free</Link>
+            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/terms">Terms of Service</Link>
           </div>
         </div>
         <div className="foot-bottom">

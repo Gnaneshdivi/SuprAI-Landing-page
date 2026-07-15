@@ -10,6 +10,8 @@ import About from './pages/About.jsx'
 import Compare from './pages/Compare.jsx'
 import CompareDetail from './pages/CompareDetail.jsx'
 import Contact from './pages/Contact.jsx'
+import Privacy from './pages/Privacy.jsx'
+import Terms from './pages/Terms.jsx'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -32,6 +34,8 @@ export default function App() {
           <Route path="/compare" element={<Compare />} />
           <Route path="/compare/:slug" element={<CompareDetail />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
         </Route>
       </Routes>
     </>
