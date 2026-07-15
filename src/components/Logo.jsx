@@ -22,7 +22,7 @@ export default function Logo() {
         <path d="M167.74 96.2385C303.892 -15.5783 440.469 -16.0772 577.471 94.7418" />
         <path d="M577.112 641.841C440.959 753.658 304.382 754.154 167.38 643.335" />
       </svg>
-      <span className="brandword">SUPR<span className="ai">AI</span></span>
+      <span className="brandword">Supr<span className="ai">AI</span></span>
     </span>
   )
 }

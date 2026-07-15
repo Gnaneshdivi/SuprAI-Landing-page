@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import PageMeta from '../components/PageMeta.jsx'
 import LegalLayout from '../components/LegalLayout.jsx'
+import { ROUTE_META } from '../pageMeta.js'
 
 const TOC = [
   ['overview', 'Overview'],
@@ -30,7 +31,7 @@ const TOC = [
 export default function Terms() {
   return (
     <>
-      <PageMeta title="Terms of Service" description="The Terms of Service governing access to and use of the SuprAI platform, dashboard, APIs, connectors, and related services, operated by Stopngage Solutions Pvt. Limited." />
+      <PageMeta {...ROUTE_META['/terms']} />
       <LegalLayout
         title="Terms of Service"
         effective="June 15, 2026"

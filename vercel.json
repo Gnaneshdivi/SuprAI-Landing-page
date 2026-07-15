@@ -1,5 +1,9 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "rewrites": [
+    { "source": "/privacy", "destination": "/privacy/index.html" },
+    { "source": "/terms", "destination": "/terms/index.html" },
+    { "source": "/(.*)", "destination": "/_shell.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",

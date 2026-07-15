@@ -65,7 +65,7 @@ export default function Home() {
       <header className="hero hero-centered">
         <div className="wrap">
           <Reveal className="hero-copy cc">
-            <h1>The operating layer for <span className="gt">enterprise AI.</span></h1>
+            <h1>SuprAI is the operating layer for <span className="gt">enterprise AI.</span></h1>
             <p className="sub">Other AI gives each person an assistant. SuprAI gives your company <b>an AI layer</b> that knows your tools, your context, and your org — and executes across all of it, governed centrally, audited at every step.</p>
             <div className="hero-cta cc">
               <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noopener noreferrer">Book a demo</a>
@@ -80,6 +80,29 @@ export default function Home() {
           <Reveal as="div" className="hero-scene-fallback" d={1}><HeroDemoCard /></Reveal>
         </div>
       </header>
+
+      {/* ═══ WHAT SUPRAI DOES + WHY IT ASKS FOR GOOGLE PERMISSIONS ═══
+          Required by Google OAuth verification: a full, publicly-visible,
+          pre-JS description of app functionality and data-use purpose. */}
+      <section className="section lined" id="what-suprai-does">
+        <div className="wrap">
+          <div className="eyebrow">What SuprAI does</div>
+          <p className="lead maxnone">SuprAI is the AI operating system for your company — one place where every team's apps, answers, and agents come together, so your company can ask, act, and automate as one.</p>
+          <Bullets items={[
+            ["Connect your company's tools.", "SuprAI connects to the systems your teams already use — Google Workspace, Slack, Shopify, Razorpay, and more — and brings them together into one searchable, permissioned layer of company context."],
+            ['Get answers by role.', "Ask a question and get an answer drawn from your company's own data. Every answer respects the permissions each person already has in the underlying systems — people only ever see what they're allowed to see."],
+            ['Build workflows and skills.', 'Create automated workflows that act across your connected tools, and reusable skills your teams can share across the company.'],
+            ['Powers the AI you already use.', "Connect SuprAI to the AI assistants your teams work in, so they can draw on your company's context."],
+            ['Run by one admin.', 'Administrators control which tools are connected, what data is available, and who can access what — from a single place.'],
+          ]} />
+        </div>
+        <div className="wrap" style={{ marginTop: 40 }}>
+          <div className="eyebrow">Why SuprAI asks for Google permissions</div>
+          <p className="lead maxnone">When you connect Google Workspace to SuprAI, we access only the data you explicitly authorize — the files, documents, and directory information needed for the features you turn on. We use it solely to build your company's searchable context and to power the workflows, skills, and agents you configure.</p>
+          <p className="lead maxnone" style={{ marginTop: 14 }}>We request the minimum scopes required for the features you enable. We never use your data to train AI models, ours or any third party's. You can disconnect Google or revoke access at any time from your Google Account permissions page.</p>
+          <p className="lead maxnone" style={{ marginTop: 14 }}>Read our <Link to="/privacy">Privacy Policy</Link> and <Link to="/terms">Terms of Service</Link>.</p>
+        </div>
+      </section>
 
       {/* ═══ PROOF BAR ═══ */}
       <section className="logos">
@@ -168,7 +191,7 @@ export default function Home() {
       <section className="section band-warm full">
         <div className="wrap">
           <Reveal className="sec-head cc">
-            <div className="kicker" style={{ justifyContent: 'center' }}>What it does</div>
+            <div className="kicker" style={{ justifyContent: 'center' }}>How it works</div>
             <h2 className="xl">Everything your company’s AI needs, in one place.</h2>
           </Reveal>
           <div className="bento4">

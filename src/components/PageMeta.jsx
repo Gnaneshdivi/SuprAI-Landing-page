@@ -19,6 +19,16 @@ function setMeta(selector, attr, val) {
   el.setAttribute(attr, val)
 }
 
+function setCanonical(pathname) {
+  let link = document.head.querySelector('link[rel="canonical"]')
+  if (!link) {
+    link = document.createElement('link')
+    link.rel = 'canonical'
+    document.head.appendChild(link)
+  }
+  link.href = `https://www.suprai.one${pathname}`
+}
+
 export default function PageMeta({ title, description }) {
   useEffect(() => {
     const full = title ? `${title} · ${BRAND}` : HOME_TITLE
@@ -29,6 +39,7 @@ export default function PageMeta({ title, description }) {
     setMeta('meta[name="twitter:title"]', 'content', full)
     setMeta('meta[property="og:description"]', 'content', desc)
     setMeta('meta[name="twitter:description"]', 'content', desc)
+    setCanonical(window.location.pathname)
   }, [title, description])
   return null
 }
