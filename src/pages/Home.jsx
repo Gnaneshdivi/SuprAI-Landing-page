@@ -81,29 +81,6 @@ export default function Home() {
         </div>
       </header>
 
-      {/* ═══ WHAT SUPRAI DOES + WHY IT ASKS FOR GOOGLE PERMISSIONS ═══
-          Required by Google OAuth verification: a full, publicly-visible,
-          pre-JS description of app functionality and data-use purpose. */}
-      <section className="section lined" id="what-suprai-does">
-        <div className="wrap">
-          <div className="eyebrow">What SuprAI does</div>
-          <p className="lead maxnone">SuprAI is the AI operating system for your company — one place where every team's apps, answers, and agents come together, so your company can ask, act, and automate as one.</p>
-          <Bullets items={[
-            ["Connect your company's tools.", "SuprAI connects to the systems your teams already use — Google Workspace, Slack, Shopify, Razorpay, and more — and brings them together into one searchable, permissioned layer of company context."],
-            ['Get answers by role.', "Ask a question and get an answer drawn from your company's own data. Every answer respects the permissions each person already has in the underlying systems — people only ever see what they're allowed to see."],
-            ['Build workflows and skills.', 'Create automated workflows that act across your connected tools, and reusable skills your teams can share across the company.'],
-            ['Powers the AI you already use.', "Connect SuprAI to the AI assistants your teams work in, so they can draw on your company's context."],
-            ['Run by one admin.', 'Administrators control which tools are connected, what data is available, and who can access what — from a single place.'],
-          ]} />
-        </div>
-        <div className="wrap" style={{ marginTop: 40 }}>
-          <div className="eyebrow">Why SuprAI asks for Google permissions</div>
-          <p className="lead maxnone">When you connect Google Workspace to SuprAI, we access only the data you explicitly authorize — the files, documents, and directory information needed for the features you turn on. We use it solely to build your company's searchable context and to power the workflows, skills, and agents you configure.</p>
-          <p className="lead maxnone" style={{ marginTop: 14 }}>We request the minimum scopes required for the features you enable. We never use your data to train AI models, ours or any third party's. You can disconnect Google or revoke access at any time from your Google Account permissions page.</p>
-          <p className="lead maxnone" style={{ marginTop: 14 }}>Read our <Link to="/privacy">Privacy Policy</Link> and <Link to="/terms">Terms of Service</Link>.</p>
-        </div>
-      </section>
-
       {/* ═══ PROOF BAR ═══ */}
       <section className="logos">
         <div className="wrap">
@@ -387,6 +364,13 @@ export default function Home() {
             </Reveal>
             <Reveal d={1}><ControlDashboard /></Reveal>
           </div>
+
+          <Reveal className="mt" style={{ maxWidth: 640 }}>
+            <div className="eyebrow">What SuprAI does</div>
+            <p className="lead maxnone">SuprAI is the AI operating system for your company — one place where every team's apps, answers, and agents come together, so your company can ask, act, and automate as one. It connects the tools your teams already use, answers by role from your own data, and lets you build workflows, skills and agents your teams can share — all run by one admin.</p>
+            <div className="eyebrow" style={{ marginTop: 26 }}>Why SuprAI asks for Google permissions</div>
+            <p className="lead maxnone">When you connect Google Workspace, SuprAI accesses only the data you explicitly authorize — the minimum scopes needed for the features you turn on — solely to build your company's searchable context and power your workflows. We never use it to train AI models, and you can disconnect or revoke access anytime from your Google Account permissions page. Read our <Link to="/privacy">Privacy Policy</Link> and <Link to="/terms">Terms of Service</Link>.</p>
+          </Reveal>
         </div>
       </section>
 
