@@ -408,20 +408,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ WHAT SUPRAI DOES + DATA USE ═══ */}
+      {/* ═══ WHAT SUPRAI DOES + DATA USE ═══
+          Copy below is legally reviewed — do not reword. */}
       <section className="section lined">
         <div className="wrap">
           <SecMark label="How SuprAI works with your data" />
           <h2 className="xl">One system, your rules.</h2>
-          <div className="grid-2" style={{ gap: 46, marginTop: 32, alignItems: 'start' }}>
-            <div>
-              <div className="eyebrow">What SuprAI does</div>
-              <p className="lead maxnone">SuprAI is the AI operating system for your company — one place where every team's apps, answers, and agents come together, so your company can ask, act, and automate as one. It connects the tools your teams already use, answers by role from your own data, and lets you build workflows, skills and agents your teams can share — all run by one admin.</p>
-            </div>
-            <div>
-              <div className="eyebrow">Why SuprAI asks for Google permissions</div>
-              <p className="lead maxnone">When you connect Google Workspace, SuprAI accesses only the data you explicitly authorize — the minimum scopes needed for the features you turn on — solely to build your company's searchable context and power your workflows. We never use it to train AI models, and you can disconnect or revoke access anytime from your Google Account permissions page. Read our <Link to="/privacy">Privacy Policy</Link> and <Link to="/terms">Terms of Service</Link>.</p>
-            </div>
+
+          <div className="mt" style={{ maxWidth: 720 }}>
+            <div className="eyebrow">What SuprAI does</div>
+            <p className="lead maxnone">SuprAI is the AI operating system for your company — one place where every team's apps, answers, and agents come together, so your company can ask, act, and automate as one.</p>
+            <Bullets items={[
+              ["Connect your company's tools.", "SuprAI connects to the systems your teams already use and brings them together into one searchable, permissioned layer of company context."],
+              ['Get answers by role.', "Ask a question and get an answer drawn from your company's own data. Every answer respects the permissions each person already has in the underlying systems — people only ever see what they're allowed to see."],
+              ['Build workflows and skills.', 'Create automated workflows that act across your connected tools, and reusable skills your teams can share across the company.'],
+              ['Powers the AI you already use.', "Connect SuprAI to the AI assistants your teams work in, so they can draw on your company's context."],
+              ['Run by one admin.', 'Administrators control which tools are connected, what data is available, and who can access what — from a single place.'],
+            ]} />
+          </div>
+
+          <div className="mt" style={{ maxWidth: 720 }}>
+            <div className="eyebrow">Why SuprAI asks for Google permissions</div>
+            <p className="lead maxnone"><b>Signing in.</b> SuprAI uses Google Sign-In so you can create an account without managing another password. We request only your name, email address, and profile picture — used solely to create and identify your SuprAI account, show your teammates who you are, and contact you about your account. Signing in does not give SuprAI access to your Gmail, Drive, Calendar, or any other Google service.</p>
+            <p className="lead maxnone" style={{ marginTop: 14 }}><b>Connecting Google Workspace as a data source (optional, separate).</b> If you later choose to connect Google Workspace to SuprAI, you'll be asked to grant those permissions in a separate, explicit step. Nothing is accessed until you connect it, we request only the minimum scopes needed for the features you turn on, and you can disconnect at any time.</p>
+            <p className="lead maxnone" style={{ marginTop: 14 }}>We never use your data to train AI models, ours or any third party's. You can revoke SuprAI's access at any time from your Google Account permissions page.</p>
           </div>
         </div>
       </section>
