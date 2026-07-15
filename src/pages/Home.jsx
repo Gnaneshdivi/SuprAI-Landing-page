@@ -364,13 +364,6 @@ export default function Home() {
             </Reveal>
             <Reveal d={1}><ControlDashboard /></Reveal>
           </div>
-
-          <Reveal className="mt" style={{ maxWidth: 640 }}>
-            <div className="eyebrow">What SuprAI does</div>
-            <p className="lead maxnone">SuprAI is the AI operating system for your company — one place where every team's apps, answers, and agents come together, so your company can ask, act, and automate as one. It connects the tools your teams already use, answers by role from your own data, and lets you build workflows, skills and agents your teams can share — all run by one admin.</p>
-            <div className="eyebrow" style={{ marginTop: 26 }}>Why SuprAI asks for Google permissions</div>
-            <p className="lead maxnone">When you connect Google Workspace, SuprAI accesses only the data you explicitly authorize — the minimum scopes needed for the features you turn on — solely to build your company's searchable context and power your workflows. We never use it to train AI models, and you can disconnect or revoke access anytime from your Google Account permissions page. Read our <Link to="/privacy">Privacy Policy</Link> and <Link to="/terms">Terms of Service</Link>.</p>
-          </Reveal>
         </div>
       </section>
 
@@ -412,6 +405,24 @@ export default function Home() {
           {faqs.map(([q, a]) => (
             <details className="faq" key={q}><summary>{q}</summary><p>{a}</p></details>
           ))}
+        </div>
+      </section>
+
+      {/* ═══ WHAT SUPRAI DOES + DATA USE ═══ */}
+      <section className="section lined">
+        <div className="wrap">
+          <SecMark label="How SuprAI works with your data" />
+          <h2 className="xl">One system, your rules.</h2>
+          <div className="grid-2" style={{ gap: 46, marginTop: 32, alignItems: 'start' }}>
+            <div>
+              <div className="eyebrow">What SuprAI does</div>
+              <p className="lead maxnone">SuprAI is the AI operating system for your company — one place where every team's apps, answers, and agents come together, so your company can ask, act, and automate as one. It connects the tools your teams already use, answers by role from your own data, and lets you build workflows, skills and agents your teams can share — all run by one admin.</p>
+            </div>
+            <div>
+              <div className="eyebrow">Why SuprAI asks for Google permissions</div>
+              <p className="lead maxnone">When you connect Google Workspace, SuprAI accesses only the data you explicitly authorize — the minimum scopes needed for the features you turn on — solely to build your company's searchable context and power your workflows. We never use it to train AI models, and you can disconnect or revoke access anytime from your Google Account permissions page. Read our <Link to="/privacy">Privacy Policy</Link> and <Link to="/terms">Terms of Service</Link>.</p>
+            </div>
+          </div>
         </div>
       </section>
 
